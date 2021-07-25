@@ -1,10 +1,13 @@
 import setuptools
+
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+exec(open('ClustersFeatures/version.py').read())
+
 setuptools.setup(
     name="Clusters-Features",
-    version="1.0.0",
+    version=__version__,
     author="Simon Bertrand",
     author_email="simonbertrand.contact@gmail.com",
     description="The Clusters-Features package allows data science users to compute high-level linear algebra operations on any type of data set.",

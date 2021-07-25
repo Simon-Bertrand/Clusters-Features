@@ -20,6 +20,8 @@
 from ClustersFeatures import settings
 from ClustersFeatures import raising_errors
 
+from .version import __version__
+
 import pandas as pd
 import numpy as np
 from scipy import spatial
