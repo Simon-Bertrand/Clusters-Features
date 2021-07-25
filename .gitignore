@@ -1,6 +1,5 @@
-.packages
-.idea
-
+__pycache__/
+ *.pyc
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
