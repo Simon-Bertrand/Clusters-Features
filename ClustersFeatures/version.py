@@ -1,4 +1,4 @@
 """
 CURRENT VERSION OF CLUSTERS-FEATURES SOFTWARE
 """
-__version__="1.0.1"
+__version__="1.0.112"

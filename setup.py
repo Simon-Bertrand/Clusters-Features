@@ -14,6 +14,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Simon-Bertrand",
+    install_requires=["numba","numpy","pandas","plotly>=5.1.0","scikit-learn","scipy","umap-learn"],
     project_urls={
         "Cluster-Features": "https://github.com/Simon-Bertrand/ClustersCharacteristics/",
     },
@@ -23,5 +24,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     packages=setuptools.find_packages(),
-    python_requires=">=3.9",
+    python_requires=">=3.9"
+
 )
