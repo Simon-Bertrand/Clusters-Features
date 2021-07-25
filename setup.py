@@ -7,7 +7,7 @@ exec(open('ClustersFeatures/version.py').read())
 
 setuptools.setup(
     name="Clusters-Features",
-    version=__version__,
+    version=__version__.replace('-',''),
     author="Simon Bertrand",
     author_email="simonbertrand.contact@gmail.com",
     description="The Clusters-Features package allows data science users to compute high-level linear algebra operations on any type of data set.",
