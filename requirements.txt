@@ -1,3 +1,8 @@
-pandas
-numpy
-scipy
+numba==0.53.1
+numpy==1.19.5
+pandas==1.2.3
+plotly==5.1.0
+scikit-learn==0.24.1
+scipy==1.6.2
+sklearn
+umap-learn==0.5.1
