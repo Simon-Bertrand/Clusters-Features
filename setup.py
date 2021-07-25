@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="Clusters-Features",
-    version=version.VERSION,
+    version=version.version_number,
     author="Simon Bertrand",
     author_email="simonbertrand.contact@gmail.com",
     description="The Clusters-Features package allows data science users to compute high-level linear algebra operations on any type of data set.",
