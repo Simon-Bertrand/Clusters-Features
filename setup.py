@@ -1,5 +1,5 @@
 import setuptools
-from ClustersFeatures.__version__ import ver as version
+from .ClustersFeatures.__version__ import ver as version
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
