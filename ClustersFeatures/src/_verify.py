@@ -36,25 +36,3 @@ class Verify:
             return True
         else:
             return False
-
-import pkg_resources
-import os
-def install_modules():
-    installed_packages = pkg_resources.working_set
-    installed_packages_list = sorted(["%s" % (i.key)
-                                      for i in installed_packages])
-    with open('../requirements.txt') as f:
-        lines = f.readlines()
-    Packages = np.char.replace(lines, old="\n", new="")
-    c=0
-    for package in Packages:
-        for installed_package in installed_packages_list:
-            if not installed_packages.__contains(package):
-                c+=1
-                os.system("echo  ClustersFeatures - Installing missing module : " + package)
-                os.system("pip install " + package)
-
-    #Compute a second time to be sure that everything is correctly
-    #installed, pip will hand already installed packages
-    os.system('pip install -r requirements.txt')
-

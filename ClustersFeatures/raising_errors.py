@@ -18,6 +18,7 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 import pandas as pd
+import numpy as np
 
 ##General errors
 def both_clusters_in(Cluster1,Cluster2,all_clusters):
@@ -33,6 +34,12 @@ def cluster_in(Cluster, labels_clusters):
         raise KeyError(
             'A such cluster name "' + Cluster + '" isn\'t found in dataframe\'s clusters. Here are the available clusters : ' + str(
                 list(labels_clusters)))
+
+def column_in(col, all_cols):
+    if not (col in all_cols):
+        raise KeyError(
+            'A such column name "' + col + '" isn\'t found in dataframe\'s columns. Here are the available clusters : ')
+
 
 ##__init__ errors
 def verify_pandas_df_and_not_empty(pd_df):
@@ -84,3 +91,33 @@ def CH_num_pts(args, default_value):
     except:
         return default_value
 
+#_utils errors
+def utils_seasonal_arg(args):
+    try:
+        seasonal=args['seasonal']
+        if not(isinstance(seasonal,float)) and  not(isinstance(seasonal,int)):
+            raise ValueError('seasonal argument is not numeric.')
+        else:
+            return seasonal
+
+    except KeyError:
+        raise ValueError('seasonal argument is not specified.')
+
+def utils_col_arg(args, columns):
+    try:
+        col=args['col']
+        column_in(col, columns)
+        return col
+    except KeyError:
+        col=None
+
+def utils_data_arg(args):
+    try:
+        data=args['data']
+        if not(isinstance(np.array([1,2,3]), list)) and not(isinstance(np.array([1,2,3]), np.ndarray)):
+            raise ValueError('Data argument is not list or np.array')
+        return data
+    except KeyError:
+        data=None
+def utils_not_botch_col_and_data():
+    raise ValueError('Passing data and col argument in the same time is impossible')
