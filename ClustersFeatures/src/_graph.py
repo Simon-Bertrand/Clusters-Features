@@ -32,7 +32,6 @@ from ClustersFeatures import settings
 if settings.Activated_Graph:
     import numpy as np
     import pandas as pd
-    import umap
     import plotly.express as px
     import plotly.graph_objects as go
 
@@ -52,20 +51,6 @@ if settings.Activated_Graph:
                                          name="Cluster " + str(Cluster_)))
                 fig.update_layout(title_text="Distance between all elements and the centroid of cluster " + str(Cluster))
                 fig.show()
-
-
-        def graph_umap_reduce_results(self):
-            settings.THREADING_LAYER = 'threadsafe'
-            reducer = umap.UMAP()
-            df_drop_sort = self.data_features.dropna()
-            df_reduced = pd.DataFrame(reducer.fit_transform(df_drop_sort))
-            fig = px.scatter(x=df_reduced[0], y=df_reduced[1], color=self.data_target.astype(str),
-                             title="UMAP: Uniform Manifold Approximation and Projection")
-            for figure in fig.data:
-                figure.name = "Cluster " + figure.name.split('=')[1]
-                figure.hovertemplate = 'Cluster ' + figure.name.split(' ')[1] + '<br>(x, y)=(%{x}, %{y})'
-
-            fig.show()
 
 
         def __graph_animated_dataframes(self, dict_df, **args):

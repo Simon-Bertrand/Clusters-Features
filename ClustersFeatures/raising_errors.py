@@ -92,16 +92,16 @@ def CH_num_pts(args, default_value):
         return default_value
 
 #_utils errors
-def utils_seasonal_arg(args):
+def utils_period_arg(args):
     try:
-        seasonal=args['seasonal']
-        if not(isinstance(seasonal,float)) and  not(isinstance(seasonal,int)):
-            raise ValueError('seasonal argument is not numeric.')
+        period=args['period']
+        if not(isinstance(period,float)) and  not(isinstance(period,int)):
+            raise ValueError('period argument is not numeric.')
         else:
-            return seasonal
+            return period
 
     except KeyError:
-        raise ValueError('seasonal argument is not specified.')
+        raise ValueError('period argument is not specified.')
 
 def utils_col_arg(args, columns):
     try:

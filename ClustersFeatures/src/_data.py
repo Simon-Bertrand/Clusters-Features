@@ -20,7 +20,7 @@
 import numpy as np
 import pandas as pd
 import re
-from sklearn.decomposition import PCA
+
 
 from ClustersFeatures import raising_errors
 
@@ -103,7 +103,4 @@ class Data:
         else:
             return self.data_radius_selector_specific_cluster(self, "90p", Cluster)
 
-    def data_PCA(self, n_components):
-        pca = PCA(n_components=n_components)
-        pca.fit(self.data_features)
-        return (pca.transform(self.data_features))
+
