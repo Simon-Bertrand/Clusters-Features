@@ -257,27 +257,31 @@ if settings.Activated_Graph:
 
 
         def projection_2D(self, feature1, feature2,**args):
-          if not(feature1 in self.data_features.columns) or not(feature1 in self.data_features.columns):
-              return("Error #3, Bad features call")
-          else:
-            try:
-                radius_choice=args['radius']
-            except KeyError:
-                radius_choice="90p"
 
-            try:
-                zoom=args['zoom']
-            except KeyError:
-                zoom=1
-            data_radius_centroid= {Cluster:self.data_radius_selector_specific_cluster(radius_choice,Cluster) for Cluster in self.labels_clusters}
-            figsize=5*zoom
-            fig=plt.figure(2,figsize=(figsize,figsize))
-            plt.title('Projection 2D')
-            g=sns.scatterplot(x=self.data_features.loc[:,feature1],y=self.data_features.loc[:,feature2],hue=self.data_target,alpha=0.70,palette="tab10")
-            for Cluster in self.labels_clusters:
-                Circle=plt.Circle(tuple(self.data_centroids[Cluster][[feature1,feature2]].values),radius=data_radius_centroid[Cluster],fill=False,color=matplotlib.cm.get_cmap('tab10')(Cluster))
-                g.add_patch(Circle)
-            g=sns.scatterplot(data=pd.DataFrame(self.data_centroids).T,x=feature1,y=feature2,s=12,color='#000000')
+            import matplotlib.pyplot as plt
+            import seaborn as sns
+            import matplotlib
+            if not(feature1 in self.data_features.columns) or not(feature1 in self.data_features.columns):
+              return("Error #3, Bad features call")
+            else:
+                try:
+                    radius_choice=args['radius']
+                except KeyError:
+                    radius_choice="90p"
+
+                try:
+                    zoom=args['zoom']
+                except KeyError:
+                    zoom=1
+                data_radius_centroid= {Cluster:self.data_radius_selector_specific_cluster(radius_choice,Cluster) for Cluster in self.labels_clusters}
+                figsize=5*zoom
+                fig=plt.figure(2,figsize=(figsize,figsize))
+                plt.title('Projection 2D')
+                g=sns.scatterplot(x=self.data_features.loc[:,feature1],y=self.data_features.loc[:,feature2],hue=self.data_target,alpha=0.70,palette="tab10")
+                for Cluster in self.labels_clusters:
+                    Circle=plt.Circle(tuple(self.data_centroids[Cluster][[feature1,feature2]].values),radius=data_radius_centroid[Cluster],fill=False,color=matplotlib.cm.get_cmap('tab10')(Cluster))
+                    g.add_patch(Circle)
+                g=sns.scatterplot(data=pd.DataFrame(self.data_centroids).T,x=feature1,y=feature2,s=12,color='#000000')
 else:
     class Graph:
         def __init(self):
