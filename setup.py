@@ -22,6 +22,21 @@ import setuptools
 import os
 from sys import platform
 
+#Call the __version__ var
+exec(open('ClustersFeatures/version.py').read())
+#Call the settings parameters
+exec(open('ClustersFeatures/settings.py').read())
+
+if Activated_Graph:
+    List_total_Packages = List_base_Packages + List_Graph
+if Activated_Utils:
+    List_total_Packages = List_base_Packages + List_Utils
+    
+#Create a requirements.txt adapted to settings options
+with open("requirements.txt", "w") as file:
+    for package in List_total_Packages:
+        file.write(package + "\n")
+
 #Installing all requirements : pip autodetect if already installed
 if platform.startswith('win'):
     os.system('py -m pip install -r requirements.txt')
@@ -37,8 +52,7 @@ Packages=[req.replace("\n", "") for req in requirements]
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-#Call the __version__ var
-exec(open('ClustersFeatures/version.py').read())
+
 setuptools.setup(
     name="Clusters-Features",
     version=__version__.replace('-',''),
