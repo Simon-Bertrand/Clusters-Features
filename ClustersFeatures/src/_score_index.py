@@ -332,3 +332,34 @@ class ScoreIndex:
                 Rkk.append(ykk_Hkk / np.max([ykk_Gk, y_kk_Gkp]))
             S = np.mean(Vk) / np.linalg.norm(self.data_features.var(ddof=0).to_numpy())
             return np.mean(Rkk) + S
+
+    def score_index_Log_Det_ratio(self):
+        return self.num_observations * np.log(self.score_index_det_ratio())
+
+    def score_index_mclain_rao(self):
+        pair_of_points = lambda x: x * (x - 1) / 2
+        NW = np.sum([pair_of_points(self.num_observation_for_specific_cluster[Cluster]) for Cluster in self.labels_clusters])
+        NB= pair_of_points(self.num_observations) - NW
+        #There is a unwanted 2 factor for each following SW and SB scores. As a division is made after, we can nevermind that
+        SW=((self.data_same_target_for_pairs_elements_matrix()*1) * self.data_every_element_distance_to_every_element).sum().sum()
+        SB= ((1-self.data_same_target_for_pairs_elements_matrix()*1)*self.data_every_element_distance_to_every_element).sum().sum()
+        return NB*SW/(NW*SB)
+
+    def score_index_point_biserial(self):
+        pair_of_points = lambda x: x * (x - 1) / 2
+        NW = np.sum([pair_of_points(self.num_observation_for_specific_cluster[Cluster]) for Cluster in self.labels_clusters])
+        NB= pair_of_points(self.num_observations) - NW
+        #There is a unwanted 2 factor for each following SW and SB scores. We need to divise by two the final result
+        SW=((self.data_same_target_for_pairs_elements_matrix()*1) * self.data_every_element_distance_to_every_element).sum().sum()
+        SB= ((1-self.data_same_target_for_pairs_elements_matrix()*1)*self.data_every_element_distance_to_every_element).sum().sum()
+
+        return (SW/NW - SB/NB)*np.sqrt(NB*NW)/pair_of_points(self.num_observations)/2
+
+    def score_index_scott_symons(self):
+        with np.errstate(divide='ignore', invalid='ignore'):
+            dets=np.array([np.linalg.det(self.scatter_matrix_specific_cluster_WGk(Cluster)/self.num_observation_for_specific_cluster[Cluster]) for Cluster in self.labels_clusters])
+            if (dets!=0).all():
+                 return (np.array([self.num_observation_for_specific_cluster[Cluster] for Cluster in self.labels_clusters]) * np.log(dets)).sum()
+
+            else:
+                return np.nan

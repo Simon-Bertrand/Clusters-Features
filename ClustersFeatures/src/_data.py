@@ -23,8 +23,6 @@ import re
 
 
 from ClustersFeatures import raising_errors
-
-
 class Data:
     def data_every_distance_between_elements_of_two_clusters(self, Cluster1, Cluster2):
         raising_errors.both_clusters_in(Cluster1,Cluster2,self.labels_clusters)
@@ -103,4 +101,6 @@ class Data:
         else:
             return self.data_radius_selector_specific_cluster(self, "90p", Cluster)
 
-
+    def data_same_target_for_pairs_elements_matrix(self):
+        func= lambda x:(self.data_target[x.index] == self.data_target[x.name])
+        return pd.DataFrame(np.zeros((self.num_observations,self.num_observations)), index=self.data_features.index, columns=self.data_features.index).apply(func)

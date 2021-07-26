@@ -7,13 +7,13 @@ precision=6
 
 #Indices List : need to be the same string as the general_info / cluster_info boards indexes
 indices_max = ['Ball Hall Index', 'Calinski-Harabasz Index', 'Dunn Index', 'PBM Index', 'Ratkowsky-Lance Index',
-                    'Silhouette Index', 'Wemmert-Gançarski Index']
-indices_min = ['Banfeld-Raftery Index', 'C Index', 'Ray-Turi Index', 'Xie-Beni Index', 'Davies Bouldin Index']
-indices_max_diff = ['Trace WiB Index']
-indices_min_diff = ['Det Ratio Index', 'Log BGSS/WGSS Index', 'SD Index', 'S_Dbw Index']
+                    'Silhouette Index', 'Wemmert-Gançarski Index', 'Point Biserial Index']
+indices_min = ['Banfeld-Raftery Index', 'C Index', 'Ray-Turi Index', 'Xie-Beni Index', 'Davies Bouldin Index', 'SD Index', 'Mclain-Rao Index', 'Scott-Symons Index']
+indices_max_diff = ['Trace WiB Index', 'Trace W Index']
+indices_min_diff = ['Det Ratio Index', 'Log BGSS/WGSS Index', 'S_Dbw Index', "Nlog Det Ratio Index"]
 
 #List_total_Packages for creating a requirements.txt before the build in order to pip install the rights librairies according to above Activated choices
 #Modyfing this without knowledge of the library is quite dangerous
-List_total_Packages= ["numpy","pandas","scipy"]
+List_total_Packages= ["numpy","pandas","scipy","scikit-learn"]
 List_Graph=["plotly"]
-List_Utils=["numba","umap-learn>=0.5.1", "statsmodels", "scikit-learn"]
+List_Utils=["numba","umap-learn>=0.5.1", "statsmodels"]
