@@ -84,7 +84,7 @@ if settings.Activated_Utils:
             from sklearn.neighbors import KernelDensity
             from sklearn.model_selection import GridSearchCV
             returnKDE = raising_errors.utils_return_KDE_model(args)
-            clusters = raising_errors.utils_list_clusters(args,self.labels_clusters)
+            clusters = raising_errors.list_clusters(args,self.labels_clusters)
             if not(clusters):
                 X = self.data_features
             else:

@@ -91,8 +91,8 @@ class ClustersCharacteristics(Score,Data,ScoreIndex,Info,ConfusionHypersphere,Ve
 
             # Prepare the compute of the distance between every element and every centroid and then compute it with all elements
             self.data_every_element_distance_to_centroids = pd.DataFrame(index=self.data_frame.index.values)
-            self.data_every_element_distance_to_every_element = spatial.distance_matrix(self.data_features,
-                                                                                        self.data_features)
+            self.data_every_element_distance_to_every_element = pd.DataFrame(spatial.distance_matrix(self.data_features,
+                                                                                        self.data_features), index=self.data_frame.index.values, columns=self.data_frame.index.values)
 
             self.data_every_cluster_element_distance_to_centroids = {}
             for Cluster in self.labels_clusters:

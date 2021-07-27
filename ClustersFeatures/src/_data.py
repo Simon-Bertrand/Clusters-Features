@@ -24,21 +24,24 @@ import re
 
 from ClustersFeatures import raising_errors
 class Data:
-    def data_every_distance_between_elements_of_two_clusters(self, Cluster1, Cluster2):
-        raising_errors.both_clusters_in(Cluster1,Cluster2,self.labels_clusters)
-
-        return pd.DataFrame(self.data_every_element_distance_to_every_element).iloc[
-            self.data_clusters[Cluster1].index, self.data_clusters[Cluster2].index]
-
-
     def data_intercentroid_distance(self, centroid_cluster_1, centroid_cluster_2):
+        """
+        Compute distances between centroid of CLuster1 and centroid of Cluster2.
+        :param cluster_1: Cluster1 label
+        :param cluster_2: Cluster2 label
+        :return: float
+        """
         raising_errors.both_clusters_in(centroid_cluster_1,centroid_cluster_2,self.labels_clusters)
 
         return np.linalg.norm(self.data_centroids[centroid_cluster_1] - self.data_centroids[centroid_cluster_2])
 
-
-
     def data_intercentroid_distance_matrix(self, **args):
+        """
+        Return a symetric matrix (xi,j)i,j
+        where xi,j is the distance between centroids of cluster i and j
+        :param args: target= (bool, optional) : Concatenate the output with the data target
+        :return: pd.Dataframe().shape = (num_clusters,num_clusters)
+        """
         # Symetric matrix generated : it's not usefull to compute the entire matrix while using symetric matrix properties
         Matopti = pd.DataFrame(columns=self.labels_clusters, index=self.labels_clusters).fillna(0)
         for centroid_cluster_1, centroid_cluster_2 in self.data_every_possible_cluster_pairs:
@@ -53,31 +56,73 @@ class Data:
         except KeyError:
             return (Matopti)
 
+    def data_interelement_distance_between_elements_of_two_clusters(self, Cluster1, Cluster2):
+        """
+        Return every pairwise distance between elements belong Cluster1 or Cluster2
+        If Cluster1 is equal to Cluster2, than these distances are inter-clusters and the output is symetric.
+        Else, these are extra-clusters and the output is not symetric.
+        :param Cluster1: (str,required) - Label cluster column name
+        :param Cluster2: (str,required) - Label cluster column name
+        :return: pd.DataFrame().shape=(num_observations_cluster1,num_observations_cluster2)
+        """
+        raising_errors.both_clusters_in(Cluster1,Cluster2,self.labels_clusters)
 
-    def data_interelement_distance(self, ElementId1, ElementId2):
+        return pd.DataFrame(self.data_every_element_distance_to_every_element).iloc[
+            self.data_clusters[Cluster1].index, self.data_clusters[Cluster2].index]
+
+    def data_interelement_distance_for_two_element(self, ElementId1, ElementId2):
+        """
+        Call the distance between Element1 and Element2
+        :param ElementId1: First element pandas index
+        :param ElementId2: Second element pandas index
+        :return: float
+        """
         raising_errors.both_element_in(ElementId1,ElementId2,self.data_features.index)
 
         return self.data_every_element_distance_to_every_element.loc[ElementId1, ElementId2]
 
+    def data_interelement_distance_for_clusters(self, **args):
+        """
+        Return a dataframe with two columns. The first column is the distance for each element belonging
+        clusters in the "clusters=" list argument. The second column is a boolean column equal to True
+        when both elements are inside the same cluster. We use here the Pandas Multi-Indexes to allow users
+        to link the column Distance with dataset points.
+        :param args: clusters= (list or int, required) : labels of clusters to compute pairwise distances
+        :return: pd.DataFrame().shape= (number_of_elements_pairs, 2)
+        """
+        clusters = raising_errors.list_clusters(args, self.labels_clusters)
 
-    def data_interelement_distance_minimum_for_different_clusters(self):
+        boolean_selector = pd.concat([1 * (self.data_target == cl) for cl in clusters], axis=1).sum(axis=1)
+        distances = self.data_every_element_distance_to_every_element.loc[
+            boolean_selector.astype(bool), boolean_selector.astype(bool)]
+
+        index=pd.Index([(i1, i2) for i, i1 in enumerate(distances.index) for i2 in distances.index[i + 1:]])
+
+        result=pd.DataFrame(distances.to_numpy()[np.tri(distances.shape[0],distances.shape[1],k=-1)>0], index=index, columns=pd.Index(['Distance']))
+        result['Same Cluster ?'] = [True if self.data_target[i] == self.data_target[j] else False for (i, j), dist in
+                                    result['Distance'].iteritems()]
+
+        return result
+    def data_interelement_distance_minimum_matrix(self):
+        """
+        Return interelement minimum
+        :return:
+        """
         Result = pd.DataFrame(np.zeros((self.num_clusters, self.num_clusters)), index=self.labels_clusters,
                               columns=self.labels_clusters)
         Result[np.eye(self.num_clusters) > 0] = np.nan
-        for i, Cluster1 in enumerate(self.labels_clusters):
-            for Cluster2 in self.labels_clusters[:i]:
-                Result.loc[Cluster1, Cluster2] = self.data_every_distance_between_elements_of_two_clusters(Cluster1,
+        for Cluster1,Cluster2 in self.data_every_possible_cluster_pairs:
+            Result.loc[Cluster1, Cluster2] = self.data_interelement_distance_between_elements_of_two_clusters(Cluster1,
                                                                                                            Cluster2).min().min()
         return Result + Result.T
 
 
-    def data_interelement_distance_maximum_for_different_clusters(self):
+    def data_interelement_distance_maximum_matrix(self):
         Result = pd.DataFrame(np.zeros((self.num_clusters, self.num_clusters)), index=self.labels_clusters,
                               columns=self.labels_clusters)
         Result[np.eye(self.num_clusters) > 0] = np.nan
-        for i, Cluster1 in enumerate(self.labels_clusters):
-            for Cluster2 in self.labels_clusters[:i]:
-                Result.loc[Cluster1, Cluster2] = self.data_every_distance_between_elements_of_two_clusters(Cluster1,
+        for Cluster1,Cluster2 in self.data_every_possible_cluster_pairs:
+            Result.loc[Cluster1, Cluster2] = self.data_interelement_distance_between_elements_of_two_clusters(Cluster1,
                                                                                                            Cluster2).max().max()
         return Result + Result.T
 

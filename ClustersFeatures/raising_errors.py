@@ -40,6 +40,20 @@ def column_in(col, all_cols):
         raise KeyError(
             'A such column name "' + col + '" isn\'t found in dataframe\'s columns. Here are the available clusters : ')
 
+def list_clusters(args,labels_clusters):
+    try:
+        l_c=args['clusters']
+        if isinstance(l_c, int) or isinstance(l_c,float) or isinstance(l_c, np.int32):
+            l_c=[l_c]
+        elif not (isinstance(l_c, list)) and not (isinstance(l_c, np.ndarray)):
+            print(type(l_c))
+            raise ValueError('clusters arg is not a list or ndarray.')
+        for cl in l_c:
+            if not(cl in labels_clusters):
+                raise ValueError(str(cl) + ' is not found in dataframe\'s labels clusters')
+        return l_c
+    except KeyError:
+        return False
 
 ##__init__ errors
 def verify_pandas_df_and_not_empty(pd_df):
@@ -131,18 +145,5 @@ def utils_return_KDE_model(args):
     except KeyError:
         return False
 
-def utils_list_clusters(args,labels_clusters):
-    try:
-        l_c=args['clusters']
-        if isinstance(l_c, int) or isinstance(l_c,float) or isinstance(l_c, np.int32):
-            l_c=[l_c]
-        elif not (isinstance(l_c, list)) and not (isinstance(l_c, np.ndarray)):
-            print(type(l_c))
-            raise ValueError('clusters arg is not a list or ndarray.')
-        for cl in l_c:
-            if not(cl in labels_clusters):
-                raise ValueError(str(cl) + ' is not found in dataframe\'s labels clusters')
-        return l_c
-    except KeyError:
-        return False
+
 

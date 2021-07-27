@@ -146,9 +146,9 @@ class ScoreIndex:
 
 
     def score_index_dunn(self):  ##Returned value verified with R
-        dmin = self.data_interelement_distance_minimum_for_different_clusters().min().min()
+        dmin = self.data_interelement_distance_minimum_matrix().min().min()
         Dmax = np.max(
-            [self.data_every_distance_between_elements_of_two_clusters(Cluster, Cluster).max().max() for Cluster in
+            [self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).max().max() for Cluster in
              self.labels_clusters])
         return dmin / Dmax
 
@@ -157,9 +157,9 @@ class ScoreIndex:
         """This is the result of this algorithm :
 
         element_cluster_label=self.data_target.iloc[Observation]
-        a_tab=self.data_every_distance_between_elements_of_two_clusters(element_cluster_label,element_cluster_label).loc[Observation]
+        a_tab=self.data_interelement_distance_between_elements_of_two_clusters(element_cluster_label,element_cluster_label).loc[Observation]
         a=np.sum(a_tab)/(len(a_tab)-1)
-        b=np.min([self.data_every_distance_between_elements_of_two_clusters(element_cluster_label,Cluster2).loc[Observation].mean() for Cluster2 in np.delete(self.labels_clusters, element_cluster_label)])
+        b=np.min([self.data_interelement_distance_between_elements_of_two_clusters(element_cluster_label,Cluster2).loc[Observation].mean() for Cluster2 in np.delete(self.labels_clusters, element_cluster_label)])
         return np.round((b-a)/max(a,b),settings.precision)
 
         but it's pretty slow so we will prefer use the scikit-learn library to compute the silhouette score
@@ -176,12 +176,12 @@ class ScoreIndex:
 
         NW = np.sum(
             [pair_of_points(self.num_observation_for_specific_cluster[Cluster]) for Cluster in self.labels_clusters])
-        distances_list_ordered = np.sort(self.data_every_element_distance_to_every_element[
+        distances_list_ordered = np.sort(self.data_every_element_distance_to_every_element.to_numpy()[
                                              np.tri(self.num_observations, self.num_observations, k=-1) > 0])
 
         Smin = np.sum(distances_list_ordered[:int(NW)])
         Smax = np.sum(distances_list_ordered[-int(NW):])
-        SW = np.sum([self.data_every_distance_between_elements_of_two_clusters(Cluster, Cluster).where(
+        SW = np.sum([self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).where(
             np.tri(self.num_observation_for_specific_cluster[Cluster], self.num_observation_for_specific_cluster[Cluster],
                    k=-1) > 0).sum(skipna=True).sum() for Cluster in self.labels_clusters])
         return (SW - Smin) / (Smax - Smin)
@@ -191,12 +191,12 @@ class ScoreIndex:
         pair_of_points = lambda x: x * (x - 1) / 2
 
         Nw = pair_of_points(self.num_observation_for_specific_cluster[Cluster])
-        distances_list_ordered = np.sort(self.data_every_element_distance_to_every_element[
+        distances_list_ordered = np.sort(self.data_every_element_distance_to_every_element.to_numpy()[
                                              np.tri(self.num_observations, self.num_observations, k=-1) > 0])
 
         Smin = np.sum(distances_list_ordered[:int(Nw)])
         Smax = np.sum(distances_list_ordered[-int(Nw):])
-        SW = self.data_every_distance_between_elements_of_two_clusters(Cluster, Cluster).where(
+        SW = self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).where(
             np.tri(self.num_observation_for_specific_cluster[Cluster], self.num_observation_for_specific_cluster[Cluster],
                    k=-1) > 0).sum(skipna=True).sum()
         return (SW - Smin) / (Smax - Smin)
@@ -209,7 +209,7 @@ class ScoreIndex:
 
 
     def score_index_xie_beni(self):  ##Returned value verified with R
-        min_distances = [self.data_every_distance_between_elements_of_two_clusters(Cluster1, Cluster2).min().min() ** 2 for
+        min_distances = [self.data_interelement_distance_between_elements_of_two_clusters(Cluster1, Cluster2).min().min() ** 2 for
                          Cluster1, Cluster2 in self.data_every_possible_cluster_pairs]
         return (1 / self.num_observations) * self.score_pooled_within_cluster_dispersion() / np.min(min_distances)
 
@@ -246,11 +246,11 @@ class ScoreIndex:
             raise ValueError('within_cluster_distance or between_cluster_distance argument is not specified.')
 
         if wc_distance == 1:
-            list_denominator = [self.data_every_distance_between_elements_of_two_clusters(Cluster, Cluster).max().max() for
+            list_denominator = [self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).max().max() for
                                 Cluster in self.labels_clusters]
         elif wc_distance == 2:
             list_denominator = [
-                self.data_every_distance_between_elements_of_two_clusters(Cluster, Cluster).sum().sum() / 2 /
+                self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).sum().sum() / 2 /
                 self.num_observation_for_specific_cluster[Cluster] / (
                             self.num_observation_for_specific_cluster[Cluster] - 1) for Cluster in self.labels_clusters]
         elif wc_distance == 3:
@@ -264,7 +264,7 @@ class ScoreIndex:
         elif bc_distance == 2:
             numerator = self.data_interelement_distance_maximum_for_different_clusters().min().min()
         elif bc_distance == 3:
-            numerator = np.min([self.data_every_distance_between_elements_of_two_clusters(Cluster1, Cluster2).sum().sum() /
+            numerator = np.min([self.data_interelement_distance_between_elements_of_two_clusters(Cluster1, Cluster2).sum().sum() /
                                 self.num_observation_for_specific_cluster[Cluster2] /
                                 self.num_observation_for_specific_cluster[Cluster1] for Cluster1, Cluster2 in
                                 self.data_every_possible_cluster_pairs])
@@ -277,8 +277,8 @@ class ScoreIndex:
                                 Cluster1, Cluster2 in self.data_every_possible_cluster_pairs])
         elif bc_distance == 6:
             numerator = np.min([np.max([pd.DataFrame(
-                self.data_every_distance_between_elements_of_two_clusters(Cluster1, Cluster2)).min(axis=1).max(),
-                                        pd.DataFrame(self.data_every_distance_between_elements_of_two_clusters(Cluster1,
+                self.data_interelement_distance_between_elements_of_two_clusters(Cluster1, Cluster2)).min(axis=1).max(),
+                                        pd.DataFrame(self.data_interelement_distance_between_elements_of_two_clusters(Cluster1,
                                                                                                                Cluster2)).min(
                                             axis=0).max()]) for Cluster1, Cluster2 in
                                 self.data_every_possible_cluster_pairs])

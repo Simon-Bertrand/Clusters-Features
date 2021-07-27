@@ -32,10 +32,10 @@ class Info:
         cluster_info_df.loc['Centroid distance to barycenter'] = [
             np.linalg.norm(self.data_centroids[Cluster] - self.data_barycenter) for Cluster in self.labels_clusters]
         cluster_info_df.loc['Largest element distance'] = [
-            self.data_every_distance_between_elements_of_two_clusters(Cluster, Cluster).max().max() for Cluster in
+            self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).max().max() for Cluster in
             self.labels_clusters]
         cluster_info_df.loc['Inter-element mean distance'] = [
-            self.data_every_distance_between_elements_of_two_clusters(Cluster, Cluster).to_numpy()[
+            self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).to_numpy()[
                 np.tri(self.num_observation_for_specific_cluster[Cluster], k=-1) > 0].mean() for Cluster in
             self.labels_clusters]
 
