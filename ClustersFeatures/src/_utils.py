@@ -100,6 +100,7 @@ if settings.Activated_Utils:
                 return kde.score_samples(X)
 
 
+
 else:
     class Utils():
         pass

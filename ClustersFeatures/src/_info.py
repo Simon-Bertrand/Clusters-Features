@@ -27,10 +27,27 @@ class Info:
         cluster_info_df = pd.DataFrame(columns=self.labels_clusters)
         cluster_info_df.loc['Number of elements'] = [self.num_observation_for_specific_cluster[Cluster] for Cluster in
                                                      self.labels_clusters]
-        cluster_info_df.loc['Centroid distance to center'] = [np.linalg.norm(self.data_centroids[Cluster]) for Cluster in
+        cluster_info_df.loc['Centroid distance to center'] = [np.linalg.norm(self.data_centroids[Cluster]) for Cluster
+                                                              in
                                                               self.labels_clusters]
-        cluster_info_df.loc['Centroid distance to barycenter'] = [
-            np.linalg.norm(self.data_centroids[Cluster] - self.data_barycenter) for Cluster in self.labels_clusters]
+        #MAX Scores
+        cluster_info_df.loc['Centroid distance to barycenter'] = [np.linalg.norm(self.data_centroids[Cluster] - self.data_barycenter) for Cluster in self.labels_clusters]
+        cluster_info_df.loc['Between-group Dispersion'] = [self.num_observation_for_specific_cluster[Cluster] * np.sum(
+            (self.data_centroids[Cluster] - self.data_barycenter) ** 2) for Cluster in self.labels_clusters]
+        cluster_info_df.loc['Average Silhouette'] = [
+            self.score_index_silhouette_matrix[self.score_index_silhouette_matrix['Cluster'] == Cluster][
+                'Silhouette Score'].mean() for Cluster in self.labels_clusters]
+        cluster_info_df.loc['KernelDensity mean'] = [
+            self.utils_KernelDensity(clusters=Cluster).mean() for Cluster in
+            self.labels_clusters]
+
+        cluster_info_df.loc['Ball Hall Index'] = [
+            self.score_within_cluster_dispersion(Cluster) / self.num_observation_for_specific_cluster[Cluster] for Cluster
+            in self.labels_clusters]
+
+        #MIN Scores
+        cluster_info_df.loc['Within-Cluster Dispersion'] = [self.score_within_cluster_dispersion(Cluster) for Cluster in
+                                                            self.labels_clusters]
         cluster_info_df.loc['Largest element distance'] = [
             self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).max().max() for Cluster in
             self.labels_clusters]
@@ -38,27 +55,14 @@ class Info:
             self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).to_numpy()[
                 np.tri(self.num_observation_for_specific_cluster[Cluster], k=-1) > 0].mean() for Cluster in
             self.labels_clusters]
+        cluster_info_df.loc['Davies Bouldin Index'] = self.score_index_davies_bouldin_for_each_cluster()
+        cluster_info_df.loc['C Index'] = [self.score_index_c_for_each_cluster(Cluster) for Cluster in self.labels_clusters]
 
-        cluster_info_df.loc['KernelDensity mean'] = [
-            self.utils_KernelDensity(clusters=Cluster).mean() for Cluster in
-            self.labels_clusters]
         cluster_info_df.loc['Radius min'] = self.data_radiuscentroid['min']
         cluster_info_df.loc['Radius mean'] = self.data_radiuscentroid['mean']
         cluster_info_df.loc['Radius median'] = self.data_radiuscentroid['median']
         cluster_info_df.loc['Radius 75th Percentile'] = self.data_radiuscentroid['75p']
         cluster_info_df.loc['Radius max'] = self.data_radiuscentroid['max']
-        cluster_info_df.loc['Within-Cluster Dispersion'] = [self.score_within_cluster_dispersion(Cluster) for Cluster in
-                                                            self.labels_clusters]
-        cluster_info_df.loc['Between-group Dispersion'] = [self.num_observation_for_specific_cluster[Cluster] * np.sum(
-            (self.data_centroids[Cluster] - self.data_barycenter) ** 2) for Cluster in self.labels_clusters]
-        cluster_info_df.loc['Average Silhouette'] = [
-            self.score_index_silhouette_matrix[self.score_index_silhouette_matrix['Cluster'] == Cluster][
-                'Silhouette Score'].mean() for Cluster in self.labels_clusters]
-        cluster_info_df.loc['Ball Hall Index'] = [
-            self.score_within_cluster_dispersion(Cluster) / self.num_observation_for_specific_cluster[Cluster] for Cluster
-            in self.labels_clusters]
-        cluster_info_df.loc['Davies Bouldin Index'] = self.score_index_davies_bouldin_for_each_cluster()
-        cluster_info_df.loc['C Index'] = [self.score_index_c_for_each_cluster(Cluster) for Cluster in self.labels_clusters]
         return (cluster_info_df)
 
     @property

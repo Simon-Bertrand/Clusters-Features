@@ -1,0 +1,68 @@
+{
+  "general" : {
+    "max":  {
+      "Between-group total dispersion": "G-Max-01",
+      "Mean quadratic error": "G-Max-02",
+      "Silhouette Index": "G-Max-03",
+      "Davies Bouldin Index": "G-Max-04",
+      "Dunn Index": "G-Max-05",
+      "Wemmert-Gancarski Index": "G-Max-06",
+      "Ratkowsky-Lance Index": "G-Max-07",
+      "Point Biserial Index": "G-Max-08",
+      "PBM Index": "G-Max-09"
+      },
+
+    "max diff":  {
+      "Trace WiB Index": "G-MaxD-01",
+      "Trace W Index": "G-MaxD-02"
+    },
+
+    "min": {
+      "Banfeld-Raftery Index": "G-Min-01",
+      "Ball Hall Index": "G-Min-02",
+      "C Index": "G-Min-03",
+      "Ray-Turi Index": "G-Min-04",
+      "Xie-Beni Index": "G-Min-05",
+      "Davies Bouldin Index": "G-Min-06",
+      "SD Index": "G-Min-07",
+      "Mclain-Rao Index": "G-Min-08",
+      "Scott-Symons Index": "G-Min-09"
+    },
+
+    "min diff":  {
+      "Det Ratio Index": "G-MinD-01",
+      "Log BGSS/WGSS Index": "G-MinD-02",
+      "S_Dbw Index": "G-MinD-03",
+      "Nlog Det Ratio Index": "G-MinD-04"
+    }
+  },
+
+  "clusters" : {
+    "max":  {
+      "Centroid distance to barycenter": "C-Max-01",
+      "Between-group Dispersion": "C-Max-02",
+      "Average Silhouette": "C-Max-03",
+      "KernelDensity mean":"C-Max-04",
+      "Ball Hall Index": "C-Max-05"
+      },
+
+    "min": {
+      "Within-Cluster Dispersion":  "C-Min-01",
+      "Largest element distance": "C-Min-02",
+      "Inter-element mean distance": "C-Min-03",
+      "Davies Bouldin Index": "C-Min-04",
+      "C Index": "C-Min-05"
+    }
+  },
+
+  "radius" : {
+    "min": {
+      "Radius min": "R-Min-01",
+      "Radius mean": "R-Min-02",
+      "Radius median": "R-Min-03",
+      "Radius 75th Percentile": "R-Min-04",
+      "Radius max": "R-Min-05"
+      }
+  }
+}
+

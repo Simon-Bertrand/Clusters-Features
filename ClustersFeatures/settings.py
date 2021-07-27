@@ -6,9 +6,9 @@ Activated_Utils=True
 precision=6
 
 #Indices List : need to be the same string as the general_info / cluster_info boards indexes
-indices_max = ['Ball Hall Index', 'Calinski-Harabasz Index', 'Dunn Index', 'PBM Index', 'Ratkowsky-Lance Index',
+indices_max = ['Calinski-Harabasz Index', 'Dunn Index', 'PBM Index', 'Ratkowsky-Lance Index',
                     'Silhouette Index', 'Wemmert-Gançarski Index', 'Point Biserial Index']
-indices_min = ['Banfeld-Raftery Index', 'C Index', 'Ray-Turi Index', 'Xie-Beni Index', 'Davies Bouldin Index', 'SD Index', 'Mclain-Rao Index', 'Scott-Symons Index']
+indices_min = ['Banfeld-Raftery Index','Ball Hall Index', 'C Index', 'Ray-Turi Index', 'Xie-Beni Index', 'Davies Bouldin Index', 'SD Index', 'Mclain-Rao Index', 'Scott-Symons Index']
 indices_max_diff = ['Trace WiB Index', 'Trace W Index']
 indices_min_diff = ['Det Ratio Index', 'Log BGSS/WGSS Index', 'S_Dbw Index', "Nlog Det Ratio Index"]
 

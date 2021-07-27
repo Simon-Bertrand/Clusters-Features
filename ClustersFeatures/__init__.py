@@ -20,12 +20,13 @@
 from ClustersFeatures import settings
 from ClustersFeatures import raising_errors
 
+
 from .version import __version__
+from .index_core import IndexCore
 
 import pandas as pd
 import numpy as np
 from scipy import spatial
-
 from sklearn.metrics import silhouette_samples
 
 from ClustersFeatures.src._data import Data
@@ -37,7 +38,7 @@ from ClustersFeatures.src._utils import Utils
 from ClustersFeatures.src._confusion_hypersphere import ConfusionHypersphere
 from ClustersFeatures.src._verify import Verify
 
-class ClustersCharacteristics(Score,Data,ScoreIndex,Info,ConfusionHypersphere,Verify,Graph,Utils):
+class ClustersCharacteristics(Score,Data,ScoreIndex,Info,ConfusionHypersphere,Verify,Graph,Utils,IndexCore):
     """
     Class Author: BERTRAND Simon - simonbertrand.contact@gmail.com
     Made for preparing the summer mission with iCube, Strasbourg (D-IR on FoDoMust)
@@ -45,6 +46,7 @@ class ClustersCharacteristics(Score,Data,ScoreIndex,Info,ConfusionHypersphere,Ve
     It computes many scores and indexes to evaluate the generated clusters. Some utils tools such as data visualisation are also implemented
     """
     def __init__(self, pd_df, label_target):
+
         raising_errors.verify_pandas_df_and_not_empty(pd_df)
 
 
