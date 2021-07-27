@@ -260,9 +260,9 @@ class ScoreIndex:
             raise ValueError('within_cluster_distance option isn\'t in the following list : [1,2,3]')
 
         if bc_distance == 1:
-            numerator = self.data_interelement_distance_minimum_for_different_clusters().min().min()
+            numerator = self.data_interelement_distance_minimum_matrix().min().min()
         elif bc_distance == 2:
-            numerator = self.data_interelement_distance_maximum_for_different_clusters().min().min()
+            numerator = self.data_interelement_distance_minimum_matrix().min().min()
         elif bc_distance == 3:
             numerator = np.min([self.data_interelement_distance_between_elements_of_two_clusters(Cluster1, Cluster2).sum().sum() /
                                 self.num_observation_for_specific_cluster[Cluster2] /

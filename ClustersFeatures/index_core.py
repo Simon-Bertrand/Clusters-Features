@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import json
 from .settings import precision
 class IndexCore:
@@ -26,13 +27,19 @@ class IndexCore:
                     return self.score_index_davies_bouldin()
                 elif code == "G-Max-05":
                     return self.score_index_dunn()
+                elif code == "G-Max-GDI":
+                    GDI = self.score_index_generalized_dunn_matrix().stack()
+                    GDI.index = pd.Index(["GDI " + str((idx1, idex2)) for idx1, idex2 in GDI.index])
+                    return GDI.to_dict()
                 elif code == "G-Max-06":
                     return self.score_index_wemmert_gancarski()
                 elif code == "G-Max-07":
-                    return self.score_index_ratkowsky_lance()
+                    return self.score_index_calinski_harabasz()
                 elif code == "G-Max-08":
-                    return self.score_index_point_biserial()
+                    return self.score_index_ratkowsky_lance()
                 elif code == "G-Max-09":
+                    return self.score_index_point_biserial()
+                elif code == "G-Max-10":
                     return self.score_index_PBM()
                 else:
                     raise ValueError('(board_type,indices_type)=' + str((board_type,indices_type)) + " - Invalid Code : " + str(code))
@@ -125,6 +132,40 @@ class IndexCore:
             raise ValueError('(board_type)=' + str(board_type) + " - Invalid indices_type : " + str(code))
 
 
+
+    def get_all_index(self):
+        with open('./ClustersFeatures/indices.json') as f:
+            Indices = json.load(f)
+
+        all_index_code_ = {el: {el2: {} for el2 in list(Indices[el].keys())} for el in list(Indices.keys())}
+        for k in Indices:
+            for j in Indices[k]:
+                for z, l in enumerate(Indices[k][j].values()):
+                    all_index_code_[k][j][list(Indices[k][j].keys())[z]] = l
+
+        return all_index_code_
+
+    def compute_every_index(self):
+        with open('./ClustersFeatures/indices.json') as f:
+            data = json.load(f)
+
+        dict_result = data.copy()
+        for k in data:
+            for j in data[k]:
+                for z, l in enumerate(data[k][j].values()):
+                    dict_result[k][j][list(data[k][j].keys())[z]] = self.generate_output_by_info_type(k, j, l)
+
+        return dict_result
+
+    def get_number_of_index(self):
+        with open('./ClustersFeatures/indices.json') as f:
+            data = json.load(f)
+        s = 0
+        for k in data:
+            for j in data[k]:
+                for z, l in enumerate(data[k][j].values()):
+                    s += 1
+        return s
 
 
 

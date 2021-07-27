@@ -6,10 +6,12 @@
       "Silhouette Index": "G-Max-03",
       "Davies Bouldin Index": "G-Max-04",
       "Dunn Index": "G-Max-05",
+      "Generalized Dunn Indexes":"G-Max-GDI",
       "Wemmert-Gancarski Index": "G-Max-06",
-      "Ratkowsky-Lance Index": "G-Max-07",
-      "Point Biserial Index": "G-Max-08",
-      "PBM Index": "G-Max-09"
+      "Calinski-Harabasz Index": "G-Max-07",
+      "Ratkowsky-Lance Index": "G-Max-08",
+      "Point Biserial Index": "G-Max-09",
+      "PBM Index": "G-Max-10"
       },
 
     "max diff":  {
