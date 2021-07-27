@@ -121,3 +121,28 @@ def utils_data_arg(args):
         data=None
 def utils_not_botch_col_and_data():
     raise ValueError('Passing data and col argument in the same time is impossible')
+
+def utils_return_KDE_model(args):
+    try:
+        returnKDE = args['return_KDE']
+        if not(isinstance(returnKDE, bool)):
+            raise ValueError('return_KDE=' + returnKDE + ' is not a boolean.')
+        return returnKDE
+    except KeyError:
+        return False
+
+def utils_list_clusters(args,labels_clusters):
+    try:
+        l_c=args['clusters']
+        if isinstance(l_c, int) or isinstance(l_c,float) or isinstance(l_c, np.int32):
+            l_c=[l_c]
+        elif not (isinstance(l_c, list)) and not (isinstance(l_c, np.ndarray)):
+            print(type(l_c))
+            raise ValueError('clusters arg is not a list or ndarray.')
+        for cl in l_c:
+            if not(cl in labels_clusters):
+                raise ValueError(str(cl) + ' is not found in dataframe\'s labels clusters')
+        return l_c
+    except KeyError:
+        return False
+

@@ -34,6 +34,14 @@ class Info:
         cluster_info_df.loc['Largest element distance'] = [
             self.data_every_distance_between_elements_of_two_clusters(Cluster, Cluster).max().max() for Cluster in
             self.labels_clusters]
+        cluster_info_df.loc['Inter-element mean distance'] = [
+            self.data_every_distance_between_elements_of_two_clusters(Cluster, Cluster).to_numpy()[
+                np.tri(self.num_observation_for_specific_cluster[Cluster], k=-1) > 0].mean() for Cluster in
+            self.labels_clusters]
+
+        cluster_info_df.loc['KernelDensity mean'] = [
+            self.utils_KernelDensity(clusters=Cluster).mean() for Cluster in
+            self.labels_clusters]
         cluster_info_df.loc['Radius min'] = self.data_radiuscentroid['min']
         cluster_info_df.loc['Radius mean'] = self.data_radiuscentroid['mean']
         cluster_info_df.loc['Radius median'] = self.data_radiuscentroid['median']

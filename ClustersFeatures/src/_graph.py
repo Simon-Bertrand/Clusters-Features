@@ -281,7 +281,7 @@ if settings.Activated_Graph:
                 for Cluster in self.labels_clusters:
                     Circle=plt.Circle(tuple(self.data_centroids[Cluster][[feature1,feature2]].values),radius=data_radius_centroid[Cluster],fill=False,color=matplotlib.cm.get_cmap('tab10')(Cluster))
                     g.add_patch(Circle)
-                g=sns.scatterplot(data=pd.DataFrame(self.data_centroids).T,x=feature1,y=feature2,s=12,color='#000000')
+                g=sns.scatterplot(x=self.data_centroids.loc[feature1,:],y=self.data_centroids.loc[feature2,:],s=12,color='#000000')
 else:
     class Graph:
         def __init(self):

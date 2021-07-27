@@ -349,7 +349,7 @@ class ScoreIndex:
         pair_of_points = lambda x: x * (x - 1) / 2
         NW = np.sum([pair_of_points(self.num_observation_for_specific_cluster[Cluster]) for Cluster in self.labels_clusters])
         NB= pair_of_points(self.num_observations) - NW
-        #There is a unwanted 2 factor for each following SW and SB scores. We need to divise by two the final result
+        #There is a unwanted 2 factor for each following SW and SB scores. We need to divide by two the final result
         SW=((self.data_same_target_for_pairs_elements_matrix()*1) * self.data_every_element_distance_to_every_element).sum().sum()
         SB= ((1-self.data_same_target_for_pairs_elements_matrix()*1)*self.data_every_element_distance_to_every_element).sum().sum()
 
