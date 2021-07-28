@@ -4,7 +4,7 @@ from ClustersFeatures import settings
 if settings.Activated_Utils:
     import pandas as pd
     import numpy as np
-    class Utils:
+    class __Utils:
         def utils_ts_filtering_STL(self, **args):
             """
             Filter a time-serie with STL from statsmodels.
@@ -102,5 +102,5 @@ if settings.Activated_Utils:
 
 
 else:
-    class Utils():
+    class __Utils():
         pass

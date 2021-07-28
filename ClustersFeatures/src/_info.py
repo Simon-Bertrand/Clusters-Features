@@ -21,7 +21,7 @@ import numpy as np
 import pandas as pd
 from ClustersFeatures import settings
 
-class Info:
+class __Info:
     @property
     def clusters_info(self):
         cluster_info_df = pd.DataFrame(columns=self.labels_clusters)

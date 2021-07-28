@@ -28,7 +28,7 @@ __verify_scatter_matrixes : Easy way to check if the 3 matrixes are well compute
 import numpy as np
 
 from ClustersFeatures import settings
-class Verify:
+class __Verify:
 
     def __verify_scatter_matrixes(self):
         if (np.round(self.scatter_matrix_WG() + self.scatter_matrix_between_group_BG(), settings.precision // 2) == np.round(

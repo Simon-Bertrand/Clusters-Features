@@ -71,7 +71,7 @@
 import numpy as np
 import pandas as pd
 from ClustersFeatures import settings
-class ScoreIndex:
+class __ScoreIndex:
     def score_index_rules(self, Query):
         if Query == "max":
             return settings.indices_max

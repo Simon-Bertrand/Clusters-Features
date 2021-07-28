@@ -36,7 +36,7 @@ if settings.Activated_Graph:
     import plotly.graph_objects as go
 
 
-    class Graph(object):
+    class __Graph(object):
         def graph_boxplots_distances_to_centroid(self, Cluster):
             if not (Cluster in self.labels_clusters):
                 raise KeyError(
@@ -283,6 +283,6 @@ if settings.Activated_Graph:
                     g.add_patch(Circle)
                 g=sns.scatterplot(x=self.data_centroids.loc[feature1,:],y=self.data_centroids.loc[feature2,:],s=12,color='#000000')
 else:
-    class Graph:
+    class __Graph:
         def __init(self):
             pass

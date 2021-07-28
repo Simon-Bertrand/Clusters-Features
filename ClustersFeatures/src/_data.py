@@ -23,7 +23,7 @@ import re
 
 
 from ClustersFeatures import raising_errors
-class Data:
+class __Data:
     def data_intercentroid_distance(self, centroid_cluster_1, centroid_cluster_2):
         """
         Compute distances between centroid of CLuster1 and centroid of Cluster2.

@@ -40,7 +40,7 @@ import numpy as np
 import pandas as pd
 
 
-class Score:
+class __Score:
     def scatter_matrix_T(self):  #
         T = pd.DataFrame([self.data_features[col] - self.data_features[col].mean() for col in self.data_features.columns])
         return T.dot(T.T)

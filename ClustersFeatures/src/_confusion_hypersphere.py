@@ -21,7 +21,7 @@ import numpy as np
 import pandas as pd
 from ClustersFeatures import raising_errors
 
-class ConfusionHypersphere:
+class __ConfusionHypersphere:
     def confusion_hypersphere_matrix(self, **args):
         """If (xi,j)i,j is the returned Matrix, then the matrix can be described as follows :
         -for proportion = False : xi,j is the number of element in the cluster j contained inside (euclidian norm) the hyperpshere with specified radius of cluster i

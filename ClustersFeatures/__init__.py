@@ -22,23 +22,23 @@ from ClustersFeatures import raising_errors
 
 
 from .version import __version__
-from .index_core import IndexCore
+from .index_core import __IndexCore
 
 import pandas as pd
 import numpy as np
 from scipy import spatial
 from sklearn.metrics import silhouette_samples
 
-from ClustersFeatures.src._data import Data
-from ClustersFeatures.src._score import Score
-from ClustersFeatures.src._score_index import ScoreIndex
-from ClustersFeatures.src._info import Info
-from ClustersFeatures.src._graph import Graph
-from ClustersFeatures.src._utils import Utils
-from ClustersFeatures.src._confusion_hypersphere import ConfusionHypersphere
-from ClustersFeatures.src._verify import Verify
+from ClustersFeatures.src._data import __Data
+from ClustersFeatures.src._score import __Score
+from ClustersFeatures.src._score_index import __ScoreIndex
+from ClustersFeatures.src._info import __Info
+from ClustersFeatures.src._graph import __Graph
+from ClustersFeatures.src._utils import __Utils
+from ClustersFeatures.src._confusion_hypersphere import __ConfusionHypersphere
+from ClustersFeatures.src._verify import __Verify
 
-class ClustersCharacteristics(Score,Data,ScoreIndex,Info,ConfusionHypersphere,Verify,Graph,Utils,IndexCore):
+class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHypersphere,__Verify,__Graph,__Utils,__IndexCore):
     """
     Class Author: BERTRAND Simon - simonbertrand.contact@gmail.com
     Made for preparing the summer mission with iCube, Strasbourg (D-IR on FoDoMust)
@@ -49,6 +49,7 @@ class ClustersCharacteristics(Score,Data,ScoreIndex,Info,ConfusionHypersphere,Ve
 
         raising_errors.verify_pandas_df_and_not_empty(pd_df)
 
+        self._all_index_compute = False
 
         self.num_clusters = np.nan
         self.num_observations = np.nan
@@ -131,7 +132,6 @@ class ClustersCharacteristics(Score,Data,ScoreIndex,Info,ConfusionHypersphere,Ve
             self.data_every_possible_cluster_pairs = np.array(
                 [(Cluster1, Cluster2) for i, Cluster1 in enumerate(self.labels_clusters) for Cluster2 in
                  self.labels_clusters[i + 1:]])
-
         else:
             raising_errors.wrong_label_target(label_target)
 

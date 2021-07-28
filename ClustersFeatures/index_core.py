@@ -2,7 +2,8 @@ import numpy as np
 import pandas as pd
 import json
 from .settings import precision
-class IndexCore:
+class __IndexCore(object):
+
     def generate_output_by_info_type(self,board_type, indices_type, code):
         with open('./ClustersFeatures/indices.json') as f:
             Indices = json.load(f)
@@ -150,11 +151,14 @@ class IndexCore:
             data = json.load(f)
 
         dict_result = data.copy()
-        for k in data:
-            for j in data[k]:
-                for z, l in enumerate(data[k][j].values()):
-                    dict_result[k][j][list(data[k][j].keys())[z]] = self.generate_output_by_info_type(k, j, l)
-
+        if not(self._all_index_compute):
+            for k in data:
+                for j in data[k]:
+                    for z, l in enumerate(data[k][j].values()):
+                        dict_result[k][j][list(data[k][j].keys())[z]] = self.generate_output_by_info_type(k, j, l)
+            self._all_index_compute = dict_result
+        else:
+            return self._all_index_compute
         return dict_result
 
     def get_number_of_index(self):
