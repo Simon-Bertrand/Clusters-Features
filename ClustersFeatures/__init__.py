@@ -50,7 +50,9 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
         raising_errors.verify_pandas_df_and_not_empty(pd_df)
 
         #Used to memory every index
-        self._all_index_compute = False
+        self._listcode_index_compute = []
+        self.details_index_compute = {el: {el2: {} for el2 in list(self._get_all_index()[el].keys())} for el in
+                                      list(self._get_all_index().keys())}
 
         self.num_clusters = np.nan
         self.num_observations = np.nan
@@ -133,6 +135,9 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
             self.data_every_possible_cluster_pairs = np.array(
                 [(Cluster1, Cluster2) for i, Cluster1 in enumerate(self.labels_clusters) for Cluster2 in
                  self.labels_clusters[i + 1:]])
+
+
+
         else:
             raising_errors.wrong_label_target(label_target)
 

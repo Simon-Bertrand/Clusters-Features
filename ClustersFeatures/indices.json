@@ -4,14 +4,13 @@
       "Between-group total dispersion": "G-Max-01",
       "Mean quadratic error": "G-Max-02",
       "Silhouette Index": "G-Max-03",
-      "Davies Bouldin Index": "G-Max-04",
-      "Dunn Index": "G-Max-05",
+      "Dunn Index": "G-Max-04",
       "Generalized Dunn Indexes":"G-Max-GDI",
-      "Wemmert-Gancarski Index": "G-Max-06",
-      "Calinski-Harabasz Index": "G-Max-07",
-      "Ratkowsky-Lance Index": "G-Max-08",
-      "Point Biserial Index": "G-Max-09",
-      "PBM Index": "G-Max-10"
+      "Wemmert-Gancarski Index": "G-Max-05",
+      "Calinski-Harabasz Index": "G-Max-06",
+      "Ratkowsky-Lance Index": "G-Max-07",
+      "Point Biserial Index": "G-Max-08",
+      "PBM Index": "G-Max-09"
       },
 
     "max diff":  {
