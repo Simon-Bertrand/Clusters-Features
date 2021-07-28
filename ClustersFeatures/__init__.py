@@ -49,6 +49,7 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
 
         raising_errors.verify_pandas_df_and_not_empty(pd_df)
 
+        #Used to memory every index
         self._all_index_compute = False
 
         self.num_clusters = np.nan

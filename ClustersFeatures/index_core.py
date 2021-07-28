@@ -15,6 +15,10 @@ class __IndexCore(object):
                 if not (code in [keys for keys in Indices[board_type][code].values()]):
                     raise ValueError("code is not in " + str([keys for keys in Indices[board_type][code].values()]))
 
+        if self._all_index_compute != False:
+            name={it2: it1 for it1, it2 in self.get_all_index()[board_type][indices_type].items()}[code]
+            return self._all_index_compute[board_type][indices_type][name]
+
 
         if board_type == list(Indices.keys())[0]: #General
             if indices_type == list(Indices[board_type].keys())[0]: #Max
