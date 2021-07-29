@@ -4,6 +4,8 @@ from ClustersFeatures import settings
 if settings.Activated_Utils:
     import pandas as pd
     import numpy as np
+
+
     class __Utils:
         def utils_ts_filtering_STL(self, **args):
             """
@@ -19,12 +21,12 @@ if settings.Activated_Utils:
             """
             from statsmodels.tsa.seasonal import STL
 
-            period=raising_errors.utils_period_arg(args)
-            col=raising_errors.utils_col_arg(args,self.data_features.columns)
-            data=raising_errors.utils_data_arg(args)
+            period = raising_errors.utils_period_arg(args)
+            col = raising_errors.utils_col_arg(args, self.data_features.columns)
+            data = raising_errors.utils_data_arg(args)
 
             if col is not None and data is None:
-                decomposition = STL(self.data_features[col],period=period).fit()
+                decomposition = STL(self.data_features[col], period=period).fit()
                 decompo = pd.DataFrame(decomposition.observed).rename({col: "observed"}, axis=1)
                 decompo['seasonal'] = decomposition.seasonal
                 decompo['trend'] = decomposition.trend
@@ -40,7 +42,7 @@ if settings.Activated_Utils:
 
             return decompo
 
-        def utils_UMAP(self,**args):
+        def utils_UMAP(self, **args):
             """
             Uniform Manifold Approximation Projection : Use the umap-learn library.
             :return:
@@ -50,11 +52,11 @@ if settings.Activated_Utils:
             from numba import config
 
             try:
-                show_target=args['show_target']
-                if not isinstance(show_target,bool):
+                show_target = args['show_target']
+                if not isinstance(show_target, bool):
                     raise ValueError('show_target is not boolean')
             except KeyError:
-                show_target=False
+                show_target = False
 
             config.THREADING_LAYER = 'threadsafe'
             reducer = UMAP()
@@ -74,8 +76,9 @@ if settings.Activated_Utils:
             from sklearn.decomposition import PCA
             pca = PCA(n_components=n_components)
             pca.fit(self.data_features)
-            Result=pd.DataFrame(pca.transform(self.data_features))
-            return pd.DataFrame(Result, index=self.data_features.index).rename(columns={col: "PCA"+str(col) for col in  Result.columns})
+            Result = pd.DataFrame(pca.transform(self.data_features))
+            return pd.DataFrame(Result, index=self.data_features.index).rename(
+                columns={col: "PCA" + str(col) for col in Result.columns})
 
         def utils_KernelDensity(self, **args):
             """
@@ -93,12 +96,12 @@ if settings.Activated_Utils:
             from sklearn.neighbors import KernelDensity
             from sklearn.model_selection import GridSearchCV
             returnKDE = raising_errors.utils_return_KDE_model(args)
-            clusters = raising_errors.list_clusters(args,self.labels_clusters)
-            if not(clusters):
+            clusters = raising_errors.list_clusters(args, self.labels_clusters)
+            if not (clusters):
                 X = self.data_features
             else:
-                boolean_selector=pd.concat([1*(self.data_target==cl) for cl in clusters],axis=1).sum(axis=1)
-                X=self.data_features[boolean_selector.astype(bool)]
+                boolean_selector = pd.concat([1 * (self.data_target == cl) for cl in clusters], axis=1).sum(axis=1)
+                X = self.data_features[boolean_selector.astype(bool)]
             params = {'bandwidth': np.logspace(-1, 1, 20)}
             grid = GridSearchCV(KernelDensity(), params)
             grid.fit(X)
@@ -108,24 +111,59 @@ if settings.Activated_Utils:
             else:
                 return kde.score_samples(X)
 
-        def utils_Projection_2D_Density(self,reduction_method):
+        def utils_Projection_2D_Density(self, reduction_method, **args):
+            try:
+                cluster = args['cluster']
+                if isnumeric(cluster):
+                    cluster = [cluster]
+                for el in cluster:
+                    if not (el in (self.labels_clusters + ["all"])):
+                        raise ValueError(str(el) + " is not in " + str(self.labels_clusters))
+            except KeyError:
+                cluster = self.labels_clusters
+
+            try:
+                return_clusters_density = args['return_clusters_density']
+                if not (isinstance(return_clusters_density, bool)):
+                    raise ValueError('return_clusters_density is not boolean')
+            except KeyError:
+                return_clusters_density = False
+
+            try:
+                return_data = args['return_data']
+                if not (isinstance(return_clusters_density, bool)):
+                    raise ValueError('return_data is not boolean')
+            except KeyError:
+                return_data = False
+
             if reduction_method == "UMAP":
-                data=self.utils_UMAP()
+                data = self.utils_UMAP()
             elif reduction_method == "PCA":
-                data=self.utils_PCA(2)
+                data = self.utils_PCA(2)
 
             xmin, xmax = data[data.columns[0]].min(), data[data.columns[0]].max()
             ymin, ymax = data[data.columns[1]].min(), data[data.columns[1]].max()
+            xrange = np.arange(xmin, xmax, (xmax - xmin) / 100)
+            yrange = np.arange(ymin, ymax, (ymax - ymin) / 100)
+            X, Y = np.meshgrid(xrange, yrange)
+            Z = pd.DataFrame(np.zeros((len(xrange), len(yrange))), index=xrange, columns=yrange)
 
-            X,Y = np.meshgrid(np.arange(xmin,xmax, (xmax-xmin)/100 ),np.arange(ymin,ymax,(ymax-ymin)/100))
-            Z = np.zeros((len(np.arange(xmin,xmax, (xmax-xmin)/100 )),len(np.arange(ymin,ymax,(ymax-ymin)/100))))
             std = 1
+            each_cluster_density_save = {}
+            for Cluster in cluster:
+                Mat = np.zeros((len(xrange), len(yrange)))
+                for idx, val in data[self.data_target == Cluster].T.iteritems():
+                    Mat += np.exp(-1 * ((X - val[0]) ** 2 + (Y - val[1]) ** 2) / (2 * std)) / (2 * np.pi * std ** 2)
+                    Z = Z + Mat
+                each_cluster_density_save[Cluster] = Mat
 
+            returned_var = [Z]
+            if return_clusters_density:
+                returned_var.append(each_cluster_density_save)
+            if return_data:
+                returned_var.append(data)
 
-            for Cluster in self.labels_clusters:
-                for idx,val in data[self.data_target==Cluster].T.iteritems():
-                    Z = Z + np.exp(-1*((X-val[0])**2 + (Y-val[1])**2)/(2*std))/(2*np.pi*std**2)
-            return Z
+            return returned_var
 
 
 
