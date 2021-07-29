@@ -1,21 +1,3 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright 2021 Simon Bertrand
-#
-# This file is part of ClusterCharacteristics.
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 """
    Section: Graph
@@ -51,6 +33,60 @@ if settings.Activated_Graph:
                                          name="Cluster " + str(Cluster_)))
                 fig.update_layout(title_text="Distance between all elements and the centroid of cluster " + str(Cluster))
                 fig.show()
+
+        def graph_density_projection_2D(self,graph_method, reduction_method, scale_method):
+            from sklearn.neighbors import KernelDensity
+
+            if reduction_method=="PCA":
+                data = self.utils_PCA(2)
+                xmin = data['PCA0'].min()
+                xmax = data['PCA0'].max()
+                ymin = data['PCA1'].min()
+                ymax = data['PCA1'].max()
+            elif reduction_method == "UMAP":
+                data = self.utils_UMAP()
+                xmin = data[0].min()
+                xmax = data[0].max()
+                ymin = data[1].min()
+                ymax = data[1].max()
+            else:
+                raise ValueError('Unknown reduction method : ' + str(reduction_method) + '. Available methods = "PCA", "UMAP"')
+
+            xgrid = np.arange(xmin, xmax, (xmax - xmin) / 100)
+            ygrid = np.arange(ymin, ymax, (ymax - ymin) / 100)
+            X, Y = np.meshgrid(xgrid, ygrid[::-1])
+            xy = np.vstack([Y.ravel(), X.ravel()]).T
+
+            kde = KernelDensity(bandwidth=0.04, kernel='gaussian')
+            kde.fit(data)
+            result = pd.DataFrame(kde.score_samples(xy).reshape(X.shape))
+
+            if scale_method == "min_max":
+                result = (result - result.min().min())/(result.max().max() - result.min().min())
+            elif scale_method == "standard":
+                result = (result - result.mean().mean()) / (result.std().std())
+            elif scale_method == "robust":
+                result = (result-result.median().median())/(result.quantile(0.75).quantile(0.75)-result.quantile(0.25).quantile(0.25))
+            elif scale_method is None:
+                pass
+            else:
+                raise ValueError('Unknown scale method : ' + str(scale_method) + '. Available methods = "min_max", "standard", "robust", None')
+
+            import plotly.graph_objects as go
+            if graph_method == "surface":
+                fig = go.Figure(data=[go.Surface(z=result.values)])
+                fig.update_traces(contours_z=dict(show=True, usecolormap=True,
+                                                  highlightcolor="limegreen", project_z=True))
+                fig.show()
+            elif graph_method =="contour":
+                fig = go.Figure(data=[go.Contour(
+                    x=xgrid,
+                    y=ygrid,
+                    z=result,
+                    colorscale='RdBu')])
+                fig.show()
+            else:
+                raise ValueError('Unknown method : ' + str(graph_method) + '. Available methods = "surface", "contour"')
 
 
         def __graph_animated_dataframes(self, dict_df, **args):
@@ -230,30 +266,25 @@ if settings.Activated_Graph:
             fig.show()
 
 
-        def PCA_3D_graph(self):
-          Mat=self.PCA(3)
+        def graph_PCA_3D(self):
+          Mat=self.utils_PCA(3)
           data=pd.DataFrame(Mat)
           data['Cluster'] = self.data_target.astype(str)
-          fig = px.scatter_3d(data, x=0, y=1, z=2,color_discrete_sequence=px.colors.qualitative.G10,color="Cluster",title="3D PCA Result",labels="test",opacity=0.7, width=850, height=600)
-          fig.update_scenes(xaxis_title_text="PCA 1", yaxis_title_text="PCA 2", zaxis_title_text="PCA 3")
-          for trace in fig.data:
-            trace.name = "Cluster " + trace.name.split('=')[1]
+          fig = px.scatter_3d(data, x="PCA0", y="PCA1", z="PCA2",color_discrete_sequence=px.colors.qualitative.G10,color="Cluster",title="3D PCA Graph",opacity=0.7, width=850, height=600)
+          for i,trace in enumerate(fig.data):
+            trace.name = "Cluster " + self.data_target.astype(str)[i]
           fig.show()
-          return(Mat)
 
-        def PCA_2D_graph(self):
-          Mat=self.PCA(2)
-          fig = plt.figure(1,figsize=(20, 10))
-          ax = fig.add_subplot(111)
-          plt.title('2D PCA Result',fontsize=15)
-          scatter=ax.scatter(Mat[:,0], Mat[:,1], c=self.data_target, cmap="tab10",alpha=0.6)
-          ax.yaxis.set_tick_params(labelsize=7)
-          ax.xaxis.set_tick_params(labelsize=7)
-          legend1 = ax.legend(scatter.legend_elements(), title="Clusteres")
-          ax.add_artist(legend1)
-          ax.set_xlabel('PCA1', fontsize=12)
-          ax.set_ylabel('PCA2', fontsize=12)
-          return(Mat)
+
+        def graph_PCA_2D(self):
+          Mat=self.utils_PCA(2)
+          data=pd.DataFrame(Mat)
+          data['Cluster'] = self.data_target.astype(str)
+          fig = px.scatter(data, x="PCA0", y="PCA1",color_discrete_sequence=px.colors.qualitative.G10,color="Cluster",title="2D PCA Graph",opacity=0.7, width=850, height=600)
+          for i,trace in enumerate(fig.data):
+            trace.name = "Cluster " + self.data_target.astype(str)[i]
+          fig.show()
+
 
 
         def projection_2D(self, feature1, feature2,**args):

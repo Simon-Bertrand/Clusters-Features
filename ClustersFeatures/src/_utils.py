@@ -40,7 +40,7 @@ if settings.Activated_Utils:
 
             return decompo
 
-        def utils_UMAP(self):
+        def utils_UMAP(self,**args):
             """
             Uniform Manifold Approximation Projection : Use the umap-learn library.
             :return:
@@ -48,12 +48,21 @@ if settings.Activated_Utils:
             """
             from umap import UMAP
             from numba import config
+
+            try:
+                show_target=args['show_target']
+                if not isinstance(show_target,bool):
+                    raise ValueError('show_target is not boolean')
+            except KeyError:
+                show_target=False
+
             config.THREADING_LAYER = 'threadsafe'
             reducer = UMAP()
             df_drop_sort = self.data_features.dropna()
             df_reduced = pd.DataFrame(reducer.fit_transform(df_drop_sort), index=df_drop_sort.index)
-            df_reduced['target'] = self.data_target
-            return  df_reduced
+            if show_target:
+                df_reduced['target'] = self.data_target
+            return df_reduced
 
         def utils_PCA(self, n_components):
             """
@@ -98,6 +107,41 @@ if settings.Activated_Utils:
                 return (kde.score_samples(X), kde)
             else:
                 return kde.score_samples(X)
+
+        def utils_Projection_2D_Density(self,reduction_method):
+            if reduction_method == "UMAP":
+                data=self.utils_UMAP()
+            elif reduction_method == "PCA":
+                data=self.utils_PCA(2)
+
+            xmin, xmax = data[data.columns[0]].min(), data[data.columns[0]].max()
+            ymin, ymax = data[data.columns[1]].min(), data[data.columns[1]].max()
+
+            X,Y = np.meshgrid(np.arange(xmin,xmax, (xmax-xmin)/100 ),np.arange(ymin,ymax,(ymax-ymin)/100))
+            Z = np.zeros((len(np.arange(xmin,xmax, (xmax-xmin)/100 )),len(np.arange(ymin,ymax,(ymax-ymin)/100))))
+            std = 1
+
+
+            for Cluster in self.labels_clusters:
+                for idx,val in data[self.data_target==Cluster].T.iteritems():
+                    Z = Z + np.exp(-1*((X-val[0])**2 + (Y-val[1])**2)/(2*std))/(2*np.pi*std**2)
+            return Z
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
