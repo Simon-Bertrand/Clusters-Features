@@ -146,7 +146,7 @@ class __ScoreIndex:
 
 
     def score_index_dunn(self):  ##Returned value verified with R
-        dmin = self.data_interelement_distance_minimum_matrix().min().min()
+        dmin = self.data_interelement_distance_minimum_matrix.min().min()
         Dmax = np.max(
             [self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).max().max() for Cluster in
              self.labels_clusters])
@@ -181,9 +181,9 @@ class __ScoreIndex:
 
         Smin = np.sum(distances_list_ordered[:int(NW)])
         Smax = np.sum(distances_list_ordered[-int(NW):])
-        SW = np.sum([self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).where(
+        SW = np.sum([self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).to_numpy()[
             np.tri(self.num_observation_for_specific_cluster[Cluster], self.num_observation_for_specific_cluster[Cluster],
-                   k=-1) > 0).sum(skipna=True).sum() for Cluster in self.labels_clusters])
+                   k=-1) > 0].sum().sum() for Cluster in self.labels_clusters])
         return (SW - Smin) / (Smax - Smin)
 
 
@@ -196,9 +196,9 @@ class __ScoreIndex:
 
         Smin = np.sum(distances_list_ordered[:int(Nw)])
         Smax = np.sum(distances_list_ordered[-int(Nw):])
-        SW = self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).where(
+        SW = self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).to_numpy()[
             np.tri(self.num_observation_for_specific_cluster[Cluster], self.num_observation_for_specific_cluster[Cluster],
-                   k=-1) > 0).sum(skipna=True).sum()
+                   k=-1) > 0].sum().sum()
         return (SW - Smin) / (Smax - Smin)
 
 
@@ -260,9 +260,9 @@ class __ScoreIndex:
             raise ValueError('within_cluster_distance option isn\'t in the following list : [1,2,3]')
 
         if bc_distance == 1:
-            numerator = self.data_interelement_distance_minimum_matrix().min().min()
+            numerator = self.data_interelement_distance_minimum_matrix.min().min()
         elif bc_distance == 2:
-            numerator = self.data_interelement_distance_minimum_matrix().min().min()
+            numerator = self.data_interelement_distance_minimum_matrix.min().min()
         elif bc_distance == 3:
             numerator = np.min([self.data_interelement_distance_between_elements_of_two_clusters(Cluster1, Cluster2).sum().sum() /
                                 self.num_observation_for_specific_cluster[Cluster2] /
@@ -337,21 +337,23 @@ class __ScoreIndex:
         return self.num_observations * np.log(self.score_index_det_ratio())
 
     def score_index_mclain_rao(self):
+        same_target_matrix=self.data_same_target_for_pairs_elements_matrix()
         pair_of_points = lambda x: x * (x - 1) / 2
         NW = np.sum([pair_of_points(self.num_observation_for_specific_cluster[Cluster]) for Cluster in self.labels_clusters])
         NB= pair_of_points(self.num_observations) - NW
         #There is a unwanted 2 factor for each following SW and SB scores. As a division is made after, we can nevermind that
-        SW=((self.data_same_target_for_pairs_elements_matrix()*1) * self.data_every_element_distance_to_every_element).sum().sum()
-        SB= ((1-self.data_same_target_for_pairs_elements_matrix()*1)*self.data_every_element_distance_to_every_element).sum().sum()
+        SW=((same_target_matrix) * self.data_every_element_distance_to_every_element).sum().sum()
+        SB= ((1-same_target_matrix)*self.data_every_element_distance_to_every_element).sum().sum()
         return NB*SW/(NW*SB)
 
     def score_index_point_biserial(self):
+        same_target_matrix=self.data_same_target_for_pairs_elements_matrix()
         pair_of_points = lambda x: x * (x - 1) / 2
         NW = np.sum([pair_of_points(self.num_observation_for_specific_cluster[Cluster]) for Cluster in self.labels_clusters])
         NB= pair_of_points(self.num_observations) - NW
         #There is a unwanted 2 factor for each following SW and SB scores. We need to divide by two the final result
-        SW=((self.data_same_target_for_pairs_elements_matrix()*1) * self.data_every_element_distance_to_every_element).sum().sum()
-        SB= ((1-self.data_same_target_for_pairs_elements_matrix()*1)*self.data_every_element_distance_to_every_element).sum().sum()
+        SW=((same_target_matrix) * self.data_every_element_distance_to_every_element).sum().sum()
+        SB= ((1-same_target_matrix)*self.data_every_element_distance_to_every_element).sum().sum()
 
         return (SW/NW - SB/NB)*np.sqrt(NB*NW)/pair_of_points(self.num_observations)/2
 

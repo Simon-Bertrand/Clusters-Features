@@ -141,4 +141,24 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
         else:
             raising_errors.wrong_label_target(label_target)
 
+        """Initialisation and saving of matrixs that need to be computed many times 
+        It optimizes for example the GDI and Dunn Indexes
+        """
+        #defining data_interelement_distance_MAXIMUM/MINIMUM_matrix:
+        self.data_interelement_distance_minimum_matrix=pd.DataFrame(np.zeros((self.num_clusters, self.num_clusters)), index=self.labels_clusters,
+                              columns=self.labels_clusters)
+        self.data_interelement_distance_maximum_matrix = self.data_interelement_distance_minimum_matrix.copy()
+        # Putting the diag to nan to avoid min/max issues
+        self.data_interelement_distance_minimum_matrix[np.eye(self.num_clusters) > 0] = np.nan
+        self.data_interelement_distance_maximum_matrix[np.eye(self.num_clusters) > 0] = np.nan
+        #Computing all min/max values
+        for Cluster1, Cluster2 in self.data_every_possible_cluster_pairs:
+            self.data_interelement_distance_minimum_matrix.loc[Cluster1, Cluster2] = self.data_interelement_distance_between_elements_of_two_clusters(
+                Cluster1, Cluster2).min().min()
+            self.data_interelement_distance_maximum_matrix.loc[Cluster1, Cluster2] = self.data_interelement_distance_between_elements_of_two_clusters(
+                Cluster1, Cluster2).max().max()
+        #Using symetric matrixs properties to return the final dataframe
+        self.data_interelement_distance_minimum_matrix = self.data_interelement_distance_minimum_matrix + self.data_interelement_distance_minimum_matrix.T
+        self.data_interelement_distance_maximum_matrix = self.data_interelement_distance_maximum_matrix + self.data_interelement_distance_maximum_matrix.T
+
 

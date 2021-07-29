@@ -160,6 +160,7 @@ class __IndexCore(object):
                         name_index = {it2: it1 for it1, it2 in all_index_ref[k][j].items()}[l]
                         self.details_index_compute[k][j][list(data[k][j].keys())[z]] = self.details_index_compute[k][j][name_index]
                     else:
+                        print(data[k][j][{it2: it1 for it1, it2 in all_index_ref[k][j].items()}[l]], "\n")
                         self.details_index_compute[k][j][list(data[k][j].keys())[z]] = self.generate_output_by_info_type(k, j, l)
         return self.details_index_compute
 

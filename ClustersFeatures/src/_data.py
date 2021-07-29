@@ -147,5 +147,9 @@ class __Data:
             return self.data_radius_selector_specific_cluster(self, "90p", Cluster)
 
     def data_same_target_for_pairs_elements_matrix(self):
-        func= lambda x:(self.data_target[x.index] == self.data_target[x.name])
-        return pd.DataFrame(np.zeros((self.num_observations,self.num_observations)), index=self.data_features.index, columns=self.data_features.index).apply(func)
+        df=pd.DataFrame(np.zeros((self.num_observations, self.num_observations)), index=self.data_features.index, columns=self.data_features.index)
+        for Cluster in self.labels_clusters:
+            df.loc[self.data_clusters[Cluster].index, self.data_clusters[Cluster].index] = np.ones(
+                (self.num_observation_for_specific_cluster[Cluster], self.num_observation_for_specific_cluster[Cluster]))
+        return df
+
