@@ -111,30 +111,13 @@ if settings.Activated_Utils:
             else:
                 return kde.score_samples(X)
 
-        def utils_Projection_2D_Density(self, reduction_method, **args):
-            try:
-                cluster = args['cluster']
-                if isnumeric(cluster):
-                    cluster = [cluster]
-                for el in cluster:
-                    if not (el in (self.labels_clusters + ["all"])):
-                        raise ValueError(str(el) + " is not in " + str(self.labels_clusters))
-            except KeyError:
-                cluster = self.labels_clusters
+        def utils_Projection_2D_Density(self, reduction_method, percentile, **args):
+            cluster, return_clusters_density, return_data = raising_errors.utils_Density_Projection(args, self.labels_clusters)
 
-            try:
-                return_clusters_density = args['return_clusters_density']
-                if not (isinstance(return_clusters_density, bool)):
-                    raise ValueError('return_clusters_density is not boolean')
-            except KeyError:
-                return_clusters_density = False
 
-            try:
-                return_data = args['return_data']
-                if not (isinstance(return_clusters_density, bool)):
-                    raise ValueError('return_data is not boolean')
-            except KeyError:
-                return_data = False
+
+            if percentile >= 100 or percentile <= 0:
+                raise ValueError('percentile is out of range [0-100]')
 
             if reduction_method == "UMAP":
                 data = self.utils_UMAP()
@@ -157,6 +140,7 @@ if settings.Activated_Utils:
                     Z = Z + Mat
                 each_cluster_density_save[Cluster] = Mat
 
+            contours = 1*(Z>np.percentile(Z, percentile))
             returned_var = [Z]
             if return_clusters_density:
                 returned_var.append(each_cluster_density_save)

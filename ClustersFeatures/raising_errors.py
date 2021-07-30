@@ -145,5 +145,33 @@ def utils_return_KDE_model(args):
     except KeyError:
         return False
 
+def utils_Density_Projection(args, labels_clusters):
+    try:
+        cluster = args['cluster']
+        if isnumeric(cluster):
+            cluster = [cluster]
+        for el in cluster:
+            if not (el in (labels_clusters + ["all"])):
+                raise ValueError(str(el) + " is not in " + str(labels_clusters))
+    except KeyError:
+        cluster = labels_clusters
+
+
+    try:
+        return_clusters_density = args['return_clusters_density']
+        if not (isinstance(return_clusters_density, bool)):
+            raise ValueError('return_clusters_density is not boolean')
+    except KeyError:
+        return_clusters_density = False
+
+    try:
+        return_data = args['return_data']
+        if not (isinstance(return_clusters_density, bool)):
+            raise ValueError('return_data is not boolean')
+    except KeyError:
+        return_data = False
+
+
+    return cluster, return_clusters_density, return_data
 
 
