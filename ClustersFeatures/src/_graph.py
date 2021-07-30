@@ -266,6 +266,7 @@ if settings.Activated_Graph:
             fig.show()
 
 
+
         def graph_PCA_3D(self):
           Mat=self.utils_PCA(3)
           data=pd.DataFrame(Mat)
@@ -276,19 +277,12 @@ if settings.Activated_Graph:
           fig.show()
 
 
-        def graph_PCA_2D(self):
-          Mat=self.utils_PCA(2)
-          data=pd.DataFrame(Mat)
-          data['Cluster'] = self.data_target.astype(str)
-          fig = px.scatter(data, x="PCA0", y="PCA1",color_discrete_sequence=px.colors.qualitative.G10,color="Cluster",title="2D PCA Graph",opacity=0.7, width=850, height=600)
-          for i,trace in enumerate(fig.data):
-            trace.name = "Cluster " + self.data_target.astype(str)[i]
-          fig.show()
-
+        def graph_reduction_2D(self, reduction_method, graph):
+            if not reduction_method in ['PCA','UMAP']:
+                raise ValueError('reduction_method is not in' + str(['PCA','UMAP']))
 
 
         def projection_2D(self, feature1, feature2,**args):
-
             import matplotlib.pyplot as plt
             import seaborn as sns
             import matplotlib

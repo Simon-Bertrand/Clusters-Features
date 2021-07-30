@@ -160,6 +160,9 @@ if settings.Activated_Utils:
                 show=args['show_image']
                 if not isinstance(show, bool):
                     raise ValueError('show_image is not boolean.')
+                if not settings.Activated_Graph  and show:
+                    print('Warning : Activated_Graph is False in settings.py. Showing the graph is not possible. Put it to True and install Plotly to avoid this warning')
+                    show=False
             except KeyError:
                 show=True
 
@@ -174,7 +177,7 @@ if settings.Activated_Utils:
             hex_to_rgb_convert = lambda hex_string: [int(hex_string[1:3], 16), int(hex_string[3:5], 16),
                                                      int(hex_string[5:7], 16)]
 
-            discrete_colors=['#AA0DFE','#3283FE','#85660D','#782AB6','#565656','#1C8356','#16FF32','#F7E1A0','#E2E2E2','#1CBE4F','#C4451C','#DEA0FD','#FE00FA','#325A9B','#FEAF16','#F8A19F','#90AD1C','#F6222E','#1CFFCE','#2ED9FF','#B10DA1','#C075A6','#FC1CBF','#B00068','#FBE426','#FA0087']
+            discrete_colors=['#1abc9c','#2ecc71','#3498db','#9b59b6','#34495e','#f1c40f','#e67e22','#e74c3c','#ff5e57','#00d8d6','#0fbcf9','#DEA0FD','#FE00FA','#325A9B','#FEAF16','#F8A19F','#90AD1C','#F6222E','#1CFFCE','#2ED9FF','#B10DA1','#C075A6','#FC1CBF','#B00068','#FBE426','#FA0087']
             image_clusters = {}
             Base_image = Image.new('RGBA', clusters_density[list(clusters_density.keys())[0]].shape)
             for i, Cluster in enumerate(self.labels_clusters):
@@ -188,7 +191,7 @@ if settings.Activated_Utils:
                 import plotly.express as px
                 fig = px.imshow(Base_image)
                 fig.show()
-            return {"image data" : np.asarray(Base_image), "each cluster image data":image_clusters}
+            return {"All clusters image data" : np.asarray(Base_image), "Each cluster image data":image_clusters}
 
 
 else:
