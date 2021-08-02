@@ -23,22 +23,22 @@ import numpy as np
 ##General errors
 def both_clusters_in(Cluster1,Cluster2,all_clusters):
     if not(Cluster1 in all_clusters) or not(Cluster2 in all_clusters):
-        raise AttributeError('Given centroids clusters label names  aren\'t found in' + str(all_clusters))
+        raise AttributeError('Given centroids clusters label names  are not found in' + str(all_clusters))
 
 def both_element_in(El1,El2,all_El):
     if not(El1 in all_El) or not(El2 in all_El):
-        raise IndexError('One of both given ElementId isn\'t in dataframe indexes')
+        raise IndexError('One of both given ElementId is not in dataframe indexes')
 
 def cluster_in(Cluster, labels_clusters):
     if not (Cluster in labels_clusters):
         raise KeyError(
-            'A such cluster name "' + Cluster + '" isn\'t found in dataframe\'s clusters. Here are the available clusters : ' + str(
+            'A such cluster name "' + str(Cluster) + '" is not found in dataframeclusters. Here are the available clusters : ' + str(
                 list(labels_clusters)))
 
 def column_in(col, all_cols):
     if not (col in all_cols):
         raise KeyError(
-            'A such column name "' + col + '" isn\'t found in dataframe\'s columns. Here are the available clusters : ')
+            'A such column name "' + str(col) + '" is not found in dataframe columns. Here are the available clusters : ')
 
 def list_clusters(args,labels_clusters):
     try:
@@ -63,7 +63,7 @@ def verify_pandas_df_and_not_empty(pd_df):
         raise ValueError('Given Pandas dataframe is empty')
 
 def wrong_label_target(label_target):
-    raise AttributeError('A such label target name "' + label_target + '" isn\'t found in dataframe\'s columns.')
+    raise AttributeError('A such label target name "' + label_target + '" is not found in dataframe\'s columns.')
 
 ##_confusion_hypersphere errors
 def CH_radius(args):
