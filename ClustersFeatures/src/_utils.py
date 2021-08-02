@@ -177,12 +177,11 @@ if settings.Activated_Utils:
             hex_to_rgb_convert = lambda hex_string: [int(hex_string[1:3], 16), int(hex_string[3:5], 16),
                                                      int(hex_string[5:7], 16)]
 
-            discrete_colors=['#1abc9c','#2ecc71','#3498db','#9b59b6','#34495e','#f1c40f','#e67e22','#e74c3c','#ff5e57','#00d8d6','#0fbcf9','#DEA0FD','#FE00FA','#325A9B','#FEAF16','#F8A19F','#90AD1C','#F6222E','#1CFFCE','#2ED9FF','#B10DA1','#C075A6','#FC1CBF','#B00068','#FBE426','#FA0087']
             image_clusters = {}
             Base_image = Image.new('RGBA', clusters_density[list(clusters_density.keys())[0]].shape)
             for i, Cluster in enumerate(self.labels_clusters):
                 image_clusters[Cluster] = np.zeros((clusters_density[Cluster].shape[0], clusters_density[Cluster].shape[1], 4))
-                image_clusters[Cluster][clusters_density[Cluster] > threshold] = hex_to_rgb_convert(discrete_colors[i]) + [180]
+                image_clusters[Cluster][clusters_density[Cluster] > threshold] = hex_to_rgb_convert(settings.discrete_colors[i]) + [180]
                 Cluster_image = Image.fromarray(np.uint8(image_clusters[Cluster]))
                 red, g, b, alpha = Cluster_image.split()
                 alpha = alpha.point(lambda i: i > 0 and 204)

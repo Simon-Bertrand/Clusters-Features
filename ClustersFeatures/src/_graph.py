@@ -268,18 +268,114 @@ if settings.Activated_Graph:
 
 
         def graph_PCA_3D(self):
-          Mat=self.utils_PCA(3)
-          data=pd.DataFrame(Mat)
-          data['Cluster'] = self.data_target.astype(str)
-          fig = px.scatter_3d(data, x="PCA0", y="PCA1", z="PCA2",color_discrete_sequence=px.colors.qualitative.G10,color="Cluster",title="3D PCA Graph",opacity=0.7, width=850, height=600)
-          for i,trace in enumerate(fig.data):
-            trace.name = "Cluster " + self.data_target.astype(str)[i]
-          fig.show()
+            graph_colors = {Cluster: settings.discrete_colors[i] for i, Cluster in enumerate(self.labels_clusters)}
+            Mat=self.utils_PCA(3)
+            data=pd.DataFrame(Mat)
+            data['Cluster'] = self.data_target
+            fig=go.Figure()
+            for Cluster in self.labels_clusters:
+                fig.add_trace(go.Scatter3d(x=data[data['Cluster'] == Cluster][data.columns[0]], y=data[data['Cluster'] == Cluster][data.columns[1]], z=data[data['Cluster'] == Cluster][data.columns[2]],name="Cluster " + str(Cluster),marker_color=graph_colors[Cluster],mode='markers'))
+            fig.update_layout(title="3D PCA Projection")
+            fig.show()
 
-
-        def graph_reduction_2D(self, reduction_method, graph):
+        def graph_reduction_2D(self, reduction_method):
+            graph_colors = {Cluster: settings.discrete_colors[i] for i, Cluster in enumerate(self.labels_clusters)}
             if not reduction_method in ['PCA','UMAP']:
-                raise ValueError('reduction_method is not in' + str(['PCA','UMAP']))
+                raise ValueError('reduction_method is not in ' + str(['PCA','UMAP']))
+
+            if reduction_method == "UMAP":
+                Mat=self.utils_UMAP()
+            else:
+                Mat=self.utils_PCA(2)
+            data=pd.DataFrame(Mat)
+            data['Cluster'] = self.data_target
+            fig=go.Figure()
+            for Cluster in self.labels_clusters:
+                fig.add_trace(go.Scatter(x=data[data['Cluster'] == Cluster][data.columns[0]],y=data[data['Cluster'] == Cluster][data.columns[1]], name="Cluster " + str(Cluster),mode="markers",marker_color=graph_colors[Cluster],opacity=0.90))
+            fig.update_layout(title="2D UMAP Projection")
+            fig.show()
+
+
+        def graph_reduction_density_2D(self, reduction_method,percentile, graph):
+            graph_colors = {Cluster: settings.discrete_colors[i] for i, Cluster in enumerate(self.labels_clusters)}
+
+            if not reduction_method in ['PCA','UMAP']:
+                raise ValueError('reduction_method is not in ' + str(['PCA','UMAP']))
+
+            if not graph in ['contour','interactive']:
+                raise ValueError('graph argument is not in ' + str(['contour','interactive']))
+
+            unpacked_dict = self.utils_Projection_2D_Density(reduction_method, percentile, return_data=True,
+                                                             return_clusters_density=True)
+            Zi = unpacked_dict['Z-Grid']
+            data = unpacked_dict['2D PCA Data']
+            R = unpacked_dict['Clusters Density']
+
+            if graph == "interactive":
+                fig = go.Figure(
+                    go.Contour(
+                        x=Zi.index.values,
+                        y=Zi.columns.values,
+                        z=Zi,
+                        contours_coloring='heatmap',
+                        colorscale='Greys',
+                        opacity=0.75,
+                        name="Density"
+                    ))
+                centroids = {}
+                clusters_circle = []
+                for Cluster in self.labels_clusters:
+                    data_cluster = data[self.data_target == Cluster]
+                    centroids[Cluster] = data_cluster.mean()
+                    xcenter = centroids[Cluster].values[0]
+                    ycenter = centroids[Cluster].values[1]
+                    dx = np.percentile(data_cluster[data_cluster.columns[0]], 75) - np.percentile(
+                        data_cluster[data_cluster.columns[0]], 25)
+                    dy = np.percentile(data_cluster[data_cluster.columns[1]], 75) - np.percentile(
+                        data_cluster[data_cluster.columns[1]], 25)
+                    clusters_circle.append(dict(type="circle", fillcolor=graph_colors[Cluster], opacity=0.25,
+                                                line=dict(color="#000000", width=1), xref="x", yref="y", text=Cluster,
+                                                x0=xcenter - dx, y0=ycenter - dx, x1=xcenter + dx, y1=ycenter + dx))
+
+                fig.add_trace(go.Scatter(x=pd.DataFrame(centroids).loc[data.columns[0]], name="Centroid",
+                                         y=pd.DataFrame(centroids).loc[data.columns[1]], text=["Centroid of cluster " + str(cl) for cl in self.labels_clusters],
+                                         marker=dict(color=[settings.discrete_colors[Cluster] for Cluster in self.labels_clusters]),
+                                         mode='markers'))
+
+
+                fig.add_trace(go.Scatter(x=data[data.columns[0]].sample(frac=0.2, random_state=1), name="Point",
+                                       y=data[data.columns[1]].sample(frac=0.2, random_state=1), mode="markers", marker_color=self.data_target.sample(frac=0.2, random_state=1).apply(lambda x: settings.discrete_colors[x]),
+                                         marker=dict(size=2.5), opacity=0.70,text=["Point of cluster " + str(cl) for cl in self.data_target.sample(frac=0.2, random_state=1)]))
+
+                button = dict(method='relayout',
+                              label="Show clusters",
+                              args=["shapes", []],
+                              args2=["shapes", clusters_circle])
+                um = dict(buttons=[button], showactive=False, type='buttons', y=1.12, x=0.20)
+                fig.update_layout(showlegend=False, updatemenus=[um], title="2D Density Projection")
+
+                fig.show()
+
+            elif graph == "contour":
+                Z = np.zeros(Zi.shape)
+                contours_ = []
+                for i, Cluster in enumerate(self.labels_clusters):
+                    Z += R[Cluster]
+                    z = np.round(1 * (R[Cluster] > np.percentile(R[Cluster], percentile)) * R[Cluster], 1)
+                    contours_.append(go.Contour(
+                        x=Zi.index.values,
+                        y=Zi.columns.values,
+                        z=z,
+                        name="Cluster " + str(Cluster),
+                        hoverinfo='skip',
+                        line=dict(color=graph_colors[Cluster]),
+                        contours=dict(type="constraint")
+                    ))
+                fig = go.Figure(data=contours_)
+                fig.update_layout(title="2D Density Projection")
+                fig.show()
+
+
 
 
         def projection_2D(self, feature1, feature2,**args):
