@@ -35,10 +35,11 @@ from ClustersFeatures.src._score_index import __ScoreIndex
 from ClustersFeatures.src._info import __Info
 from ClustersFeatures.src._graph import __Graph
 from ClustersFeatures.src._utils import __Utils
+from ClustersFeatures.src._density import __Density
 from ClustersFeatures.src._confusion_hypersphere import __ConfusionHypersphere
 from ClustersFeatures.src._verify import __Verify
 
-class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHypersphere,__Verify,__Graph,__Utils,__IndexCore):
+class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHypersphere,__Verify,__Graph,__Utils,__IndexCore, __Density):
     """
     Class Author: BERTRAND Simon - simonbertrand.contact@gmail.com
     Made for preparing the summer mission with iCube, Strasbourg (D-IR on FoDoMust)

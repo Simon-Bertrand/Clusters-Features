@@ -123,7 +123,7 @@ def utils_col_arg(args, columns):
         column_in(col, columns)
         return col
     except KeyError:
-        col=None
+        return None
 
 def utils_data_arg(args):
     try:
@@ -132,7 +132,7 @@ def utils_data_arg(args):
             raise ValueError('Data argument is not list or np.array')
         return data
     except KeyError:
-        data=None
+        return None
 def utils_not_botch_col_and_data():
     raise ValueError('Passing data and col argument in the same time is impossible')
 
@@ -145,7 +145,7 @@ def utils_return_KDE_model(args):
     except KeyError:
         return False
 
-def utils_Density_Projection(args, labels_clusters):
+def density_Projection_2D(args, labels_clusters):
     try:
         cluster = args['cluster']
         if isnumeric(cluster):
@@ -173,5 +173,37 @@ def utils_Density_Projection(args, labels_clusters):
 
 
     return cluster, return_clusters_density, return_data
+
+
+def density_Density_Projection_3D(args, labels_clusters):
+    try:
+        cluster = args['cluster']
+        if isnumeric(cluster):
+            cluster = [cluster]
+        for el in cluster:
+            if not (el in (labels_clusters + ["all"])):
+                raise ValueError(str(el) + " is not in " + str(labels_clusters))
+            if len(cluster)>2:
+                raise ValueError('Computing more than 2 clusters is disabled for density 3D')
+    except KeyError:
+        cluster = labels_clusters
+
+
+    try:
+        return_clusters_density = args['return_clusters_density']
+        if not (isinstance(return_clusters_density, bool)):
+            raise ValueError('return_clusters_density is not boolean')
+    except KeyError:
+        return_clusters_density = False
+
+    try:
+        return_grid = args['return_grid']
+        if not (isinstance(return_grid, bool)):
+            raise ValueError('return_grid is not boolean')
+    except KeyError:
+        return_grid = False
+
+
+    return cluster, return_clusters_density, return_grid
 
 
