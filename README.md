@@ -2678,9 +2678,13 @@ CC.clusters_info
 The Density subclass is based on projections 2D or 3D using dimensionnality reductors such as PCA or UMAP. As UMAP is only possible in 2D, we will only use PCA for 3D Density graphs. The main idea for approximating density is about summing Gaussian Distribution n-dim laws centered on each dataset point on a mesgrid corresponding to 2D or 3D.
 This section returns a lot of data that are packed in a native Python dict. Each element returned (excluding the main return) inside the dict has to be activated by its arguments. See the following example:
 
-## self.density_projection_2D
-Args: reduction_method : "PCA" or "UMAP"
-      percentile : percentile of density that corresponds to the minimum value to show
+#### self.density_projection_2D
+Args: 
+- reduction_method : "PCA" or "UMAP"
+- percentile : percentile of density that corresponds to the minimum value to show
+- return_data :If True, return 2D PCA Data
+- return_clusters_density : If True, return the 2D Grid with the Z values for each cluster
+- 
 ```python
 CC.density_projection_2D("PCA", 95, return_data=True, return_clusters_density=True)
 ```
@@ -2736,14 +2740,16 @@ CC.density_projection_2D("PCA", 95, return_data=True, return_clusters_density=Tr
      
      [1797 rows x 2 columns]}
 
+#### self.density_projection_3D
+Use PCA 3D to project the dataset and make a 3D meshgrid to estimate the density on it with the 3D Gaussian distribution.
+Args: 
+- percentile : percentile of density that corresponds to the minimum value to show
+- return_grid :If True, return 3D Grid
+- return_clusters_density : If True, return the 3D Grid with the A values for each cluster
 
 ```python
 CC.density_projection_3D(99, return_grid=True, return_clusters_density=True)
 ```
-
-
-
-
     {'A-Grid': array([[[3.48581797e-15, 1.62080230e-14, 6.90041904e-14, ...,
               5.83374041e-13, 1.92066889e-13, 5.70629214e-14],
              [6.60425258e-16, 6.17767595e-15, 5.01029852e-14, ...,
@@ -2783,3 +2789,69 @@ CC.density_projection_3D(99, return_grid=True, return_clusters_density=True)
                 37.73199421,  39.25062116],
               [-35.1620997 , -33.64347275, -32.12484579, ...,  36.21336725,
                 37.73199421,  39.25062116]]])}}
+                
+                
+ ## Utils ##
+ This section uses other modules to apply to the current self object. For example, PCA from scikit-learn is implemented. We also use UMAP from umap-learn. The list for utils methods :
+ - self.utils_KernelDensity - https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html#sklearn.neighbors.KernelDensity
+ - self.utils_PCA - https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html?highlight=pca#sklearn.decomposition.PCA
+ - self.utils_ts_filtering_STL - https://www.statsmodels.org/devel/generated/statsmodels.tsa.seasonal.STL.html
+ - self.utils_UMAP - https://umap-learn.readthedocs.io/en/latest/
+ 
+ ## Graphs ##
+ This subsclass uses Plotly to plot to different data computed with the module.
+ 
+```python
+CC.graph_boxplots_distances_to_centroid(0)
+```
+![Distance to centroid](https://user-images.githubusercontent.com/84455908/128026108-2be83b69-2811-403a-9b55-109ddedeefa1.png)
+
+```python
+CC.graph_PCA_3D()
+```
+![PCA_3D](https://user-images.githubusercontent.com/84455908/128026133-213a167b-d1ab-4e2d-b616-2482aa06f857.png)
+
+```python
+CC.graph_reduction_2D("UMAP")
+```
+![UMAP](https://user-images.githubusercontent.com/84455908/128026203-83f793c0-1417-44ec-8057-4278f6e40cf7.png)
+
+
+```python
+CC.graph_reduction_2D("PCA")
+```
+
+![PCA2D](https://user-images.githubusercontent.com/84455908/128026228-fc387a70-61dc-481b-9163-8fe920f0a749.png)
+
+```python
+CC.graph_reduction_density_2D("PCA", 99, "contour")
+```
+![reduction_density_2D](https://user-images.githubusercontent.com/84455908/128026292-0855586b-20b3-48ae-9ba0-559b3f683275.png)
+
+
+```python
+CC.graph_reduction_density_2D("UMAP", 99, "contour")
+```
+![reduction_density_2D](https://user-images.githubusercontent.com/84455908/128026342-f1fe5a1e-de61-4698-a38e-e0506d8b3af3.png)
+
+
+```python
+CC.graph_reduction_density_2D("PCA", 99, "interactive")
+```
+![reduction_density_2D](https://user-images.githubusercontent.com/84455908/128026412-ba29a0a2-1639-473d-a4bd-8fe10aeb605e.png)
+![reduction_density_2D](https://user-images.githubusercontent.com/84455908/128026432-02456492-e2e2-4432-b5a9-591186291b0e.png)
+
+
+```python
+CC.graph_reduction_density_3D(99)
+```
+![reduction_density_3D](https://user-images.githubusercontent.com/84455908/128026439-9379f00c-23ed-444b-add0-daf6b0efecbd.png)
+
+
+```python
+CC.graph_reduction_density_3D(99,clusters=[0,1])
+```
+ ![reduction_density_3D](https://user-images.githubusercontent.com/84455908/128026462-77d28ddf-debc-4940-b200-1ff3dcd3f999.png)
+
+ 
+ 
