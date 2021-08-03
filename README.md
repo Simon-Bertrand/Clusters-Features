@@ -1755,7 +1755,9 @@ Make the same result as above but it computes a second time the same score.
 pd_df :  
 shape - (1797, 65) 
  total elements=116805 
-
+ 
+Columns types:
+pd_df.dtypes.value_counts() : 64 x float64 + 1 x Int32
 
 score_index_ball_hall 
 
@@ -2189,7 +2191,7 @@ CC.confusion_hypersphere_for_linspace_radius_each_element(radius=35, counting_ty
 </div>
 
 
-####confusion_hyperphere_around_specific_point_for_two_clusters
+#### confusion_hyperphere_around_specific_point_for_two_clusters
 This method returns the number of elements belonging given Cluster1 or given Cluster2 that are contained inside the hypersphere of given radius and centered on given Point.
 
 ```python
@@ -2202,7 +2204,582 @@ CC.confusion_hyperphere_around_specific_point_for_two_clusters(Point,Cluster1,Cl
 ```
     0    360 
     dtype: int64
+    
+360 elements belonging Cluster or Cluster2 are contained inside this hypersphere.
+
+## Info ##
+The Info subclass shows two different informative boards that gives many kinds of informations about the general dataset and the clusters.
+The type column can be : "max", "min", "max diff", "min diff". If 'max' (respect. 'min'), then higher (respect. lower) is the score, the better is the clustering.
+For "max diff" and "min diff", it is usefull to use them when you need to find the best number of clusters. Max diff will correspond to the maximum difference between clustering 1 with K clusters and clustering 2 with K' clusters (K!=K'). See the Bernard Desgraupes reference for more explanations.
+
+```python
+CC.general_info(hide_nan=False)
+```
+
+    Current NaN Index :
+    
+    Ratkowsky-Lance Index    -          G-Max-07
+    Trace WiB Index          -          G-MaxD-01
+    Scott-Symons Index       -          G-Min-09
+    Det Ratio Index          -          G-MinD-01
+    S_Dbw Index              -          G-MinD-03
+    Nlog Det Ratio Index     -          G-MinD-04
+    
+ 
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>General Informations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Between-group total dispersion</th>
+      <th>max</th>
+      <td>908297.173605</td>
+    </tr>
+    <tr>
+      <th>Mean quadratic error</th>
+      <th>max</th>
+      <td>696.026777</td>
+    </tr>
+    <tr>
+      <th>Silhouette Index</th>
+      <th>max</th>
+      <td>0.162943</td>
+    </tr>
+    <tr>
+      <th>Dunn Index</th>
+      <th>max</th>
+      <td>0.258976</td>
+    </tr>
+    <tr>
+      <th>Wemmert-Gancarski Index</th>
+      <th>max</th>
+      <td>0.250224</td>
+    </tr>
+    <tr>
+      <th>Calinski-Harabasz Index</th>
+      <th>max</th>
+      <td>144.190279</td>
+    </tr>
+    <tr>
+      <th>Point Biserial Index</th>
+      <th>max</th>
+      <td>-4.064967</td>
+    </tr>
+    <tr>
+      <th>PBM Index</th>
+      <th>max</th>
+      <td>34.224177</td>
+    </tr>
+    <tr>
+      <th>Trace W Index</th>
+      <th>max diff</th>
+      <td>1250760.117435</td>
+    </tr>
+    <tr>
+      <th>Banfeld-Raftery Index</th>
+      <th>min</th>
+      <td>11718.207536</td>
+    </tr>
+    <tr>
+      <th>Ball Hall Index</th>
+      <th>min</th>
+      <td>695.801129</td>
+    </tr>
+    <tr>
+      <th>C Index</th>
+      <th>min</th>
+      <td>0.147642</td>
+    </tr>
+    <tr>
+      <th>Ray-Turi Index</th>
+      <th>min</th>
+      <td>1.585782</td>
+    </tr>
+    <tr>
+      <th>Xie-Beni Index</th>
+      <th>min</th>
+      <td>1.955131</td>
+    </tr>
+    <tr>
+      <th>Davies Bouldin Index</th>
+      <th>min</th>
+      <td>2.15171</td>
+    </tr>
+    <tr>
+      <th>SD Index</th>
+      <th>min</th>
+      <td>[[0.627482, 0.070384]]</td>
+    </tr>
+    <tr>
+      <th>Mclain-Rao Index</th>
+      <th>min</th>
+      <td>0.726799</td>
+    </tr>
+    <tr>
+      <th>Log BGSS/WGSS Index</th>
+      <th>min diff</th>
+      <td>-0.319935</td>
+    </tr>
+    <tr>
+      <th>GDI (1, 1)</th>
+      <th>max</th>
+      <td>0.258976</td>
+    </tr>
+    <tr>
+      <th>GDI (1, 2)</th>
+      <th>max</th>
+      <td>0.907614</td>
+    </tr>
+    <tr>
+      <th>GDI (1, 3)</th>
+      <th>max</th>
+      <td>0.31585</td>
+    </tr>
+    <tr>
+      <th>GDI (2, 1)</th>
+      <th>max</th>
+      <td>0.258976</td>
+    </tr>
+    <tr>
+      <th>GDI (2, 2)</th>
+      <th>max</th>
+      <td>0.907614</td>
+    </tr>
+    <tr>
+      <th>GDI (2, 3)</th>
+      <th>max</th>
+      <td>0.31585</td>
+    </tr>
+    <tr>
+      <th>GDI (3, 1)</th>
+      <th>max</th>
+      <td>0.579069</td>
+    </tr>
+    <tr>
+      <th>GDI (3, 2)</th>
+      <th>max</th>
+      <td>2.029422</td>
+    </tr>
+    <tr>
+      <th>GDI (3, 3)</th>
+      <th>max</th>
+      <td>0.70624</td>
+    </tr>
+    <tr>
+      <th>GDI (4, 1)</th>
+      <th>max</th>
+      <td>0.287558</td>
+    </tr>
+    <tr>
+      <th>GDI (4, 2)</th>
+      <th>max</th>
+      <td>1.007784</td>
+    </tr>
+    <tr>
+      <th>GDI (4, 3)</th>
+      <th>max</th>
+      <td>0.35071</td>
+    </tr>
+    <tr>
+      <th>GDI (5, 1)</th>
+      <th>max</th>
+      <td>0.285157</td>
+    </tr>
+    <tr>
+      <th>GDI (5, 2)</th>
+      <th>max</th>
+      <td>0.999368</td>
+    </tr>
+    <tr>
+      <th>GDI (5, 3)</th>
+      <th>max</th>
+      <td>0.347781</td>
+    </tr>
+    <tr>
+      <th>GDI (6, 1)</th>
+      <th>max</th>
+      <td>0.603307</td>
+    </tr>
+    <tr>
+      <th>GDI (6, 2)</th>
+      <th>max</th>
+      <td>2.114365</td>
+    </tr>
+    <tr>
+      <th>GDI (6, 3)</th>
+      <th>max</th>
+      <td>0.7358</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+```python
+CC.clusters_info
+```
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+    </tr>
+    <tr>
+      <th>index</th>
+      <th>Type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Centroid distance to barycenter</th>
+      <th>max</th>
+      <td>26.42</td>
+      <td>20.18</td>
+      <td>22.95</td>
+      <td>21.71</td>
+      <td>25.71</td>
+      <td>20.28</td>
+      <td>26.41</td>
+      <td>24.42</td>
+      <td>13.44</td>
+      <td>19.87</td>
+    </tr>
+    <tr>
+      <th>Between-group Dispersion</th>
+      <th>max</th>
+      <td>124268</td>
+      <td>74146</td>
+      <td>93295</td>
+      <td>86296</td>
+      <td>119709</td>
+      <td>74877</td>
+      <td>126340</td>
+      <td>106802</td>
+      <td>31444</td>
+      <td>71116</td>
+    </tr>
+    <tr>
+      <th>Average Silhouette</th>
+      <th>max</th>
+      <td>0.36</td>
+      <td>0.05</td>
+      <td>0.14</td>
+      <td>0.15</td>
+      <td>0.16</td>
+      <td>0.11</td>
+      <td>0.28</td>
+      <td>0.19</td>
+      <td>0.08</td>
+      <td>0.07</td>
+    </tr>
+    <tr>
+      <th>KernelDensity mean</th>
+      <th>max</th>
+      <td>-87.26</td>
+      <td>-102.79</td>
+      <td>-118.28</td>
+      <td>-102.80</td>
+      <td>-102.79</td>
+      <td>-102.79</td>
+      <td>-87.27</td>
+      <td>-102.77</td>
+      <td>-118.26</td>
+      <td>-118.29</td>
+    </tr>
+    <tr>
+      <th>Ball Hall Index</th>
+      <th>max</th>
+      <td>396.35</td>
+      <td>940.63</td>
+      <td>751.20</td>
+      <td>633.62</td>
+      <td>736.28</td>
+      <td>757.38</td>
+      <td>512.89</td>
+      <td>734.74</td>
+      <td>741.15</td>
+      <td>753.72</td>
+    </tr>
+    <tr>
+      <th>Within-Cluster Dispersion</th>
+      <th>min</th>
+      <td>70550</td>
+      <td>171195</td>
+      <td>132963</td>
+      <td>115953</td>
+      <td>133267</td>
+      <td>137844</td>
+      <td>92833</td>
+      <td>131519</td>
+      <td>128961</td>
+      <td>135670</td>
+    </tr>
+    <tr>
+      <th>Largest element distance</th>
+      <th>min</th>
+      <td>54.54</td>
+      <td>72.85</td>
+      <td>67.00</td>
+      <td>62.33</td>
+      <td>71.69</td>
+      <td>66.53</td>
+      <td>61.15</td>
+      <td>67.93</td>
+      <td>61.17</td>
+      <td>63.77</td>
+    </tr>
+    <tr>
+      <th>Inter-element mean distance</th>
+      <th>min</th>
+      <td>27.49</td>
+      <td>41.57</td>
+      <td>37.66</td>
+      <td>34.81</td>
+      <td>37.28</td>
+      <td>38.08</td>
+      <td>31.22</td>
+      <td>37.24</td>
+      <td>37.93</td>
+      <td>37.83</td>
+    </tr>
+    <tr>
+      <th>Davies Bouldin Index</th>
+      <th>min</th>
+      <td>1.55</td>
+      <td>2.70</td>
+      <td>2.09</td>
+      <td>2.43</td>
+      <td>1.96</td>
+      <td>2.09</td>
+      <td>1.58</td>
+      <td>1.94</td>
+      <td>2.70</td>
+      <td>2.43</td>
+    </tr>
+    <tr>
+      <th>C Index</th>
+      <th>min</th>
+      <td>0.15</td>
+      <td>0.46</td>
+      <td>0.37</td>
+      <td>0.31</td>
+      <td>0.36</td>
+      <td>0.38</td>
+      <td>0.23</td>
+      <td>0.36</td>
+      <td>0.38</td>
+      <td>0.38</td>
+    </tr>
+    <tr>
+      <th>Radius min</th>
+      <th>min</th>
+      <td>11.96</td>
+      <td>16.49</td>
+      <td>17.22</td>
+      <td>15.09</td>
+      <td>15.94</td>
+      <td>16.46</td>
+      <td>12.78</td>
+      <td>14.61</td>
+      <td>18.37</td>
+      <td>16.31</td>
+    </tr>
+    <tr>
+      <th>Radius mean</th>
+      <th>min</th>
+      <td>19.36</td>
+      <td>29.86</td>
+      <td>26.74</td>
+      <td>24.57</td>
+      <td>26.46</td>
+      <td>27.18</td>
+      <td>22.16</td>
+      <td>26.41</td>
+      <td>26.89</td>
+      <td>26.72</td>
+    </tr>
+    <tr>
+      <th>Radius median</th>
+      <th>min</th>
+      <td>19.09</td>
+      <td>27.70</td>
+      <td>25.29</td>
+      <td>23.49</td>
+      <td>26.43</td>
+      <td>27.19</td>
+      <td>21.57</td>
+      <td>25.35</td>
+      <td>26.98</td>
+      <td>25.20</td>
+    </tr>
+    <tr>
+      <th>Radius 75th Percentile</th>
+      <th>min</th>
+      <td>22.14</td>
+      <td>35.62</td>
+      <td>30.26</td>
+      <td>27.80</td>
+      <td>29.72</td>
+      <td>29.22</td>
+      <td>24.73</td>
+      <td>30.21</td>
+      <td>30.13</td>
+      <td>29.96</td>
+    </tr>
+    <tr>
+      <th>Radius max</th>
+      <th>min</th>
+      <td>35.38</td>
+      <td>48.76</td>
+      <td>48.66</td>
+      <td>40.02</td>
+      <td>51.53</td>
+      <td>40.58</td>
+      <td>42.25</td>
+      <td>44.42</td>
+      <td>38.17</td>
+      <td>45.98</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+## Density ##
+The Density subclass is based on projections 2D or 3D using dimensionnality reductors such as PCA or UMAP. As UMAP is only possible in 2D, we will only use PCA for 3D Density graphs. The main idea for approximating density is about summing Gaussian Distribution n-dim laws centered on each dataset point on a mesgrid corresponding to 2D or 3D.
+This section returns a lot of data that are packed in a native Python dict. Each element returned (excluding the main return) inside the dict has to be activated by its arguments. See the following example:
+
+## self.density_projection_2D
+Args: reduction_method : "PCA" or "UMAP"
+      percentile : percentile of density that corresponds to the minimum value to show
+```python
+CC.density_projection_2D("PCA", 95, return_data=True, return_clusters_density=True)
+```
+
+
+    {'Z-Grid':             -27.494448  -27.205068  -26.915688  -26.626307  -26.336927  \
+     -31.169904    0.000000    0.000000    0.000000    0.000000    0.000000   
+     -30.853975    0.000000    0.000000    0.000000    0.000000    0.000000   
+     -30.538045    0.000000    0.000000    0.000000    0.000000    0.000000   
+     -30.222115    0.000000    0.000000    0.000000    0.000000    0.000000   
+     -29.906185    0.000000    0.000000    0.000000    0.000000    0.000000   
+     ...                ...         ...         ...         ...         ...         
+     30.436407     0.000000    0.000000    0.000000    0.000000    0.000000  
+     30.752337     0.000000    0.000000    0.000000    0.000000    0.000000  
+     31.068267     0.000000    0.000000    0.000000    0.000000    0.000000  
+     31.384197     0.000000    0.000000    0.000000    0.000000    0.000000  
+     31.700126     0.000000    0.000000    0.000000    0.000000    0.000000  
+     
+     [200 rows x 200 columns],
+     'Clusters Density': {0: array([[0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+              2.26543202e-251, 6.72200949e-253, 1.80509292e-254],
+             [0.00000000e+000, 0.00000000e+000, 0.00000000e+000, ...,
+              2.39644309e-090, 2.99562311e-092, 3.38890645e-094]]),
+      1: array([[1.22473352e-190, 9.95843640e-187, 7.32812819e-183, ...,
+              1.89152820e-043, 5.31903131e-045, 1.35364451e-046],
+             [6.13307159e-189, 4.98686467e-185, 3.66969092e-181, ...,
+             [2.18683154e-176, 3.42747973e-173, 4.86168499e-170, ...,
+              6.11416273e-291, 1.45371826e-293, 3.12806562e-296]]),
+      2: array([[9.82858841e-081, 1.91715088e-079, 4.01121949e-078, ...,
+              3.95263976e-164, 6.05314934e-167, 8.38934205e-170],
+             [1.15888672e-078, 2.15624607e-077, 3.99557766e-076, ...,
+              0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
+             [2.14277916e-156, 6.99479702e-154, 2.07015420e-151, ...,
+              0.00000000e+000, 0.00000000e+000, 0.00000000e+000]]),
+                                  ...
+              1.34702113e-296, 1.14119413e-299, 8.74977734e-303]]),
+      8: array([[3.68438507e-120, 1.91948293e-117, 9.05015769e-115, ...,
+              1.78634585e-151, 1.09968510e-153, 6.12666390e-156],
+             [1.19395354e-118, 6.22023065e-116, 2.93277042e-113, ...,        
+             [2.30028280e-221, 1.12585950e-218, 4.98917831e-216, ...,
+              3.82113467e-265, 9.90939747e-269, 2.32570436e-272]]),
+      9: array([[5.32990773e-136, 8.38778107e-133, 1.19461196e-129, ...,
+              3.98260675e-172, 2.88650900e-175, 1.89334938e-178],
+             [5.65560268e-135, 8.90033385e-132, 1.26761124e-128, ...,
+             [3.33187669e-070, 4.02748126e-069, 4.64453319e-068, ...,
+              1.02174508e-253, 1.38205190e-256, 1.69183696e-259]])},
+     '2D PCA Data':            PCA0       PCA1
+     0     -1.259467  21.274883
+     1      7.957610 -20.768700
+     ...            ...
+     1795  -4.872099  12.423954
+     1796  -0.344388   6.365550
+     
+     [1797 rows x 2 columns]}
+
+
+```python
+CC.density_projection_3D(99, return_grid=True, return_clusters_density=True)
+```
 
 
 
 
+    {'A-Grid': array([[[3.48581797e-15, 1.62080230e-14, 6.90041904e-14, ...,
+              5.83374041e-13, 1.92066889e-13, 5.70629214e-14],
+             [6.60425258e-16, 6.17767595e-15, 5.01029852e-14, ...,
+              3.52400611e-12, 5.50927146e-13, 7.45284376e-14]]]),
+     'Clusters Density': {0: array([[[3.40385502e-48, 3.36307101e-47, 2.87017113e-46, ...,
+               6.07579853e-65, 1.97018960e-66, 5.51854095e-68],
+              [6.12214966e-32, 7.73521170e-31, 8.44230524e-30, ...,
+               6.56667612e-49, 8.52648274e-51, 9.59653245e-53]],
+             [[1.30566741e-19, 7.34944932e-19, 3.57377188e-18, ...,
+               3.11782459e-28, 1.14260012e-29, 3.68476733e-31],
+              [6.32366666e-22, 6.00865462e-21, 4.93929478e-20, ...,
+               4.28020934e-27, 2.75837798e-28, 1.53709049e-29]]]),
+      1: array([[[8.98310922e-30, 6.71213878e-29, 5.03213279e-28, ...,
+               2.87124806e-29, 8.73589680e-30, 2.29930435e-30]
+              [5.02339294e-21, 2.49290742e-20, 1.30264666e-19, ...,
+               2.55638337e-14, 4.29622018e-15, 6.43949192e-16]],
+              [2.83167266e-35, 8.65300585e-35, 2.28427319e-34, ...,
+               8.11025209e-33, 1.61201265e-33, 2.82711740e-34]]]),
+      2: array([[[1.36203887e-28, 9.67318866e-28, 5.96928017e-27, ...,
+               1.54322295e-14, 5.09928476e-15, 1.48590282e-15],
+                                  ...
+      8: array([[[6.84981203e-33, 1.26631274e-31, 2.37110234e-30, ...,
+               9.64415278e-27, 5.73382414e-28, 3.22330467e-29],
+              [1.74336209e-34, 9.68068937e-34, 4.64782487e-33, ...,
+               1.05223775e-37, 1.79602795e-38, 2.64802829e-39]]]),
+      9: array([[[3.60638003e-23, 1.23523984e-22, 5.16583215e-22, ...,
+               5.75818352e-33, 1.73152931e-34, 4.49760341e-36],
+               2.86151947e-52, 3.19445757e-53, 3.40743714e-54]]])},
+     '3D Grid': {'X': array([[[-37.40388626, -37.40388626, -37.40388626, ..., -37.40388626,
+               -37.40388626, -37.40388626],
+              [ 38.04015058,  38.04015058,  38.04015058, ...,  38.04015058,
+                38.04015058,  38.04015058]]]),
+      'Y': array([[[-32.99333756, -32.99333756, -32.99333756, ..., -32.99333756,
+               -32.99333756, -32.99333756],
+                36.11064515,  36.11064515]]]),
+      'Z': array([[[-35.1620997 , -33.64347275, -32.12484579, ...,  36.21336725,
+                37.73199421,  39.25062116],
+              [-35.1620997 , -33.64347275, -32.12484579, ...,  36.21336725,
+                37.73199421,  39.25062116]]])}}
