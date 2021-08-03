@@ -1746,128 +1746,463 @@ CC.generate_output_by_info_type("general", "max", "G-Max-01")
 CC.score_between_group_dispersion()
 908297.1736053203
 ```
-Make the same result as above but it compute a second time the same score.
+Make the same result as above but it computes a second time the same score.
 
-```python
-CC.graph_reduction_density_2D("UMAP", 99, "contour")
-```
-
-
-```python
-CC.graph_reduction_2D("PCA")
-```
-
-
-```python
-CC.graph_boxplots_distances_to_centroid(2)
-```
-
-
-```python
-CC.graph_PCA_3D()
-```
-
-
-```python
-CC.density_projection_3D(99, return_clusters_density=True)
-```
-
-
-```python
-___
-```
-
-
-```python
-from sklearn.datasets import make_blobs
-
-from sklearn.preprocessing import StandardScaler
-
-import seaborn as sns
-import pandas as pd
-X, y = make_blobs(n_samples=200, centers=2, n_features=3,cluster_std=0.5)
-X=StandardScaler().fit_transform(X)
-T=pd.DataFrame(data=X)
-T['target']=y
-CC2=ClustersCharacteristics(T,"target")
-```
-
-
-```python
-
-    
-
-```
-
-
-```python
-
-```
 
 ### Speed test of different scores
 
+```
+pd_df :  
+shape - (1797, 65) 
+ total elements=116805 
 
-```python
-print('score_index_ball_hall \n')
-%timeit CC.score_index_ball_hall()
-print('\nscore_index_banfeld_Raftery\n')
-%timeit CC.score_index_banfeld_Raftery()
-print('\nscore_index_c\n')
-%timeit CC.score_index_c()
-print('\nscore_index_c_for_each_cluster\n')
-%timeit CC.score_index_c_for_each_cluster(0)
-print('\nscore_index_calinski_harabasz \n')
-%timeit CC.score_index_calinski_harabasz()
-print('\nscore_index_davies_bouldin \n')
-%timeit CC.score_index_davies_bouldin()
-print('\nscore_index_davies_bouldin_for_each_cluster \n')
-%timeit CC.score_index_davies_bouldin_for_each_cluster()
-print('\nscore_index_det_ratio \n')
-%timeit CC.score_index_det_ratio()
-print('\nscore_index_dunn\n')
-%timeit CC.score_index_dunn()
-print('\nscore_index_generalized_dunn_matrix\n')
-%timeit CC.score_index_generalized_dunn_matrix()
-print('\nscore_index_Log_Det_ratio\n')
-%timeit CC.score_index_Log_Det_ratio()
-print('\nscore_index_log_ss_ratio \n')
-%timeit CC.score_index_log_ss_ratio()
-print('\nscore_index_mclain_rao \n')
-%timeit CC.score_index_mclain_rao()
-print('\nscore_index_PBM \n')
-%timeit CC.score_index_PBM()
-print('\nscore_index_point_biserial\n')
-%timeit CC.score_index_point_biserial()
-print('\nscore_index_ratkowsky_lance \n')
-%timeit CC.score_index_ratkowsky_lance()
-print('\nscore_index_ray_turi \n')
-%timeit CC.score_index_ray_turi()
-print('\nscore_index_S_Dbw \n')
-%timeit CC.score_index_S_Dbw()
-print('\nscore_index_scott_symons\n')
-%timeit CC.score_index_scott_symons()
-print('\nscore_index_SD \n')
-%timeit CC.score_index_SD()
-print('\nscore_index_trace_WiB \n')
-%timeit CC.score_index_trace_WiB()
-print('\nscore_index_wemmert_gancarski \n')
-%timeit CC.score_index_wemmert_gancarski()
-print('\nscore_index_xie_beni\n')
-%timeit CC.score_index_xie_beni()
+
+score_index_ball_hall 
+
+5.06 ms ± 79.9 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+score_index_banfeld_Raftery
+
+5.02 ms ± 39.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+score_index_c
+
+104 ms ± 550 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+score_index_c_for_each_cluster
+
+95.5 ms ± 720 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+score_index_calinski_harabasz 
+
+16.5 ms ± 257 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+score_index_davies_bouldin 
+
+12.3 ms ± 76.5 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+score_index_davies_bouldin_for_each_cluster 
+
+12.3 ms ± 300 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+score_index_det_ratio 
+
+181 ms ± 4.09 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+score_index_dunn
+
+19.6 ms ± 1.06 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+score_index_generalized_dunn_matrix
+
+994 ms ± 41.4 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+score_index_Log_Det_ratio
+
+180 ms ± 2.86 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+score_index_log_ss_ratio 
+
+16.3 ms ± 249 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+score_index_mclain_rao 
+
+63.5 ms ± 6.55 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+score_index_PBM 
+
+23.5 ms ± 3.84 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+score_index_point_biserial
+
+50.3 ms ± 434 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+score_index_ratkowsky_lance 
+
+12.3 ms ± 254 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+score_index_ray_turi 
+
+23.2 ms ± 889 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+score_index_scott_symons
+
+153 ms ± 6.25 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+score_index_SD 
+
+211 ms ± 4.37 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+score_index_trace_WiB 
+
+138 ms ± 2.69 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+score_index_wemmert_gancarski 
+
+8.13 ms ± 93 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+score_index_xie_beni
+
+85.8 ms ± 1.31 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 ```
 
+## Confusion Hypersphere ##
+The confusion hypersphere subclass counts the number of element contained inside a n-dim sphere (hypersphere) of given radius and centered on each cluster centroid.
+The given radius is the same for each hypersphere.
+
+Args : "counting_type=" : ('including' or 'excluding') - If including, then the elements belonging cluster i and contained inside the hypersphere of centroid i are counted (for i=j). If excluding, then they're not counted.
+"proportion=" : (bool) Return the proportion of element. Default option = False.
+
+
+
+#### self.confusion_hypersphere_matrix
+```python
+CC.confusion_hypersphere_matrix(radius=35, counting_type="including", proportion=True)
+```
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C:0</th>
+      <th>C:1</th>
+      <th>C:2</th>
+      <th>C:3</th>
+      <th>C:4</th>
+      <th>C:5</th>
+      <th>C:6</th>
+      <th>C:7</th>
+      <th>C:8</th>
+      <th>C:9</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>H:0</th>
+      <td>0.994382</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.010929</td>
+      <td>0.000000</td>
+      <td>0.032967</td>
+      <td>0.060773</td>
+      <td>0.000000</td>
+      <td>0.005747</td>
+      <td>0.211111</td>
+    </tr>
+    <tr>
+      <th>H:1</th>
+      <td>0.000000</td>
+      <td>0.736264</td>
+      <td>0.090395</td>
+      <td>0.103825</td>
+      <td>0.187845</td>
+      <td>0.016484</td>
+      <td>0.110497</td>
+      <td>0.055866</td>
+      <td>0.574713</td>
+      <td>0.022222</td>
+    </tr>
+    <tr>
+      <th>H:2</th>
+      <td>0.000000</td>
+      <td>0.142857</td>
+      <td>0.881356</td>
+      <td>0.355191</td>
+      <td>0.000000</td>
+      <td>0.005495</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.310345</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>H:3</th>
+      <td>0.000000</td>
+      <td>0.005495</td>
+      <td>0.225989</td>
+      <td>0.950820</td>
+      <td>0.000000</td>
+      <td>0.258242</td>
+      <td>0.000000</td>
+      <td>0.016760</td>
+      <td>0.327586</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>H:4</th>
+      <td>0.050562</td>
+      <td>0.032967</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.928177</td>
+      <td>0.027473</td>
+      <td>0.154696</td>
+      <td>0.027933</td>
+      <td>0.028736</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>H:5</th>
+      <td>0.095506</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.103825</td>
+      <td>0.005525</td>
+      <td>0.950549</td>
+      <td>0.022099</td>
+      <td>0.005587</td>
+      <td>0.293103</td>
+      <td>0.133333</td>
+    </tr>
+    <tr>
+      <th>H:6</th>
+      <td>0.089888</td>
+      <td>0.027473</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.033149</td>
+      <td>0.021978</td>
+      <td>0.983425</td>
+      <td>0.000000</td>
+      <td>0.068966</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>H:7</th>
+      <td>0.000000</td>
+      <td>0.071429</td>
+      <td>0.028249</td>
+      <td>0.071038</td>
+      <td>0.060773</td>
+      <td>0.005495</td>
+      <td>0.000000</td>
+      <td>0.882682</td>
+      <td>0.201149</td>
+      <td>0.055556</td>
+    </tr>
+    <tr>
+      <th>H:8</th>
+      <td>0.044944</td>
+      <td>0.423077</td>
+      <td>0.293785</td>
+      <td>0.431694</td>
+      <td>0.011050</td>
+      <td>0.170330</td>
+      <td>0.110497</td>
+      <td>0.184358</td>
+      <td>0.977011</td>
+      <td>0.394444</td>
+    </tr>
+    <tr>
+      <th>H:9</th>
+      <td>0.421348</td>
+      <td>0.000000</td>
+      <td>0.005650</td>
+      <td>0.759563</td>
+      <td>0.000000</td>
+      <td>0.351648</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.356322</td>
+      <td>0.872222</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+To interpret this, if (xi,j)i,j is the returned matrix, then xi,j is the number of elements belonging cluster j that are contained inside the hypersphere with given radius centered on centroid of cluster i . If proportion is on True, then the number of elements becomes the proportion of elements belonging cluster j.
+
+
+
+
+
+#### self.confusion_hypersphere_for_linspace_radius_each_element
+This method returns the results of the above method for a linear radius space. "n_pts=" allows users to set the radius range.
+```python
+CC.confusion_hypersphere_for_linspace_radius_each_element(radius=35, counting_type="excluding", n_pts=10)
+```
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+    </tr>
+    <tr>
+      <th>Radius</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0000</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7.1578</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14.3155</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>21.4733</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>28.6311</th>
+      <td>3</td>
+      <td>10</td>
+      <td>3</td>
+      <td>36</td>
+      <td>1</td>
+      <td>24</td>
+      <td>1</td>
+      <td>0</td>
+      <td>34</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>35.7889</th>
+      <td>192</td>
+      <td>171</td>
+      <td>161</td>
+      <td>398</td>
+      <td>71</td>
+      <td>211</td>
+      <td>122</td>
+      <td>68</td>
+      <td>473</td>
+      <td>325</td>
+    </tr>
+    <tr>
+      <th>42.9466</th>
+      <td>1004</td>
+      <td>747</td>
+      <td>802</td>
+      <td>1023</td>
+      <td>641</td>
+      <td>940</td>
+      <td>837</td>
+      <td>765</td>
+      <td>1285</td>
+      <td>950</td>
+    </tr>
+    <tr>
+      <th>50.1044</th>
+      <td>1567</td>
+      <td>1346</td>
+      <td>1397</td>
+      <td>1470</td>
+      <td>1318</td>
+      <td>1536</td>
+      <td>1534</td>
+      <td>1369</td>
+      <td>1558</td>
+      <td>1479</td>
+    </tr>
+    <tr>
+      <th>57.2622</th>
+      <td>1602</td>
+      <td>1625</td>
+      <td>1589</td>
+      <td>1636</td>
+      <td>1624</td>
+      <td>1638</td>
+      <td>1629</td>
+      <td>1603</td>
+      <td>1566</td>
+      <td>1614</td>
+    </tr>
+    <tr>
+      <th>64.4200</th>
+      <td>1602</td>
+      <td>1638</td>
+      <td>1593</td>
+      <td>1647</td>
+      <td>1629</td>
+      <td>1638</td>
+      <td>1629</td>
+      <td>1611</td>
+      <td>1566</td>
+      <td>1620</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+####confusion_hyperphere_around_specific_point_for_two_clusters
+This method returns the number of elements belonging given Cluster1 or given Cluster2 that are contained inside the hypersphere of given radius and centered on given Point.
 
 ```python
-bc_list = np.arange(1, 7)
-wc_list = np.arange(1, 4)
+Point= CC.data_features.iloc[0] #Choose an  observation  of the dataset
+Cluster1= CC.labels_clusters[0] #Choose the cluster 1
+Cluster2=CC.labels_clusters[1] #Choose the cluster 2
+radius=110 #Large radius to capture the total of both clusters, the result should be the sum of data_clusters[Cluster1] and data_clusters[Cluster2] cardinals
 
-df = pd.DataFrame(columns=wc_list, index=bc_list)
-for bc in bc_list:
-    for wc in wc_list:
-        print(wc,bc)
-        %timeit CC.score_index_generalized_dunn(within_cluster_distance=wc, between_cluster_distance=bc)
-        df.loc[bc, wc] = CC.score_index_generalized_dunn(within_cluster_distance=wc, between_cluster_distance=bc)
-        
-df.index.name = "Generalized Dunn Indexes"
-df
+CC.confusion_hyperphere_around_specific_point_for_two_clusters(Point,Cluster1,Cluster2, radius)
 ```
+    0    360 
+    dtype: int64
+
+
+
+
