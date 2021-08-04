@@ -1,17 +1,12 @@
-"""Special care to the indices.json structure:
-All the IndexCore class is based on the above json structure.
-Modifying the aspect of indices.json brings to modifying the structure of many functions in this document.
-In other words, it is strongly discouraged to modify the global aspect of the json without having done a thorough analysis of the program.
-To add an index, it is important to add data to the json following its current structure.
-Document structure dependency : indices.json, _info.py, __init__
-"""
+
 import numpy as np
 import pandas as pd
 import json
 from .settings import precision
 class __IndexCore(object):
 
-    def generate_output_by_info_type(self,board_type, indices_type, code):
+    def IndexCore_generate_output_by_info_type(self,board_type, indices_type, code):
+
         with open('./ClustersFeatures/indices.json') as f:
             Indices = json.load(f)
         if not(board_type in [keys for keys in Indices]):
@@ -20,7 +15,7 @@ class __IndexCore(object):
                 raise ValueError("indice_type is not in " + str([keys for keys in Indices[board_type]]))
                 if not (code in [keys for keys in Indices[board_type][code].values()]):
                     raise ValueError("code is not in " + str([keys for keys in Indices[board_type][code].values()]))
-        all_index_ref=self._get_all_index()
+        all_index_ref=self.IndexCore_get_all_index()
         name_index = {it2: it1 for it1, it2 in all_index_ref[board_type][indices_type].items()}[code]
         if code in self._listcode_index_compute:
             return self.details_index_compute[board_type][indices_type][name_index]
@@ -137,7 +132,7 @@ class __IndexCore(object):
         self.details_index_compute[board_type][indices_type][name_index] = value_to_return
         return value_to_return
 
-    def _get_all_index(self):
+    def IndexCore_get_all_index(self):
         with open('./ClustersFeatures/indices.json') as f:
             Indices = json.load(f)
 
@@ -149,10 +144,10 @@ class __IndexCore(object):
 
         return all_index_code_
 
-    def compute_every_index(self):
+    def IndexCore_compute_every_index(self):
         with open('./ClustersFeatures/indices.json') as f:
             data = json.load(f)
-        all_index_ref = self._get_all_index()
+        all_index_ref = self.IndexCore_get_all_index()
         for k in data:
             for j in data[k]:
                 for z, l in enumerate(data[k][j].values()):
@@ -161,10 +156,10 @@ class __IndexCore(object):
                         self.details_index_compute[k][j][list(data[k][j].keys())[z]] = self.details_index_compute[k][j][name_index]
                     else:
                         print(data[k][j][{it2: it1 for it1, it2 in all_index_ref[k][j].items()}[l]], "\n")
-                        self.details_index_compute[k][j][list(data[k][j].keys())[z]] = self.generate_output_by_info_type(k, j, l)
+                        self.details_index_compute[k][j][list(data[k][j].keys())[z]] = self.IndexCore_generate_output_by_info_type(k, j, l)
         return self.details_index_compute
 
-    def get_number_of_index(self):
+    def IndexCore_get_number_of_index(self):
         with open('./ClustersFeatures/indices.json') as f:
             data = json.load(f)
         s = 0
@@ -174,8 +169,8 @@ class __IndexCore(object):
                     s += 1
         return s
 
-    def __get__board(self, boardtype):
-        all_index = self.compute_every_index()
+    def __IndexCore_get__board(self, boardtype):
+        all_index = self.IndexCore_compute_every_index()
         if boardtype == "radius":
             radius_for_clusters = pd.DataFrame(columns=self.labels_clusters)
             for name, value in all_index['radius']['min'].items():
@@ -196,26 +191,26 @@ class __IndexCore(object):
             clusters_indices = clusters_indices.reset_index()
             return clusters_indices.set_index(['index', 'Type'])
         elif boardtype == "score_index_GDI":
-            dict_GDI = self.generate_output_by_info_type("general", "max", "G-Max-GDI")
+            dict_GDI = self.IndexCore_generate_output_by_info_type("general", "max", "G-Max-GDI")
             GDI = pd.DataFrame(dict_GDI.values(), pd.Index(dict_GDI))
             GDI['Type'] = len(GDI) * ["max"]
             GDI = GDI.reset_index()
             return GDI.set_index(['index', 'Type'])
         elif boardtype == "general":
-            return pd.DataFrame(pd.DataFrame(self.compute_every_index()['general']).stack().drop('Generalized Dunn Indexes'))
+            return pd.DataFrame(pd.DataFrame(self.IndexCore_compute_every_index()['general']).stack().drop('Generalized Dunn Indexes'))
 
-    def _create_board(self, list_boardtype):
+    def _IndexCore_create_board(self, list_boardtype):
         if not(isinstance(list_boardtype,list)):
             raise ValueError("list_boardtype is not a list argument")
         for boardtype in list_boardtype:
             if not(boardtype in ['general', 'clusters', "radius", "score_index_GDI"]):
                 raise ValueError('Invalid boardtype : ' + str(boardtype) + 'not in ' + str(['general', 'clusters', "radius", "score_index_GDI"]))
-        return pd.concat([self.__get__board(board) for board in list_boardtype])
+        return pd.concat([self.__IndexCore_get__board(board) for board in list_boardtype])
 
-    def _nan_general_index(self):
+    def _IndexCore_nan_general_index(self):
         L = {}
-        d = self.compute_every_index()['general']
-        all_index=self._get_all_index()['general']
+        d = self.IndexCore_compute_every_index()['general']
+        all_index=self.IndexCore_get_all_index()['general']
         for k_v1 in d.items():
             for k_v2 in d[k_v1[0]].items():
                 if isinstance(k_v2[1], float) and np.isnan(k_v2[1]):
