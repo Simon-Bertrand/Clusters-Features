@@ -10,7 +10,7 @@ if settings.Activated_Utils:
         def utils_ts_filtering_STL(self, **args):
             """Filter a time-serie with STL from statsmodels.
             col argument can be specified if it is wanted to filter
-            a column of self dataframe.
+            a column of self dataframe. dd
             Else, you can directly specify a time-serie with the data argument
 
             :param int/float periods: Specify the period between each sample
