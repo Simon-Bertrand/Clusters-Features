@@ -1,7 +1,7 @@
 .. _my-reference-label:
 
 Score
---------------------------
+------
 This section allows users to evaluate their clustering by checking values of the indices from below.
 
 
@@ -17,20 +17,20 @@ References :
 
 
 Scatter Score
-===========
+==============
 
 .. autoclass:: ClustersFeatures.src._score.__Score
    :members:
 
 Index
-===========
+=====
 
 .. autoclass:: ClustersFeatures.src._score_index.__ScoreIndex
    :members:
 
 
 IndexCore
-===========
+=========
 In this library, there are two types of methods to calculate these scores: Using IndexCore which automatically caches the already calculated indexes or calculating directly using the score_index methods.
 The second method can make the calculation of the same index repetitive, which can be very slow because we know that some of these indexes have a very high computational complexity.
 
