@@ -56,7 +56,8 @@ cover/
 
 
 # Sphinx documentation
-docs/_build/
+docs/doctrees/
+
 
 # PyBuilder
 .pybuilder/
