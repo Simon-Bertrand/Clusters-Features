@@ -620,22 +620,74 @@ To add an index, it is important to add data to the json following its current s
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_compute_every_index">
 <span class="sig-name descname"><span class="pre">IndexCore_compute_every_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_compute_every_index" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Compute all indexes and save it to cache.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dict with all the indexes values.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_generate_output_by_info_type">
 <span class="sig-name descname"><span class="pre">IndexCore_generate_output_by_info_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_generate_output_by_info_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the queried index. If it has already been computed, then the cached result is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board_type:</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+<p>A str in the following list [‘general’, ‘radius’, ‘clusters’].
+General shows indices that are calculed for the entire dataset. Radius shows informations about the distributions of
+radius and clusters allows users to check the indices for each clusters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>indices_type:</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+<p>A str in the following list [‘max’, ‘min’, ‘max diff’, ‘min diff’].
+If ‘max’ (respect. ‘min’), then higher (respect. lower) is the score, the better is the clustering.
+For “max diff” and “min diff”, it is usefull to use them when you need to find the best number of clusters.
+Max diff will correspond to the maximum difference between clustering 1 with K clusters and clustering 2 with K’ clusters (K!=K’).
+See the Bernard Desgraupes reference for more explanations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>code:</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+<p>A str corresponding to one of the code inside the indices.json file. Check these codes with IndexCore_get_all_index().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list or float or pandas dataframe or pandas series.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_get_all_index">
 <span class="sig-name descname"><span class="pre">IndexCore_get_all_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_get_all_index" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns a dict with all the indexes and its corresponding code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">IndexCore_get_all_index</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="s1">&#39;general&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Between-group total dispersion&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean quadratic error&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Silhouette Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Dunn Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Generalized Dunn Indexes&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-GDI&#39;</span><span class="p">,</span> <span class="s1">&#39;Wemmert-Gancarski Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-05&#39;</span><span class="p">,</span> <span class="s1">&#39;Calinski-Harabasz Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-06&#39;</span><span class="p">,</span> <span class="s1">&#39;Ratkowsky-Lance Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-07&#39;</span><span class="p">,</span> <span class="s1">&#39;Point Biserial Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-08&#39;</span><span class="p">,</span> <span class="s1">&#39;PBM Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-09&#39;</span><span class="p">},</span> <span class="s1">&#39;max diff&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Trace WiB Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MaxD-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Trace W Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MaxD-02&#39;</span><span class="p">},</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Banfeld-Raftery Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Ball Hall Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-02&#39;</span><span class="p">,</span> <span class="s1">&#39;C Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Ray-Turi Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Xie-Beni Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-05&#39;</span><span class="p">,</span> <span class="s1">&#39;Davies Bouldin Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-06&#39;</span><span class="p">,</span> <span class="s1">&#39;SD Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-07&#39;</span><span class="p">,</span> <span class="s1">&#39;Mclain-Rao Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-08&#39;</span><span class="p">,</span> <span class="s1">&#39;Scott-Symons Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-09&#39;</span><span class="p">},</span> <span class="s1">&#39;min diff&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Det Ratio Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Log BGSS/WGSS Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-02&#39;</span><span class="p">,</span> <span class="s1">&#39;S_Dbw Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Nlog Det Ratio Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-04&#39;</span><span class="p">}},</span> <span class="s1">&#39;clusters&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Centroid distance to barycenter&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Between-group Dispersion&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Silhouette&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-03&#39;</span><span class="p">,</span> <span class="s1">&#39;KernelDensity mean&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Ball Hall Index&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-05&#39;</span><span class="p">},</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Within-Cluster Dispersion&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Largest element distance&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Inter-element mean distance&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Davies Bouldin Index&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-04&#39;</span><span class="p">,</span> <span class="s1">&#39;C Index&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-05&#39;</span><span class="p">}},</span> <span class="s1">&#39;radius&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Radius min&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius mean&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius median&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius 75th Percentile&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius max&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-05&#39;</span><span class="p">}}}</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_get_number_of_index">
 <span class="sig-name descname"><span class="pre">IndexCore_get_number_of_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_get_number_of_index" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the number of indices inside the indices.json file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

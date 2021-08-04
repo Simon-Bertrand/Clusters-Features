@@ -6,6 +6,25 @@ from .settings import precision
 class __IndexCore(object):
 
     def IndexCore_generate_output_by_info_type(self,board_type, indices_type, code):
+        """Returns the queried index. If it has already been computed, then the cached result is returned.
+
+        :param str board_type::
+        A str in the following list ['general', 'radius', 'clusters'].
+        General shows indices that are calculed for the entire dataset. Radius shows informations about the distributions of
+        radius and clusters allows users to check the indices for each clusters.
+
+        :param str indices_type::
+        A str in the following list ['max', 'min', 'max diff', 'min diff'].
+        If 'max' (respect. 'min'), then higher (respect. lower) is the score, the better is the clustering.
+        For "max diff" and "min diff", it is usefull to use them when you need to find the best number of clusters.
+        Max diff will correspond to the maximum difference between clustering 1 with K clusters and clustering 2 with K' clusters (K!=K').
+        See the Bernard Desgraupes reference for more explanations.
+
+        :param str code::
+        A str corresponding to one of the code inside the indices.json file. Check these codes with IndexCore_get_all_index().
+
+        :returns: list or float or pandas dataframe or pandas series.
+        """
 
         with open('./ClustersFeatures/indices.json') as f:
             Indices = json.load(f)
@@ -133,6 +152,13 @@ class __IndexCore(object):
         return value_to_return
 
     def IndexCore_get_all_index(self):
+        """Returns a dict with all the indexes and its corresponding code.
+
+        :returns: dict
+
+        >>> CC.IndexCore_get_all_index
+        >>> {'general': {'max': {'Between-group total dispersion': 'G-Max-01', 'Mean quadratic error': 'G-Max-02', 'Silhouette Index': 'G-Max-03', 'Dunn Index': 'G-Max-04', 'Generalized Dunn Indexes': 'G-Max-GDI', 'Wemmert-Gancarski Index': 'G-Max-05', 'Calinski-Harabasz Index': 'G-Max-06', 'Ratkowsky-Lance Index': 'G-Max-07', 'Point Biserial Index': 'G-Max-08', 'PBM Index': 'G-Max-09'}, 'max diff': {'Trace WiB Index': 'G-MaxD-01', 'Trace W Index': 'G-MaxD-02'}, 'min': {'Banfeld-Raftery Index': 'G-Min-01', 'Ball Hall Index': 'G-Min-02', 'C Index': 'G-Min-03', 'Ray-Turi Index': 'G-Min-04', 'Xie-Beni Index': 'G-Min-05', 'Davies Bouldin Index': 'G-Min-06', 'SD Index': 'G-Min-07', 'Mclain-Rao Index': 'G-Min-08', 'Scott-Symons Index': 'G-Min-09'}, 'min diff': {'Det Ratio Index': 'G-MinD-01', 'Log BGSS/WGSS Index': 'G-MinD-02', 'S_Dbw Index': 'G-MinD-03', 'Nlog Det Ratio Index': 'G-MinD-04'}}, 'clusters': {'max': {'Centroid distance to barycenter': 'C-Max-01', 'Between-group Dispersion': 'C-Max-02', 'Average Silhouette': 'C-Max-03', 'KernelDensity mean': 'C-Max-04', 'Ball Hall Index': 'C-Max-05'}, 'min': {'Within-Cluster Dispersion': 'C-Min-01', 'Largest element distance': 'C-Min-02', 'Inter-element mean distance': 'C-Min-03', 'Davies Bouldin Index': 'C-Min-04', 'C Index': 'C-Min-05'}}, 'radius': {'min': {'Radius min': 'R-Min-01', 'Radius mean': 'R-Min-02', 'Radius median': 'R-Min-03', 'Radius 75th Percentile': 'R-Min-04', 'Radius max': 'R-Min-05'}}}
+        """
         with open('./ClustersFeatures/indices.json') as f:
             Indices = json.load(f)
 
@@ -145,6 +171,9 @@ class __IndexCore(object):
         return all_index_code_
 
     def IndexCore_compute_every_index(self):
+        """Compute all indexes and save it to cache.
+
+        :returns: A dict with all the indexes values."""
         with open('./ClustersFeatures/indices.json') as f:
             data = json.load(f)
         all_index_ref = self.IndexCore_get_all_index()
@@ -160,6 +189,9 @@ class __IndexCore(object):
         return self.details_index_compute
 
     def IndexCore_get_number_of_index(self):
+        """Returns the number of indices inside the indices.json file.
+
+        :returns: int"""
         with open('./ClustersFeatures/indices.json') as f:
             data = json.load(f)
         s = 0
@@ -170,6 +202,8 @@ class __IndexCore(object):
         return s
 
     def __IndexCore_get__board(self, boardtype):
+        """Returns a board with customized outputs"""
+
         all_index = self.IndexCore_compute_every_index()
         if boardtype == "radius":
             radius_for_clusters = pd.DataFrame(columns=self.labels_clusters)
@@ -200,6 +234,7 @@ class __IndexCore(object):
             return pd.DataFrame(pd.DataFrame(self.IndexCore_compute_every_index()['general']).stack().drop('Generalized Dunn Indexes'))
 
     def _IndexCore_create_board(self, list_boardtype):
+        """Concatenate multiples created boards to show a final board."""
         if not(isinstance(list_boardtype,list)):
             raise ValueError("list_boardtype is not a list argument")
         for boardtype in list_boardtype:
@@ -208,6 +243,7 @@ class __IndexCore(object):
         return pd.concat([self.__IndexCore_get__board(board) for board in list_boardtype])
 
     def _IndexCore_nan_general_index(self):
+        """Return the code of NaN indices"""
         L = {}
         d = self.IndexCore_compute_every_index()['general']
         all_index=self.IndexCore_get_all_index()['general']

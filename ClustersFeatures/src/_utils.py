@@ -8,16 +8,16 @@ if settings.Activated_Utils:
 
     class __Utils:
         def utils_ts_filtering_STL(self, **args):
-            """
-            Filter a time-serie with STL from statsmodels.
+            """Filter a time-serie with STL from statsmodels.
             col argument can be specified if it is wanted to filter
             a column of self dataframe.
             Else, you can directly specify a time-serie with the data argument
 
-            :param args: period= (int or float, required) : Specify the period between each sample
-                   args: col= (str/int, required if data is None) : Specify the column of self data set to filter
-                   args: data=(list/ndarray, required if col is None) : Specify the data to filter
-            :return:
+            :param int/float periods: Specify the period between each sample
+            :param str/int col: Required if data is None: Specify the column of self data set to filter
+            :param list/np.ndarray data: Required if col is None : Specify the data to filter
+
+            :return: a Pandas dataframe
             """
             from statsmodels.tsa.seasonal import STL
 
@@ -43,10 +43,13 @@ if settings.Activated_Utils:
             return decompo
 
         def utils_UMAP(self, **args):
-            """
-            Uniform Manifold Approximation Projection : Use the umap-learn library.
-            :return:
-            A 2D projection of the whole data set concatenated with the target of the data. The result is cached to avoid same and repetitive calculs.
+            """Uniform Manifold Approximation Projection : Use the umap-learn library.
+
+            The result is cached to avoid same and repetitive calculs.
+
+            :param bool show_target: Concatenate target to output dataframe
+
+            :return: A pandas dataframe with the 2D projection of the whole data set.
             """
             from umap import UMAP
             from numba import config
@@ -71,11 +74,10 @@ if settings.Activated_Utils:
                 return self.__UMAP_cached
 
         def utils_PCA(self, n_components):
-            """
-            Principal Component Analysis : Use the scikit learn library
+            """Principal Component Analysis : Use the scikit learn library
+
             :param n_components: number of data dimension after reduction
-            :return:
-            A n_components-D projection of the whole data set
+            :return: A n_components-D projection of the whole data set
             """
             from sklearn.decomposition import PCA
             pca = PCA(n_components=n_components)
@@ -85,17 +87,14 @@ if settings.Activated_Utils:
                 columns={col: "PCA" + str(col) for col in Result.columns})
 
         def utils_KernelDensity(self, **args):
-            """
-            Function that returns an estimation of Kernel Density with the best bandwidth
-            If argument return_KDE = True, so the KDE model is returned to generate samples later. It uses the Scikit Learn Library
-            If no clusters specified, the KernelDensity is done on the entire data set
-            :param args:
-            return_KDE= (optional, bool) - Return the sklearn KDE Model
-            clusters = (optional, list) - List of clusters to evaluate KernelDensity, order is not important
+            """Function that returns an estimation of Kernel Density with the best bandwidth.
 
-            :return:
-            -An estimation of KernelDensity for each sample if return_KDE is false
-            -An tuple with the estimation of KD for each sample and the KDE model if return_KDE is true
+            :param bool return_KDE: If argument return_KDE = True, so the KDE model is returned to generate samples later. It uses the Scikit Learn Library.
+            :param list clusters: List of clusters to evaluate KernelDensity, order is not important.If no clusters specified, the KernelDensity is done on the entire data set
+
+
+            :return: - An estimation of KernelDensity for each sample if return_KDE is false
+                - An tuple with the estimation of KD for each sample and the KDE model if return_KDE is true
             """
             from sklearn.neighbors import KernelDensity
             from sklearn.model_selection import GridSearchCV
