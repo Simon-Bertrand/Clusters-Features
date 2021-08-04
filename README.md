@@ -2678,8 +2678,8 @@ CC.clusters_info
 </div>
 
 ## Density ##
-The Density subclass is based on projections 2D or 3D using dimensionnality reductors such as PCA or UMAP. As UMAP is only possible in 2D, we will only use PCA for 3D Density graphs. The main idea for approximating density is about summing Gaussian Distribution n-dim laws centered on each dataset point on a mesgrid corresponding to 2D or 3D.
-This section returns a lot of data that are packed in a native Python dict. Each element returned (excluding the main return) inside the dict has to be activated by its arguments. See the following example:
+The Density subclass is based on projection 2D or 3D using dimensionnality reductors such as PCA or UMAP. As UMAP is only possible in 2D, we will only use PCA for 3D Density graphs. The main idea for approximating density is about summing Gaussian Distribution n-dim laws centered on each dataset point on a meshgrid corresponding to 2D or 3D.
+This section returns a lot of data that are packed in a native Python dict. Each element returned (excluding the main return) inside the dict has to be activated by its own argument. See the following example:
 
 #### self.density_projection_2D
 Args: 
