@@ -1,5 +1,5 @@
 .idea
-Notebook tests.ipynb
+
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -64,6 +64,7 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+*.ipynb
 
 # IPython
 profile_default/
