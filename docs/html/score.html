@@ -1,0 +1,745 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Score &mdash; Clusters-Features 1.0.113 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/style.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Confusion Hypersphere" href="confusionhypersphere.html" />
+    <link rel="prev" title="Data" href="data.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Clusters-Features
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.113
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Subclasses:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cc.html">ClustersCharacteristics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Score</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scatter-score">Scatter Score</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#index">Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#indexcore">IndexCore</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="confusionhypersphere.html">Confusion Hypersphere</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="density.html">Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph.html">Graph</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Clusters-Features</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Score</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/score.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="score">
+<span id="my-reference-label"></span><h1>Score<a class="headerlink" href="#score" title="Permalink to this headline">¶</a></h1>
+<p>This section allows users to evaluate their clustering by checking values of the indices from below.</p>
+<p>References :</p>
+<p><a class="reference external" href="https://cran.r-project.org/web/packages/clusterCrit/vignettes/clusterCrit.pdf">Clustering Indice - Bernard Desgraupes (University Paris Ouest, Lab Modal’X) - 2017</a></p>
+<p><a class="reference external" href="https://www.ripublication.com/ijaer18/ijaerv13n11_86.pdf">Study on Different Cluster Validity Indices - Shyam Kumar K, Dr. Raju G (NSS College Rajakumari, Idukki &amp; Kannur University, Kannur in Kerala, India) - 2018</a></p>
+<p><a class="reference external" href="http://datamining.rutgers.edu/publication/internalmeasures.pdf">Understanding of Internal Clustering Validation Measures - Yanchi Liu, Zhongmou Li, Hui Xiong, Xuedong Gao, Junjie Wu - 2010</a></p>
+<div class="section" id="scatter-score">
+<h2>Scatter Score<a class="headerlink" href="#scatter-score" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._score.</span></span><span class="sig-name descname"><span class="pre">__Score</span></span><a class="headerlink" href="#ClustersFeatures.src._score.__Score" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_T">
+<span class="sig-name descname"><span class="pre">scatter_matrix_T</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the total dispersion matrix : it is self.num_observations times the variance-covariance matrix of the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a Pandas dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_WG">
+<span class="sig-name descname"><span class="pre">scatter_matrix_WG</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_WG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the sum of scatter_matrix_specific_cluster_WGk for all k, it is also called as within group matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a Pandas dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_between_group_BG">
+<span class="sig-name descname"><span class="pre">scatter_matrix_between_group_BG</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_between_group_BG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the matrix composed with the dispersion between centroids and the barycenter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a Pandas dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_specific_cluster_WGk">
+<span class="sig-name descname"><span class="pre">scatter_matrix_specific_cluster_WGk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_specific_cluster_WGk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the within cluster dispersion for a specific cluster (sum square distances between cluster’s elements and the centroid of the concerned cluster).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Cluster</strong> – Cluster label name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a Pandas dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_between_group_dispersion">
+<span class="sig-name descname"><span class="pre">score_between_group_dispersion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_between_group_dispersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the between group dispersion, can also be seen as the trace of the between group matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_mean_quadratic_error">
+<span class="sig-name descname"><span class="pre">score_mean_quadratic_error</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_mean_quadratic_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean quadratic error, also the same as score_pooled_within_cluster_dispersion / num_observations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_pooled_within_cluster_dispersion">
+<span class="sig-name descname"><span class="pre">score_pooled_within_cluster_dispersion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_pooled_within_cluster_dispersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the sum of score_within_cluster_dispersion for each cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_totalsumsquare">
+<span class="sig-name descname"><span class="pre">score_totalsumsquare</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_totalsumsquare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trace of scatter_matrix_T, we can compute it differently by using variance function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_within_cluster_dispersion">
+<span class="sig-name descname"><span class="pre">score_within_cluster_dispersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_within_cluster_dispersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the trace of the WGk matrix for a specific cluster. It’s the same as score_total_sum_square but computed with WGk matrix’ coefficients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Cluster</strong> – Cluster label name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._score_index.</span></span><span class="sig-name descname"><span class="pre">__ScoreIndex</span></span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_Log_Det_ratio">
+<span class="sig-name descname"><span class="pre">score_index_Log_Det_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_Log_Det_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>Returns NaN value when the WG matrix or Total Scatter Matrix is not invertible.
+:returns: float.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_PBM">
+<span class="sig-name descname"><span class="pre">score_index_PBM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_PBM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_SD">
+<span class="sig-name descname"><span class="pre">score_index_SD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_SD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>Since we haven’t different numbers of cluster, we can’t compute the weighting coefficient :
+We will pass the average scattering for clusters and the total separation between clusters as the returned tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A tuple of float that are (Scattering, Separation).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_S_Dbw">
+<span class="sig-name descname"><span class="pre">score_index_S_Dbw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_S_Dbw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ball_hall">
+<span class="sig-name descname"><span class="pre">score_index_ball_hall</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ball_hall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Ball Hall index defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_banfeld_Raftery">
+<span class="sig-name descname"><span class="pre">score_index_banfeld_Raftery</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_banfeld_Raftery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_c">
+<span class="sig-name descname"><span class="pre">score_index_c</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_c_for_each_cluster">
+<span class="sig-name descname"><span class="pre">score_index_c_for_each_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_c_for_each_cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>A variant of C Index for each cluster. The main difference is that we do not take the sum of all pair of points but we directly take the number of pair for the given cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Cluster</strong> – Cluster label name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_calinski_harabasz">
+<span class="sig-name descname"><span class="pre">score_index_calinski_harabasz</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_calinski_harabasz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin">
+<span class="sig-name descname"><span class="pre">score_index_davies_bouldin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>It is the mean of score_index_davies_bouldin_for_each_cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin_for_each_cluster">
+<span class="sig-name descname"><span class="pre">score_index_davies_bouldin_for_each_cluster</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin_for_each_cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>np.array of davies bouldin score for each clusters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_det_ratio">
+<span class="sig-name descname"><span class="pre">score_index_det_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_det_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>Returns NaN value when the WG matrix or Total Scatter Matrix is not invertible.
+:returns: float.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_dunn">
+<span class="sig-name descname"><span class="pre">score_index_dunn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_dunn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn">
+<span class="sig-name descname"><span class="pre">score_index_generalized_dunn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns one of the 18 generalized dunn indices.</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param int wc_distance</dt>
+<dd class="field-odd"><p>within cluster indice according to main reference. Int included in [1,2,3].</p>
+</dd>
+<dt class="field-even">param int bc_distance</dt>
+<dd class="field-even"><p>between cluster indice according to main reference. Int included in [1,2,3,4,5,6].</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn_matrix">
+<span class="sig-name descname"><span class="pre">score_index_generalized_dunn_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the 18 generalized dunn indices defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A pandas dataframe with shape (6,3).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_log_ss_ratio">
+<span class="sig-name descname"><span class="pre">score_index_log_ss_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_log_ss_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_mclain_rao">
+<span class="sig-name descname"><span class="pre">score_index_mclain_rao</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_mclain_rao" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_point_biserial">
+<span class="sig-name descname"><span class="pre">score_index_point_biserial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_point_biserial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ratkowsky_lance">
+<span class="sig-name descname"><span class="pre">score_index_ratkowsky_lance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ratkowsky_lance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ray_turi">
+<span class="sig-name descname"><span class="pre">score_index_ray_turi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ray_turi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_scott_symons">
+<span class="sig-name descname"><span class="pre">score_index_scott_symons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_scott_symons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>Returns NaN if one of the WGk matrix is not inversible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette">
+<span class="sig-name descname"><span class="pre">score_index_silhouette</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using the scikit-learn library to fast compute Silhouette score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette_for_every_cluster">
+<span class="sig-name descname"><span class="pre">score_index_silhouette_for_every_cluster</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette_for_every_cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using the scikit-learn library to fast compute the mean for each cluster of the silhouette score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A pandas Series with silhouette score for each cluster.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_trace_WiB">
+<span class="sig-name descname"><span class="pre">score_index_trace_WiB</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_trace_WiB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>Returns NaN if WG matrix is not invertible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_wemmert_gancarski">
+<span class="sig-name descname"><span class="pre">score_index_wemmert_gancarski</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_wemmert_gancarski" title="Permalink to this definition">¶</a></dt>
+<dd><p>A special thanks to M.Gançarski who recruited me for my first traineeship at iCube, Strasbourg, its index have been implemented here:</p>
+<p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_xie_beni">
+<span class="sig-name descname"><span class="pre">score_index_xie_beni</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_xie_beni" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="indexcore">
+<h2>IndexCore<a class="headerlink" href="#indexcore" title="Permalink to this headline">¶</a></h2>
+<p>In this library, there are two types of methods to calculate these scores: Using IndexCore which automatically caches the already calculated indexes or calculating directly using the score_index methods.
+The second method can make the calculation of the same index repetitive, which can be very slow because we know that some of these indexes have a very high computational complexity.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Special care to the indices.json structure.
+All the IndexCore class is based on this json structure.
+Modifying the aspect of indices.json brings to modifying the structure of many functions in this document.
+In other words, it is strongly discouraged to modify the global aspect of the json without having done a thorough analysis of the program.
+To add an index, it is important to add data to the json following its current structure.</p>
+<p>indices.json structure dependency : indices.json, _info.py, __init__</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.index_core.</span></span><span class="sig-name descname"><span class="pre">__IndexCore</span></span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_compute_every_index">
+<span class="sig-name descname"><span class="pre">IndexCore_compute_every_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_compute_every_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute all indexes and save it to cache.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dict with all the indexes values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_generate_output_by_info_type">
+<span class="sig-name descname"><span class="pre">IndexCore_generate_output_by_info_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_generate_output_by_info_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the queried index. If it has already been computed, then the cached result is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board_type:</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+<p>A str in the following list [‘general’, ‘radius’, ‘clusters’].
+General shows indices that are calculed for the entire dataset. Radius shows informations about the distributions of
+radius and clusters allows users to check the indices for each clusters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>indices_type:</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+<p>A str in the following list [‘max’, ‘min’, ‘max diff’, ‘min diff’].
+If ‘max’ (respect. ‘min’), then higher (respect. lower) is the score, the better is the clustering.
+For “max diff” and “min diff”, it is usefull to use them when you need to find the best number of clusters.
+Max diff will correspond to the maximum difference between clustering 1 with K clusters and clustering 2 with K’ clusters (K!=K’).
+See the Bernard Desgraupes reference for more explanations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>code:</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+<p>A str corresponding to one of the code inside the indices.json file. Check these codes with IndexCore_get_all_index().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list or float or pandas dataframe or pandas series.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_get_all_index">
+<span class="sig-name descname"><span class="pre">IndexCore_get_all_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_get_all_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dict with all the indexes and its corresponding code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">IndexCore_get_all_index</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="s1">&#39;general&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Between-group total dispersion&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean quadratic error&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Silhouette Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Dunn Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Generalized Dunn Indexes&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-GDI&#39;</span><span class="p">,</span> <span class="s1">&#39;Wemmert-Gancarski Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-05&#39;</span><span class="p">,</span> <span class="s1">&#39;Calinski-Harabasz Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-06&#39;</span><span class="p">,</span> <span class="s1">&#39;Ratkowsky-Lance Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-07&#39;</span><span class="p">,</span> <span class="s1">&#39;Point Biserial Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-08&#39;</span><span class="p">,</span> <span class="s1">&#39;PBM Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-09&#39;</span><span class="p">},</span> <span class="s1">&#39;max diff&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Trace WiB Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MaxD-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Trace W Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MaxD-02&#39;</span><span class="p">},</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Banfeld-Raftery Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Ball Hall Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-02&#39;</span><span class="p">,</span> <span class="s1">&#39;C Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Ray-Turi Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Xie-Beni Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-05&#39;</span><span class="p">,</span> <span class="s1">&#39;Davies Bouldin Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-06&#39;</span><span class="p">,</span> <span class="s1">&#39;SD Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-07&#39;</span><span class="p">,</span> <span class="s1">&#39;Mclain-Rao Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-08&#39;</span><span class="p">,</span> <span class="s1">&#39;Scott-Symons Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-09&#39;</span><span class="p">},</span> <span class="s1">&#39;min diff&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Det Ratio Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Log BGSS/WGSS Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-02&#39;</span><span class="p">,</span> <span class="s1">&#39;S_Dbw Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Nlog Det Ratio Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-04&#39;</span><span class="p">}},</span> <span class="s1">&#39;clusters&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Centroid distance to barycenter&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Between-group Dispersion&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Silhouette&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-03&#39;</span><span class="p">,</span> <span class="s1">&#39;KernelDensity mean&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Ball Hall Index&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-05&#39;</span><span class="p">},</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Within-Cluster Dispersion&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Largest element distance&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Inter-element mean distance&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Davies Bouldin Index&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-04&#39;</span><span class="p">,</span> <span class="s1">&#39;C Index&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-05&#39;</span><span class="p">}},</span> <span class="s1">&#39;radius&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Radius min&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius mean&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius median&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius 75th Percentile&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius max&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-05&#39;</span><span class="p">}}}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_get_number_of_index">
+<span class="sig-name descname"><span class="pre">IndexCore_get_number_of_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_get_number_of_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of indices inside the indices.json file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="confusionhypersphere.html" class="btn btn-neutral float-right" title="Confusion Hypersphere" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="data.html" class="btn btn-neutral float-left" title="Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Simon Bertrand.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
