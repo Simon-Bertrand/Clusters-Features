@@ -60,14 +60,15 @@ class __ConfusionHypersphere:
     def confusion_hypersphere_for_linspace_radius_each_element(self, **args):
 
         max_radius = raising_errors.CH_max_radius(args,1.25 * np.max([self.data_radiuscentroid['max'][Cluster] for Cluster in self.labels_clusters]))
-        num_pts=raising_errors.CH_max_radius(args, 50)
+        num_pts=raising_errors.CH_num_pts(args, 50)
+        c_type = raising_errors.CH_counting_type(args)
         proportion = raising_errors.CH_proportion(args)
 
 
         df_result = pd.DataFrame(columns=self.labels_clusters)
         radius_linspace = np.round(np.linspace(0, max_radius, num_pts), 4)
         for r in radius_linspace:
-            df_result.loc[r] = self.confusion_hypersphere_for_each_element_matrix(r).sum().values
+            df_result.loc[r] = self.confusion_hypersphere_for_each_element_matrix(radius=r,counting_type=c_type).sum().values
         df_result.index.name = "Radius"
         if proportion:
             return df_result / self.num_observations
