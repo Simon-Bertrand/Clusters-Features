@@ -1,6 +1,0 @@
-ClustersCharacteristics
-===========
-
-.. automodule:: ClustersFeatures
-   :members:
-
