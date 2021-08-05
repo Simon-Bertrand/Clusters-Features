@@ -5,3 +5,4 @@ scikit-learn
 numba
 umap-learn>=0.5.1
 statsmodels
+Pillow
