@@ -179,7 +179,7 @@
 <dd><p>Shows the 3D PCA reduction graph with Plotly.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Plotly figure Instance</p>
+<dd class="field-odd"><p>Plotly figure instance</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">graph_PCA_3D</span><span class="p">()</span>
@@ -196,7 +196,7 @@
 <dd class="field-odd"><p><strong>Cluster</strong> – Cluster centroid name to evaluate the elements distance with.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Plotly figure Instance</p>
+<dd class="field-even"><p>Plotly figure instance</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">graph_boxplots_distances_to_centroid</span><span class="p">(</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -210,6 +210,23 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._graph.__Graph.graph_projection_2D">
+<span class="sig-name descname"><span class="pre">graph_projection_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._graph.__Graph.graph_projection_2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple 2D projection on two given features with Plotly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>feature1</strong> – The first dataframe columns to project</p></li>
+<li><p><strong>feature2</strong> – The second dataframe columns to projectv</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Plotly figure instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="ClustersFeatures.src._graph.__Graph.graph_reduction_2D">
 <span class="sig-name descname"><span class="pre">graph_reduction_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reduction_method</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._graph.__Graph.graph_reduction_2D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows the 2D reduction graph with Plotly.</p>
@@ -218,7 +235,7 @@
 <dd class="field-odd"><p><strong>reduction_method</strong> (<em>str</em>) – “UMAP” or “PCA”</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Plotly figure Instance</p>
+<dd class="field-even"><p>Plotly figure instance</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">graph_reduction_2D</span><span class="p">(</span><span class="s2">&quot;UMAP&quot;</span><span class="p">)</span>
@@ -239,7 +256,7 @@
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Plotly figure Instance</p>
+<dd class="field-even"><p>Plotly figure instance</p>
 </dd>
 </dl>
 </dd></dl>
@@ -256,7 +273,7 @@
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Plotly figure Instance</p>
+<dd class="field-even"><p>Plotly figure instance</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">graph_reduction_density_3D</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span><span class="n">cluster</span><span class="o">=</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
@@ -269,11 +286,6 @@
 </pre></div>
 </div>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._graph.__Graph.projection_2D">
-<span class="sig-name descname"><span class="pre">projection_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._graph.__Graph.projection_2D" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 

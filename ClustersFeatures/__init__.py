@@ -87,6 +87,9 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
         :param str target: The name of the column target of pd_df dataframe
         """
         raising_errors.verify_pandas_df_and_not_empty(pd_df_)
+        raising_errors.verify_no_object_columns_and_delete_it(pd_df_)
+        raising_errors.verify_pandas_df_and_not_empty(pd_df_)
+
 
         #Imputation if NaN values are detected
         if pd_df_.isnull().sum().sum() != 0:

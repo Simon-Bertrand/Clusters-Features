@@ -62,6 +62,13 @@ def verify_pandas_df_and_not_empty(pd_df):
     elif pd_df.empty:
         raise ValueError('Given Pandas dataframe is empty')
 
+def verify_no_object_columns_and_delete_it(pd_df):
+    if 'object' in pd_df.dtypes:
+        print('Columns of object type detected, deleting them.')
+        return pd_df.drop(columns=pd_df.dtypes[pd_df.dtypes.values == "object"].index)
+    else:
+        return pd_df
+
 def wrong_label_target(label_target):
     raise AttributeError('A such label target name "' + label_target + '" is not found in dataframe\'s columns.')
 

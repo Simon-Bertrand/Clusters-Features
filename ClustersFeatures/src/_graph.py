@@ -1,15 +1,3 @@
-
-"""
-   Section: Graph
-     _____   _____               _____    _    _
-    / ____| |  __ \      /\     |  __ \  | |  | |
-   | |  __  | |__) |    /  \    | |__) | | |__| |
-   | | |_ | |  _  /    / /\ \   |  ___/  |  __  |
-   | |__| | | | \ \   / ____ \  | |      | |  | |
-    \_____| |_|  \_\ /_/    \_\ |_|      |_|  |_|
-   Graph functions to visualize clusters characteristics. Use the library Plotly to plot the data
-   """
-
 from ClustersFeatures import settings
 if settings.Activated_Graph:
     import numpy as np
@@ -307,6 +295,14 @@ if settings.Activated_Graph:
                 fig.show()
 
         def graph_projection_2D(self, feature1, feature2):
+            """A simple 2D projection on two given features with Plotly.
+
+            :param feature1: The first dataframe columns to project
+            :param feature2: The second dataframe columns to projectv
+
+            :returns: Plotly figure instance
+
+            """
 
             if not(feature1 in self.data_features.columns) or not(feature2 in self.data_features.columns):
               raise ValueError('Specified feature is not in the available features.')
