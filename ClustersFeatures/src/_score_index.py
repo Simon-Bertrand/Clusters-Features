@@ -1,105 +1,23 @@
 # -*- coding: utf-8 -*-
-#
-# Copyright 2021 Simon Bertrand
-#
-# This file is part of ClusterCharacteristics.
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
-
-"""
- Section: Score Index
-   _____    _____    ____    _____    ______
- / ____|  / ____|  / __ \  |  __ \  |  ____|
-| (___   | |      | |  | | | |__) | | |__
- \___ \  | |      | |  | | |  _  /  |  __|
- ____) | | |____  | |__| | | | \ \  | |____
-|_____/   \_____|  \____/  |_|  \_\ |______|
- Compute every score used for the ClustersFeatures class.
- All these scores have been verified with the clusterCrit package on R developped by Bernard Desgraupes, using the load_digits datasets from scikit-learn
-
- scatter_matrix : return the total dispersion matrix (it is self.num_observations times the variance-covariance matrix of the dataset)
- scatter_matrix_specific_cluster_WGk : return the within cluster dispersion for a specific cluster (sum square distances between cluster's elements and the centroid of the concerned cluster)
- scatter_matrix_WG : return the sum of all WGk for k
- scatter_matrix_between_group_BG : return the matrix composed with the dispersion between centroids and the barycenter
- score_total_sum_square : Trace of scatter_matrix, we can compute it differently by using variance function
- score_within_cluster_dispersion : return the trace of the WGk matrix for a specific cluster. It's the same as score_total_sum_square but computed with WGk matrix' coefficients
- score_pooled_within_cluster_dispersion : return the sum of every score_within_cluster_dispersion (for each cluster)
- score_index_ball_hall : Return the Ball Hall index defined in the first reference
- score_index_banfeld_Raftery : Defined in the first reference
- score_index_davies_bouldin_for_each_cluster : Defined in the first reference
- score_index_davies_bouldin : Defined in the first reference, it is the mean of score_index_davies_bouldin_for_each_cluster
- score_index_calinski_harabasz : Defined in the first reference
- score_index_det_ratio : Defined in the first reference
- score_index_log_ss_ratio : Defined in the first reference
- score_index_dunn : Defined in the first reference
- score_index_silhouette : Uses the sklearn.metrics library to fast compute the score
- score_index_silhouette_fror_every_cluster : return a list of meaned silhouette score for each cluster
- score_index_c: Defined in the first reference
- score_index_c_for_each_cluster : The same as before but we take the sum of the self.number_observations_for_specific_cluster(Cluster) elements, not the total sum.
- score_index_ray_turi : Defined in the first reference
- score_index_xie_beni : quite the same as Ray-Turi but the denominator isn`t the same intercluster distance
- score_index_PBM : Defined in the first reference
- score_index_generalized_dunn_matrix: Return the 18 indices defined in the first reference
-
- A special thanks to M.Gançarski who recruited me for my first traineeship at iCube, Strasbourg, its index have been implemented here:
- score_index_wemmert_gancarski : Defined in the first reference
-
- Reference :
- Clustering Indice - Bernard Desgraupes (University Paris Ouest, Lab Modal’X) - 2017
- https://cran.r-project.org/web/packages/clusterCrit/vignettes/clusterCrit.pdf
-
- Study on Different Cluster Validity Indices - Shyam Kumar K, Dr. Raju G (NSS College Rajakumari, Idukki & Kannur University, Kannur in Kerala, India) - 2018
- https://www.ripublication.com/ijaer18/ijaerv13n11_86.pdf
-
- Understanding of Internal Clustering Validation Measures - Yanchi Liu, Zhongmou Li, Hui Xiong, Xuedong Gao, Junjie Wu - 2010
- http://datamining.rutgers.edu/publication/internalmeasures.pdf
-
- """
-
-
 import numpy as np
 import pandas as pd
 from ClustersFeatures import settings
 class __ScoreIndex:
-    def score_index_rules(self, Query):
-        if Query == "max":
-            return settings.indices_max
-        elif Query == "min":
-            return settings.indices_min
-        elif Query == 'max diff':
-            return settings.indices_max_diff
-        elif Query == 'min diff':
-            return settings.indices_min_diff
-        else:
-            raise ValueError('Unknown query')
+    def score_index_ball_hall(self):
+        """Returns the Ball Hall index defined in the first reference.
 
-
-    def score_index_info(self, Query):
-        clusters_info = self.general_info.loc[pd.Index(self.score_index_rules(Query))]
-        if Query == "max":
-            GDI = pd.DataFrame(self.score_index_generalized_dunn_matrix().stack(), columns=clusters_info.columns).rename(
-                index={(i, j): f"GDI ({i},{j})" for j in range(1, 4) for i in range(1, 7)})
-            clusters_info = pd.concat([clusters_info, GDI])
-        return clusters_info
-
-    def score_index_ball_hall(self):  ##Returned value verified with R
+        :returns: float.
+        """
         return np.mean(
             [self.score_within_cluster_dispersion(Cluster) / self.num_observation_for_specific_cluster[Cluster] for Cluster
              in self.labels_clusters])
 
 
-    def score_index_banfeld_Raftery(self):  ##Returned value verified with R
+    def score_index_banfeld_Raftery(self):
+        """Defined in the first reference.
+
+        :returns: float.
+        """
         if (np.array([len(self.data_clusters[Cluster]) for Cluster in self.labels_clusters]) == np.array(
                 len(self.labels_clusters) * [1])).sum() != 0:
             raise ValueError(
@@ -111,6 +29,10 @@ class __ScoreIndex:
 
 
     def score_index_davies_bouldin_for_each_cluster(self):
+        """Defined in the first reference.
+
+        :returns: np.array of davies bouldin score for each clusters.
+        """
         eedc_mat = self.data_every_element_distance_to_centroids
         delta = np.array(
             [eedc_mat.iloc[self.data_clusters[Cluster1].index, Cluster1].mean() for Cluster1 in self.labels_clusters])
@@ -119,18 +41,33 @@ class __ScoreIndex:
              np.delete(self.labels_clusters, Cluster1)]) for Cluster1 in self.labels_clusters])
 
 
-    def score_index_davies_bouldin(self):  ##Returned value verified with R
+    def score_index_davies_bouldin(self):
+        """Defined in the first reference.
+
+        It is the mean of score_index_davies_bouldin_for_each_cluster.
+
+        :returns: float.
+        """
         return self.score_index_davies_bouldin_for_each_cluster().mean()
 
 
-    def score_index_calinski_harabasz(self):  ##Returned value verified with R
+    def score_index_calinski_harabasz(self):
+        """Defined in the first reference.
+
+        :returns: float.
+        """
         K = self.num_clusters
         WGSS_red = self.score_pooled_within_cluster_dispersion() / (self.num_observations - K)
         BGSS_red = self.score_between_group_dispersion() / (K - 1)
         return BGSS_red / WGSS_red
 
 
-    def score_index_det_ratio(self):  ##Returned value verified with R
+    def score_index_det_ratio(self):
+        """Defined in the first reference.
+
+        Returns NaN value when the WG matrix or Total Scatter Matrix is not invertible.
+        :returns: float.
+        """
         Mat_WG = self.scatter_matrix_WG()
         det_Mat_WG = np.linalg.det(Mat_WG)
         det_T = np.linalg.det(self.scatter_matrix_T())
@@ -140,12 +77,20 @@ class __ScoreIndex:
             return np.linalg.det(self.scatter_matrix_T()) / np.linalg.det(Mat_WG)
 
 
-    def score_index_log_ss_ratio(self):  ##Returned value verified with R
+    def score_index_log_ss_ratio(self):
+        """Defined in the first reference.
+
+        :returns: float.
+        """
         WGSS = self.score_pooled_within_cluster_dispersion()
         return np.log(self.score_between_group_dispersion() / WGSS)
 
 
-    def score_index_dunn(self):  ##Returned value verified with R
+    def score_index_dunn(self):
+        """Defined in the first reference.
+
+        :returns: float.
+        """
         dmin = self.data_interelement_distance_minimum_matrix.min().min()
         Dmax = np.max(
             [self.data_interelement_distance_between_elements_of_two_clusters(Cluster, Cluster).max().max() for Cluster in
@@ -154,24 +99,26 @@ class __ScoreIndex:
 
 
     def score_index_silhouette(self):  ##Returned value verified with R
-        """This is the result of this algorithm :
+        """Using the scikit-learn library to fast compute Silhouette score.
 
-        element_cluster_label=self.data_target.iloc[Observation]
-        a_tab=self.data_interelement_distance_between_elements_of_two_clusters(element_cluster_label,element_cluster_label).loc[Observation]
-        a=np.sum(a_tab)/(len(a_tab)-1)
-        b=np.min([self.data_interelement_distance_between_elements_of_two_clusters(element_cluster_label,Cluster2).loc[Observation].mean() for Cluster2 in np.delete(self.labels_clusters, element_cluster_label)])
-        return np.round((b-a)/max(a,b),settings.precision)
-
-        but it's pretty slow so we will prefer use the scikit-learn library to compute the silhouette score
+        :returns: float.
         """
         return (self.score_index_silhouette_matrix['Silhouette Score'].mean())
 
 
     def score_index_silhouette_for_every_cluster(self):
+        """Using the scikit-learn library to fast compute the mean for each cluster of the silhouette score.
+
+        :returns: A pandas Series with silhouette score for each cluster.
+        """
         return self.score_index_silhouette_matrix.groupby(by='Cluster').mean()
 
 
-    def score_index_c(self):  ##Returned value verified with R
+    def score_index_c(self):
+        """Defined in the first reference.
+
+        :returns: float.
+        """
         pair_of_points = lambda x: x * (x - 1) / 2
 
         NW = np.sum(
@@ -188,6 +135,10 @@ class __ScoreIndex:
 
 
     def score_index_c_for_each_cluster(self, Cluster):
+        """A variant of C Index for each cluster. The main difference is that we do not take the sum of all pair of points but we directly take the number of pair for the given cluster.
+
+        :param Cluster: Cluster label name.
+        :returns: float."""
         pair_of_points = lambda x: x * (x - 1) / 2
 
         Nw = pair_of_points(self.num_observation_for_specific_cluster[Cluster])
@@ -202,26 +153,46 @@ class __ScoreIndex:
         return (SW - Smin) / (Smax - Smin)
 
 
-    def score_index_ray_turi(self):  ##Returned value verified with R
+    def score_index_ray_turi(self):
+        """Defined in the first reference.
+
+        :returns: float.
+        """
         return (1 / self.num_observations) * self.score_pooled_within_cluster_dispersion() / (
                     self.data_intercentroid_distance_matrix().where(
                         np.tri(self.num_clusters, self.num_clusters, k=-1) > 0) ** 2).min().min()
 
 
-    def score_index_xie_beni(self):  ##Returned value verified with R
+    def score_index_xie_beni(self):
+        """Defined in the first reference.
+
+        :returns: float.
+        """
         min_distances = [self.data_interelement_distance_between_elements_of_two_clusters(Cluster1, Cluster2).min().min() ** 2 for
                          Cluster1, Cluster2 in self.data_every_possible_cluster_pairs]
         return (1 / self.num_observations) * self.score_pooled_within_cluster_dispersion() / np.min(min_distances)
 
 
-    def score_index_trace_WiB(self):  ##Returned value verified with R
+    def score_index_trace_WiB(self):
+        """Defined in the first reference.
+
+        Returns NaN if WG matrix is not invertible.
+
+        :returns: float.
+        """
         try:
             return np.trace(np.linalg.inv(self.scatter_matrix_WG()).dot(self.scatter_matrix_between_group_BG()))
         except np.linalg.LinAlgError:
             return np.nan
 
 
-    def score_index_wemmert_gancarski(self):  ##Returned value verified with R
+    def score_index_wemmert_gancarski(self):
+        """A special thanks to M.Gançarski who recruited me for my first traineeship at iCube, Strasbourg, its index have been implemented here:
+
+        Defined in the first reference.
+
+        :returns: float.
+        """
         Jk_weighted = []
         for Cluster in self.labels_clusters:
             S = self.data_every_cluster_element_distance_to_centroids[Cluster]
@@ -231,14 +202,24 @@ class __ScoreIndex:
         return np.sum(Jk_weighted) / self.num_observations
 
 
-    def score_index_PBM(self):  ##Returned value verified with R
+    def score_index_PBM(self):
+        """Defined in the first reference.
+
+        :returns: float.
+        """
         EW = np.sum(
             [self.data_every_cluster_element_distance_to_centroids[Cluster].sum() for Cluster in self.labels_clusters])
         ET = np.sqrt(((self.data_features - self.data_barycenter) ** 2).sum(axis=1)).sum()
         return (ET * self.data_intercentroid_distance_matrix().max().max() / EW / self.num_clusters) ** 2
 
 
-    def score_index_generalized_dunn(self, **args):  ##Returned value verified with R
+    def score_index_generalized_dunn(self, **args):
+        """Returns one of the 18 generalized dunn indices.
+
+         :param int wc_distance: within cluster indice according to main reference. Int included in [1,2,3].
+         :param int bc_distance: between cluster indice according to main reference. Int included in [1,2,3,4,5,6].
+
+        :returns: float."""
         try:
             wc_distance = args['within_cluster_distance']
             bc_distance = args['between_cluster_distance']
@@ -288,6 +269,9 @@ class __ScoreIndex:
 
 
     def score_index_generalized_dunn_matrix(self):
+        """Returns the 18 generalized dunn indices defined in the first reference.
+
+        :returns: A pandas dataframe with shape (6,3)."""
         bc_list = np.arange(1, 7)
         wc_list = np.arange(1, 4)
 
@@ -300,15 +284,24 @@ class __ScoreIndex:
 
 
     def score_index_ratkowsky_lance(self):
+        """ Defined in the first reference.
+
+        :returns: float.
+        """
         with np.errstate(divide='ignore', invalid='ignore'):
             return np.true_divide(np.diag(self.scatter_matrix_between_group_BG()),
                                   self.num_observations * self.data_features.var(ddof=0).to_numpy()).mean()
 
 
-    def score_index_SD(self):  ##Returned value verified with R
-        # Since we haven't different numbers of cluster, we can't compute the weighting coefficient :
-        # We will pass the average scattering for clusters and the total separation between clusters as the returned tuple
-        # return (Scattering, Separation)
+    def score_index_SD(self):
+        """ Defined in the first reference.
+
+        Since we haven't different numbers of cluster, we can't compute the weighting coefficient :
+        We will pass the average scattering for clusters and the total separation between clusters as the returned tuple.
+
+        :returns: A tuple of float that are (Scattering, Separation).
+        """
+
         Vk = [self.data_clusters[Cluster].var(ddof=0).to_numpy() for Cluster in self.labels_clusters]
         return (np.mean([np.linalg.norm(v) for v in Vk]) / np.linalg.norm(
             self.data_features.var(ddof=0).to_numpy()), np.sum(
@@ -317,6 +310,10 @@ class __ScoreIndex:
 
 
     def score_index_S_Dbw(self):
+        """ Defined in the first reference.
+
+        :returns: float.
+        """
         with np.errstate(divide='ignore', invalid='ignore'):
             Vk = [np.linalg.norm(self.data_clusters[Cluster].var(ddof=0)) for Cluster in self.labels_clusters]
             std_dev = np.mean(np.sqrt(Vk))
@@ -334,9 +331,18 @@ class __ScoreIndex:
             return np.mean(Rkk) + S
 
     def score_index_Log_Det_ratio(self):
+        """ Defined in the first reference.
+
+        Returns NaN value when the WG matrix or Total Scatter Matrix is not invertible.
+        :returns: float.
+        """
         return self.num_observations * np.log(self.score_index_det_ratio())
 
     def score_index_mclain_rao(self):
+        """ Defined in the first reference.
+
+        :returns: float
+        """
         same_target_matrix=self.data_same_target_for_pairs_elements_matrix()
         pair_of_points = lambda x: x * (x - 1) / 2
         NW = np.sum([pair_of_points(self.num_observation_for_specific_cluster[Cluster]) for Cluster in self.labels_clusters])
@@ -347,6 +353,10 @@ class __ScoreIndex:
         return NB*SW/(NW*SB)
 
     def score_index_point_biserial(self):
+        """ Defined in the first reference.
+
+        :returns: float.
+        """
         same_target_matrix=self.data_same_target_for_pairs_elements_matrix()
         pair_of_points = lambda x: x * (x - 1) / 2
         NW = np.sum([pair_of_points(self.num_observation_for_specific_cluster[Cluster]) for Cluster in self.labels_clusters])
@@ -358,6 +368,12 @@ class __ScoreIndex:
         return (SW/NW - SB/NB)*np.sqrt(NB*NW)/pair_of_points(self.num_observations)/2
 
     def score_index_scott_symons(self):
+        """ Defined in the first reference.
+
+        Returns NaN if one of the WGk matrix is not inversible.
+
+        :returns: float.
+        """
         with np.errstate(divide='ignore', invalid='ignore'):
             dets=np.array([np.linalg.det(self.scatter_matrix_specific_cluster_WGk(Cluster)/self.num_observation_for_specific_cluster[Cluster]) for Cluster in self.labels_clusters])
             if (dets!=0).all():

@@ -24,23 +24,39 @@ import re
 
 from ClustersFeatures import raising_errors
 class __Data:
-    def data_intercentroid_distance(self, centroid_cluster_1, centroid_cluster_2):
-        """
-        Compute distances between centroid of CLuster1 and centroid of Cluster2.
-        :param cluster_1: Cluster1 label
-        :param cluster_2: Cluster2 label
-        :return: float
-        """
-        raising_errors.both_clusters_in(centroid_cluster_1,centroid_cluster_2,self.labels_clusters)
+    """The ClustersCharacteristics object creates attributes that define clusters. We can find them in the Data subclass.
+    To use these methods, you need to initialize a ClusterCharacteristics instance and then write the corresponding methods:
 
-        return np.linalg.norm(self.data_centroids[centroid_cluster_1] - self.data_centroids[centroid_cluster_2])
+    For example:
+
+    >>> CC=ClustersCharacteristics(pd_df,"target")
+    >>> CC.data_intercentroid_distance_matrix()
+    """
+
+    def data_intercentroid_distance(self, Cluster1, Cluster2):
+        """Computes distances between centroid of Cluster1 and centroid of Cluster2.
+
+        :param Cluster1: Cluster1 label name
+        :param Cluster2: Cluster2 label name
+        :return: float
+
+        >>> CC.data_intercentroid_distance(CC.labels_clusters[0], CC.labels_clusters[1])
+
+        """
+        raising_errors.both_clusters_in(Cluster1,Cluster2,self.labels_clusters)
+
+        return np.linalg.norm(self.data_centroids[Cluster1] - self.data_centroids[Cluster2])
 
     def data_intercentroid_distance_matrix(self, **args):
-        """
-        Return a symetric matrix (xi,j)i,j
-        where xi,j is the distance between centroids of cluster i and j
-        :param args: target= (bool, optional) : Concatenate the output with the data target
-        :return: pd.Dataframe().shape = (num_clusters,num_clusters)
+        """Computes the distance between one centroid and another and return the matrix of this general term
+
+        Return a symetric matrix (xi,j)i,j where xi,j is the distance between centroids of cluster i and j
+
+        :param bool target=: Concatenate the output with the data target
+
+        :return: A symetric pandas dataframe with the computed distances between each centroid
+
+        >>> CC.data_intercentroid_distance_matrix()
         """
         # Symetric matrix generated : it's not usefull to compute the entire matrix while using symetric matrix properties
         Matopti = pd.DataFrame(columns=self.labels_clusters, index=self.labels_clusters).fillna(0)
@@ -57,13 +73,16 @@ class __Data:
             return (Matopti)
 
     def data_interelement_distance_between_elements_of_two_clusters(self, Cluster1, Cluster2):
-        """
-        Return every pairwise distance between elements belong Cluster1 or Cluster2
+        """Returns every pairwise distance between elements belonging Cluster1 or Cluster2
+
         If Cluster1 is equal to Cluster2, than these distances are inter-clusters and the output is symetric.
         Else, these are extra-clusters and the output is not symetric.
-        :param Cluster1: (str,required) - Label cluster column name
-        :param Cluster2: (str,required) - Label cluster column name
-        :return: pd.DataFrame().shape=(num_observations_cluster1,num_observations_cluster2)
+
+        :param Cluster1: Label cluster column name
+        :param Cluster2: Label cluster column name
+        :return: A pandas dataframe with the given clusters pairwise elements distance
+
+        >>> CC.data_interelement_distance_between_elements_of_two_clusters(CC.labels_clusters[0], CC.labels_clusters[1])
         """
         raising_errors.both_clusters_in(Cluster1,Cluster2,self.labels_clusters)
 
@@ -71,24 +90,31 @@ class __Data:
             self.data_clusters[Cluster1].index, self.data_clusters[Cluster2].index]
 
     def data_interelement_distance_for_two_element(self, ElementId1, ElementId2):
-        """
-        Call the distance between Element1 and Element2
+        """Calls the distance between Element1 and Element2
+
         :param ElementId1: First element pandas index
         :param ElementId2: Second element pandas index
         :return: float
+
+        >>> CC.data_interelement_distance_for_two_element(CC.data_features.index[0],CC.data_features.index[1])
         """
         raising_errors.both_element_in(ElementId1,ElementId2,self.data_features.index)
 
         return self.data_every_element_distance_to_every_element.loc[ElementId1, ElementId2]
 
     def data_interelement_distance_for_clusters(self, **args):
-        """
-        Return a dataframe with two columns. The first column is the distance for each element belonging
+        """Returns a dataframe with two columns. The first column is the distance for each element belonging
         clusters in the "clusters=" list argument. The second column is a boolean column equal to True
         when both elements are inside the same cluster. We use here the Pandas Multi-Indexes to allow users
         to link the column Distance with dataset points.
-        :param args: clusters= (list or int, required) : labels of clusters to compute pairwise distances
-        :return: pd.DataFrame().shape= (number_of_elements_pairs, 2)
+
+        :param clusters=: labels of clusters to compute pairwise distances
+        :return: A pandas dataframe with two columns : one for the distance and the other named 'Same Cluster ?' is equal to True if both elements belong the same cluster
+
+
+        Computing all the distances between the 3 first clusters of the dataframe
+
+        >>> CC.data_interelement_distance_for_clusters(clusters=CC.labels_clusters[0:3])
         """
         clusters = raising_errors.list_clusters(args, self.labels_clusters)
 
@@ -103,28 +129,7 @@ class __Data:
                                     result['Distance'].iteritems()]
 
         return result
-    def data_interelement_distance_minimum_matrix(self):
-        """
-        Return interelement minimum
-        :return:
-        """
-        Result = pd.DataFrame(np.zeros((self.num_clusters, self.num_clusters)), index=self.labels_clusters,
-                              columns=self.labels_clusters)
-        Result[np.eye(self.num_clusters) > 0] = np.nan
-        for Cluster1,Cluster2 in self.data_every_possible_cluster_pairs:
-            Result.loc[Cluster1, Cluster2] = self.data_interelement_distance_between_elements_of_two_clusters(Cluster1,
-                                                                                                           Cluster2).min().min()
-        return Result + Result.T
 
-
-    def data_interelement_distance_maximum_matrix(self):
-        Result = pd.DataFrame(np.zeros((self.num_clusters, self.num_clusters)), index=self.labels_clusters,
-                              columns=self.labels_clusters)
-        Result[np.eye(self.num_clusters) > 0] = np.nan
-        for Cluster1,Cluster2 in self.data_every_possible_cluster_pairs:
-            Result.loc[Cluster1, Cluster2] = self.data_interelement_distance_between_elements_of_two_clusters(Cluster1,
-                                                                                                           Cluster2).max().max()
-        return Result + Result.T
 
     def data_radius_selector_specific_cluster(self, Query, Cluster):
         raising_errors.cluster_in(Cluster, self.labels_clusters)
@@ -147,6 +152,12 @@ class __Data:
             return self.data_radius_selector_specific_cluster(self, "90p", Cluster)
 
     def data_same_target_for_pairs_elements_matrix(self):
+        """Returns a boolean matrix where the general term is equal to True when the index elements belong the same cluster with the column element
+
+        :return: A boolean pandas dataframe with shape (num_observations,num_observations)
+
+        >>> CC.data_same_target_for_pairs_elements_matrix()
+        """
         df=pd.DataFrame(np.zeros((self.num_observations, self.num_observations)), index=self.data_features.index, columns=self.data_features.index)
         for Cluster in self.labels_clusters:
             df.loc[self.data_clusters[Cluster].index, self.data_clusters[Cluster].index] = np.ones(
