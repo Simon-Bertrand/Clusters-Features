@@ -188,7 +188,7 @@
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p>An estimation of KernelDensity for each sample if return_KDE is false</p></li>
-<li><p>An tuple with the estimation of KD for each sample and the KDE model if return_KDE is true</p></li>
+<li><p>A tuple with the estimation of KD for each sample and the KDE model if return_KDE is true</p></li>
 </ul>
 </p>
 </dd>
@@ -227,20 +227,21 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="ClustersFeatures.src._utils.__Utils.utils_ts_filtering_STL">
 <span class="sig-name descname"><span class="pre">utils_ts_filtering_STL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._utils.__Utils.utils_ts_filtering_STL" title="Permalink to this definition">¶</a></dt>
-<dd><p>Filter a time-serie with STL from statsmodels.
-col argument can be specified if it is wanted to filter
-a column of self dataframe. dd
-Else, you can directly specify a time-serie with the data argument</p>
+<dd><p>Filter a time-serie with STL from statsmodels.</p>
+<div class="line-block">
+<div class="line">Col argument can be specified if it is wanted to filter a column of self dataframe.</div>
+<div class="line">Else, you can directly specify a time-serie with the data argument.</div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>periods</strong> (<em>int/float</em>) – Specify the period between each sample</p></li>
-<li><p><strong>col</strong> (<em>str/int</em>) – Required if data is None: Specify the column of self data set to filter</p></li>
-<li><p><strong>data</strong> (<em>list/np.ndarray</em>) – Required if col is None : Specify the data to filter</p></li>
+<li><p><strong>periods</strong> (<em>int/float</em>) – Specify the period between each sample.</p></li>
+<li><p><strong>col</strong> (<em>str/int</em>) – Required if data is None: Specify the column of self data set to filter.</p></li>
+<li><p><strong>data</strong> (<em>list/np.ndarray</em>) – Required if col is None : Specify the data to filter.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a Pandas dataframe</p>
+<dd class="field-even"><p>A pandas dataframe with columns as the decomposed signals.</p>
 </dd>
 </dl>
 </dd></dl>

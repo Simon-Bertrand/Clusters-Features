@@ -177,17 +177,75 @@
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density.density_projection_2D">
 <span class="sig-name descname"><span class="pre">density_projection_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reduction_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_2D" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The density projection uses a reduction method to estimate the density with a 2D Meshgrid.</p>
+<p>We estimate the density by summing num_observations times a 2D gaussian distribution centred on each element of the dataset.
+The percentile is an argument that sets the minimum density contour to select.
+For percentile=99, only the 1% most dense are going to be selected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reduction_method</strong> (<em>str</em>) – “UMAP” or “PCA”. Reduces the total dimension of the dataframe to 2.</p></li>
+<li><p><strong>percentile</strong> (<em>int</em>) – Sets the minimum density contour to select as a percentile of the current density distribution.</p></li>
+<li><p><strong>cluster=</strong> (<em>list</em>) – A list of clusters to estimate density.</p></li>
+<li><p><strong>return_clusters_density=</strong> (<em>bool</em>) – Adds a key in the returned dict with a Z values meshgrid for each clusters.</p></li>
+<li><p><strong>return_data</strong> (<em>bool</em>) – Returns the reduction data. It’s the same as self.utils_PCA(2) or self.utils_UMAP() but packed in the returned dict.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dict containing all the data.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">density_projection_2D</span><span class="p">(</span><span class="s2">&quot;PCA&quot;</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="n">cluster</span><span class="o">=</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_clusters_density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density.density_projection_2D_generate_png">
 <span class="sig-name descname"><span class="pre">density_projection_2D_generate_png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reduction_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_2D_generate_png" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This method generates a PNG where each density shape is observable.</p>
+<p>We use the PIL library to generate this PNG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reduction_method</strong> (<em>str</em>) – “UMAP” or “PCA”</p></li>
+<li><p><strong>percentile</strong> (<em>int</em>) – Sets the minimum density contour to select as a percentile of the current density distribution.</p></li>
+<li><p><strong>show_image</strong> (<em>bool</em>) – Show the generated image with Plotly. If it is not installed, it is recommended to turn to False this argument.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dict containing all the data.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">density_projection_2D_generate_png</span><span class="p">(</span><span class="s2">&quot;PCA&quot;</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="n">show_image</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density.density_projection_3D">
 <span class="sig-name descname"><span class="pre">density_projection_3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_3D" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The density projection uses 3D PCA reduction method to estimate the density with a 3D Meshgrid.</p>
+<p>We estimate the density by summing num_observations times a 3D gaussian distribution centred on each element of the dataset.
+The percentile is an argument that sets the minimum density contour to select.
+For percentile=99, only the 1% most dense are going to be selected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>percentile</strong> (<em>int</em>) – Sets the minimum density contour to select as a percentile of the current density distribution.</p></li>
+<li><p><strong>cluster=</strong> (<em>list</em>) – A list of clusters to estimate density. It is forbidden to put more than 2 distincts clusters. Letting this argument empty will result to a estimation of each clusters as a single density.</p></li>
+<li><p><strong>return_clusters_density=</strong> (<em>bool</em>) – Adds a key in the returned dict with the density values for each cluster.</p></li>
+<li><p><strong>return_grid</strong> (<em>bool</em>) – Adds a key in the returned dict with the full 3D meshgrid.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dict containing all the data.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">density_projection_3D</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">cluster</span><span class="o">=</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">,</span> <span class="n">return_grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_clusters_density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
 
 </dd></dl>
 

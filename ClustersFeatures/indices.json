@@ -39,13 +39,17 @@
   },
 
   "clusters" : {
-    "max":  {
+    "max": {
       "Centroid distance to barycenter": "C-Max-01",
       "Between-group Dispersion": "C-Max-02",
       "Average Silhouette": "C-Max-03",
-      "KernelDensity mean":"C-Max-04",
-      "Ball Hall Index": "C-Max-05"
-      },
+      "KernelDensity mean": "C-Max-04",
+      "Ball Hall Index": "C-Max-05",
+      "2D UMAP Density": "C-Max-06",
+      "2D PCA Density": "C-Max-07",
+      "3D PCA Density": "C-Max-08"
+    },
+
 
     "min": {
       "Within-Cluster Dispersion":  "C-Min-01",

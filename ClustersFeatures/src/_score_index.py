@@ -135,7 +135,7 @@ class __ScoreIndex:
 
 
     def score_index_c_for_each_cluster(self, Cluster):
-        """A variant of C Index for each cluster. The main difference is that we do not take the sum of all pair of points but we directly take the number of pair for the given cluster.
+        """A variant of C Index for each cluster. The main difference is that we do not take the sum of all pairs of point but we directly take the number of pairs for the given cluster.
 
         :param Cluster: Cluster label name.
         :returns: float."""

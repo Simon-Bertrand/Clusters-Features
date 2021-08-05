@@ -5,6 +5,17 @@
 
 Clusters-Features's documentation
 =============================================
+.. image:: https://user-images.githubusercontent.com/84455908/128029707-0bf27b40-0570-4f13-8b04-cfaa6c2b560e.png
+   :width: 400
+   :alt: Clusters-Features Logo
+   :align: center
+
+| Welcome to the official documentation of the Python package : Clusters-Features
+
+
+
+Package features
+=============================================
 
 .. toctree::
    :maxdepth: 2
@@ -18,7 +29,6 @@ Clusters-Features's documentation
    ./density.rst
    ./utils.rst
    ./graph.rst
-
 
 
 Indices and tables

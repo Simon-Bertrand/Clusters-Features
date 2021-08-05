@@ -117,6 +117,15 @@ class __IndexCore(object):
                     value_to_return = [self.utils_KernelDensity(clusters=Cluster).mean() for Cluster in self.labels_clusters]
                 elif code == "C-Max-05":
                     value_to_return = [self.score_within_cluster_dispersion(Cluster) / self.num_observation_for_specific_cluster[Cluster] for Cluster in self.labels_clusters]
+                elif code == "C-Max-06":
+                    value_to_return = list(self.density_projection_2D("UMAP", 99, return_clusters_density=True)[
+                                               'Total Cluster Density'].values())
+                elif code == "C-Max-07":
+                    value_to_return = list(self.density_projection_2D("PCA", 99, return_clusters_density=True)[
+                                               'Total Cluster Density'].values())
+                elif code == "C-Max-08":
+                    value_to_return = list(
+                        self.density_projection_3D(99, return_clusters_density=True)['Total Cluster Density'].values())
                 else:
                     raise ValueError('(board_type,indices_type)=' + str((board_type,indices_type)) + " - Invalid Code : " + str(code))
             elif indices_type == list(Indices[board_type].keys())[1]:  # Min
@@ -184,7 +193,6 @@ class __IndexCore(object):
                         name_index = {it2: it1 for it1, it2 in all_index_ref[k][j].items()}[l]
                         self.details_index_compute[k][j][list(data[k][j].keys())[z]] = self.details_index_compute[k][j][name_index]
                     else:
-                        print(data[k][j][{it2: it1 for it1, it2 in all_index_ref[k][j].items()}[l]], "\n")
                         self.details_index_compute[k][j][list(data[k][j].keys())[z]] = self.IndexCore_generate_output_by_info_type(k, j, l)
         return self.details_index_compute
 

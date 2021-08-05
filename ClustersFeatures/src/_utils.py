@@ -9,15 +9,15 @@ if settings.Activated_Utils:
     class __Utils:
         def utils_ts_filtering_STL(self, **args):
             """Filter a time-serie with STL from statsmodels.
-            col argument can be specified if it is wanted to filter
-            a column of self dataframe. dd
-            Else, you can directly specify a time-serie with the data argument
 
-            :param int/float periods: Specify the period between each sample
-            :param str/int col: Required if data is None: Specify the column of self data set to filter
-            :param list/np.ndarray data: Required if col is None : Specify the data to filter
+            | Col argument can be specified if it is wanted to filter a column of self dataframe.
+            | Else, you can directly specify a time-serie with the data argument.
 
-            :return: a Pandas dataframe
+            :param int/float periods: Specify the period between each sample.
+            :param str/int col: Required if data is None: Specify the column of self data set to filter.
+            :param list/np.ndarray data: Required if col is None : Specify the data to filter.
+
+            :return: A pandas dataframe with columns as the decomposed signals.
             """
             from statsmodels.tsa.seasonal import STL
 
@@ -94,7 +94,7 @@ if settings.Activated_Utils:
 
 
             :return: - An estimation of KernelDensity for each sample if return_KDE is false
-                - An tuple with the estimation of KD for each sample and the KDE model if return_KDE is true
+                - A tuple with the estimation of KD for each sample and the KDE model if return_KDE is true
             """
             from sklearn.neighbors import KernelDensity
             from sklearn.model_selection import GridSearchCV

@@ -20,6 +20,13 @@ if settings.Activated_Graph:
 
     class __Graph(object):
         def graph_boxplots_distances_to_centroid(self, Cluster):
+            """Shows a box plot of the distances between all elements and the centroid of given cluster.
+
+            :param Cluster: Cluster centroid name to evaluate the elements distance with.
+            :return: Plotly figure instance
+
+            >>> CC.graph_boxplots_distances_to_centroid(CC.labels_clusters[0])
+            """
             graph_colors = {Cluster: settings.discrete_colors[i] for i, Cluster in enumerate(self.labels_clusters)}
             if not (Cluster in self.labels_clusters):
                 raise KeyError(
@@ -36,6 +43,14 @@ if settings.Activated_Graph:
                 fig.show()
 
         def graph_reduction_2D(self, reduction_method):
+            """Shows the 2D reduction graph with Plotly.
+
+            :param str reduction_method: "UMAP" or "PCA"
+            :return: Plotly figure instance
+
+            >>> CC.graph_reduction_2D("UMAP")
+
+            """
             graph_colors = {Cluster: settings.discrete_colors[i] for i, Cluster in enumerate(self.labels_clusters)}
             if not reduction_method in ['PCA','UMAP']:
                 raise ValueError('reduction_method is not in ' + str(['PCA','UMAP']))
@@ -107,6 +122,13 @@ if settings.Activated_Graph:
 
 
         def graph_PCA_3D(self):
+            """Shows the 3D PCA reduction graph with Plotly.
+
+            :return: Plotly figure instance
+
+            >>> CC.graph_PCA_3D()
+
+            """
             graph_colors = {Cluster: settings.discrete_colors[i] for i, Cluster in enumerate(self.labels_clusters)}
             Mat=self.utils_PCA(3)
             data=pd.DataFrame(Mat)
@@ -121,6 +143,18 @@ if settings.Activated_Graph:
 
 
         def graph_reduction_density_3D(self,percentile,**args):
+            """Shows the result of 3D PCA density estimation with Plotly.
+
+            :param int percentile: Sets the minimum density contour to select as a percentile of the current density distribution.
+            :param list cluster=: A list of clusters to estimate density.
+            :return: Plotly figure instance
+
+            >>> CC.graph_reduction_density_3D(99,cluster=CC.labels_clusters[:2])
+
+            >>> CC.graph_reduction_density_3D(99,cluster=CC.labels_clusters[0])
+
+            >>> CC.graph_reduction_density_3D(99)
+            """
             unpacked_dict= self.density_projection_3D(percentile, return_grid=True, return_clusters_density=True)
 
             each_cluster_density_save=unpacked_dict['Clusters Density']
@@ -131,7 +165,7 @@ if settings.Activated_Graph:
 
             fig = go.Figure()
             try:
-                clusters=args['clusters']
+                clusters=args['cluster']
                 if (isinstance(clusters,str) or isinstance(clusters,float) or isinstance(clusters,int)):
                     if not clusters in self.labels_clusters:
                         raise ValueError(str(clusters) +' is not in ' +str(self.labels_clusters))
@@ -186,6 +220,14 @@ if settings.Activated_Graph:
             fig.show()
 
         def graph_reduction_density_2D(self, reduction_method,percentile, graph):
+            """Shows the result of 2D PCA density estimation with Plotly.
+
+            :param str reduction_method: "UMAP" or "PCA". Reduces the total dimension of the dataframe to 2.
+            :param int percentile: Sets the minimum density contour to select as a percentile of the current density distribution.
+            :param str graph: "interactive" or "contour". Shows different ways to visualize the density.
+
+            :return: Plotly figure instance
+            """
             graph_colors = {Cluster: settings.discrete_colors[i] for i, Cluster in enumerate(self.labels_clusters)}
 
             if not reduction_method in ['PCA','UMAP']:
