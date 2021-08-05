@@ -30,7 +30,7 @@ exec(open('ClustersFeatures/settings.py').read())
 if Activated_Graph:
     List_total_Packages = List_base_Packages + List_Graph
 if Activated_Utils:
-    List_total_Packages = List_base_Packages + List_Utils
+    List_total_Packages = List_total_Packages + List_Utils
     
 #Create a requirements.txt adapted to settings options
 with open("requirements.txt", "w") as file:
