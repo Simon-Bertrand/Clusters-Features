@@ -37,12 +37,6 @@ with open("requirements.txt", "w") as file:
     for package in List_total_Packages:
         file.write(package + "\n")
 
-#Installing all requirements : pip autodetect if already installed
-if platform.startswith('win'):
-    os.system('py -m pip install -r requirements.txt')
-else:
-    os.system('pip install -r requirements.txt')
-
 #Saving in a list all requirements
 with open('requirements.txt') as f:
     requirements = f.readlines()
