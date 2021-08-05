@@ -1,6 +1,6 @@
 .idea
 README.md
-build
+
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -16,6 +16,7 @@ __pycache__/
 build/git
 develop-eggs/
 dist/
+build/
 downloads/
 eggs/
 .eggs/
