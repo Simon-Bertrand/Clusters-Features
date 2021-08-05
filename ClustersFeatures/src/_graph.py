@@ -306,31 +306,41 @@ if settings.Activated_Graph:
                 fig.update_layout(title="2D Density Projection")
                 fig.show()
 
-        def projection_2D(self, feature1, feature2,**args):
-            import matplotlib.pyplot as plt
-            import seaborn as sns
-            import matplotlib
-            if not(feature1 in self.data_features.columns) or not(feature1 in self.data_features.columns):
-              return("Error #3, Bad features call")
-            else:
-                try:
-                    radius_choice=args['radius']
-                except KeyError:
-                    radius_choice="90p"
+        def graph_projection_2D(self, feature1, feature2):
 
-                try:
-                    zoom=args['zoom']
-                except KeyError:
-                    zoom=1
-                data_radius_centroid= {Cluster:self.data_radius_selector_specific_cluster(radius_choice,Cluster) for Cluster in self.labels_clusters}
-                figsize=5*zoom
-                fig=plt.figure(2,figsize=(figsize,figsize))
-                plt.title('Projection 2D')
-                g=sns.scatterplot(x=self.data_features.loc[:,feature1],y=self.data_features.loc[:,feature2],hue=self.data_target,alpha=0.70,palette="tab10")
+            if not(feature1 in self.data_features.columns) or not(feature2 in self.data_features.columns):
+              raise ValueError('Specified feature is not in the available features.')
+            else:
+
+                graph_colors = {Cluster: settings.discrete_colors[i] for i, Cluster in enumerate(self.labels_clusters)}
+
+                fig = go.Figure()
+                clusters_circle = []
+
                 for Cluster in self.labels_clusters:
-                    Circle=plt.Circle(tuple(self.data_centroids[Cluster][[feature1,feature2]].values),radius=data_radius_centroid[Cluster],fill=False,color=matplotlib.cm.get_cmap('tab10')(Cluster))
-                    g.add_patch(Circle)
-                g=sns.scatterplot(x=self.data_centroids.loc[feature1,:],y=self.data_centroids.loc[feature2,:],s=12,color='#000000')
+                    xcenter, ycenter = self.data_clusters[Cluster][[feature1, feature2]].mean().values
+                    dx = np.percentile(self.data_clusters[Cluster][feature1], 75) - np.percentile(
+                        self.data_clusters[Cluster][feature1], 25)
+                    dy = np.percentile(self.data_clusters[Cluster][feature2], 75) - np.percentile(
+                        self.data_clusters[Cluster][feature2], 25)
+
+                    fig.add_trace(
+                        go.Scatter(x=self.data_clusters[Cluster][feature1], y=self.data_clusters[Cluster][feature2], mode="markers", name="Cluster "+str(Cluster),
+                                   marker_color=self.data_target[self.data_clusters[Cluster].index].apply(lambda x: graph_colors[x])))
+                    clusters_circle.append(dict(type="circle", fillcolor=graph_colors[Cluster], opacity=0.35,
+                                                line=dict(color="#000000", width=1), xref="x", yref="y",name = "Cluster " + str(Cluster),
+                                                x0=xcenter - dx, y0=ycenter - dx, x1=xcenter + dx, y1=ycenter + dx))
+
+                button = dict(method='relayout',
+                              label="Show clusters",
+                              args=["shapes", []],
+                              args2=["shapes", clusters_circle])
+                um = dict(buttons=[button], showactive=False, type='buttons', y=1.12, x=0.20)
+                fig.update_layout(title=f"2D Projection on feature {str(feature1)} and feature {str(feature2)}", showlegend=True,
+                                  updatemenus=[um])
+                fig.show()
+
+
 
 
         def __graph_animated_dataframes(self, dict_df, **args):
