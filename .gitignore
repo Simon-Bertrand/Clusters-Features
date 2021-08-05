@@ -1,6 +1,9 @@
 .idea
 README.md
+
+#Py Scripts
 open_project.py
+build_everything.py
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
