@@ -5,16 +5,37 @@ import pandas as pd
 from ClustersFeatures import settings
 
 class __Info:
-    @property
-    def clusters_info(self):
+    def clusters_info(self, **args):
         """Generate a board that gives information about the different clusters.
 
         :returns: A pandas dataframe.
 
         >>> CC.clusters_info
         """
+        try:
+            scaler=args['scaler']
+            if not(scaler in ["min_max","standard", "robust"])
+                raise ValueError('Wrong scaler, should be in the following list : ' + str(["min_max","standard", "robust"]))
+        except KeyError:
+            scaler=False
+
         pd.set_option('display.float_format', ("{:." + str(settings.precision) + "f}").format)
-        return self._IndexCore_create_board(['clusters','radius'])
+
+        output=self._IndexCore_create_board(['clusters','radius'])
+
+        if scaler != False:
+            if scaler=="min_max":
+                for col in output:
+                    output[col].values = (output[col].values - output[col].min())/(output[col].max()-output[col].min())
+            elif scaler == "standard":
+                for col in output:
+                    output[col].values = (output[col].values - output[col].min())/(output[col].max()-output[col].min())
+            elif scaler== "robust":
+                for col in output:
+                    output[col].values = (output[col].values - output[col].min())/(output[col].max()-output[col].min())
+            else:
+                raise ValueError('Wrong value for scaler.')
+        return
 
     def general_info(self, **args):
         """Generate a board that gives general information about the dataset.
@@ -31,6 +52,8 @@ class __Info:
                 raise ValueError('hide_nan argument is not a boolean')
         except KeyError:
             hide_nan=False
+
+
 
         pd.set_option('display.float_format', ("{:." + str(settings.precision) + "f}").format)
         if not hide_nan:

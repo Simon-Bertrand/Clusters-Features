@@ -62,6 +62,15 @@ def verify_pandas_df_and_not_empty(pd_df):
     elif pd_df.empty:
         raise ValueError('Given Pandas dataframe is empty')
 
+def verify_not_empty_and_correct_target(pd_df, label_target):
+    if pd_df.empty:
+        raise ValueError('Given Pandas dataframe is empty due to deleting the object type columns.')
+    try:
+        if len(np.unique(pd_df[label_target].values)) == len(pd_df):
+            raise ValueError('The label target dataframe is not containing valid values.')
+    except KeyError:
+        pass
+
 def verify_no_object_columns_and_delete_it(pd_df):
     if 'object' in pd_df.dtypes:
         print('Columns of object type detected, deleting them.')
