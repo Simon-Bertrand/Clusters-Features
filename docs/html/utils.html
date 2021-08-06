@@ -175,6 +175,30 @@
 <dt class="sig sig-object py" id="ClustersFeatures.src._utils.__Utils">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._utils.</span></span><span class="sig-name descname"><span class="pre">__Utils</span></span><a class="headerlink" href="#ClustersFeatures.src._utils.__Utils" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._utils.__Utils.utils_ClustersRank">
+<span class="sig-name descname"><span class="pre">utils_ClustersRank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._utils.__Utils.utils_ClustersRank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a mean rank for each cluster based on the min/max indexes of the cluster board.</p>
+<p>The method uses the min-max scaler to put each row of the clusters_info board at the same dimension.
+We separate the min and the max indices to output a rank for each indices.
+If the indices min i is the lower of all clusters, then its rank is self.num_observations-th.
+To generate the final rank, we compute the mean rank for each cluster with min et max type.
+Then we sum the mean rank of the min indices to the mean rank of the max indices.
+As we want a rank where first position is the better, we invert the above sum and get the final rank.
+By adding params, you can provide the mean rank for each cluster by passing cluster_rank=True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cluster_rank=</strong> (<em>bool</em>) – Returns the mean rank for each cluster</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The final leaderboard.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">utils_ClustersRank</span><span class="p">(</span><span class="n">mean_cluster_rank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="ClustersFeatures.src._utils.__Utils.utils_KernelDensity">
 <span class="sig-name descname"><span class="pre">utils_KernelDensity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._utils.__Utils.utils_KernelDensity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function that returns an estimation of Kernel Density with the best bandwidth.</p>
