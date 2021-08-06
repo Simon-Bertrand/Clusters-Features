@@ -114,7 +114,56 @@ if settings.Activated_Utils:
             else:
                 return kde.score_samples(X)
 
+        def utils_ClustersRank(self,**args):
+            """Defines a mean rank for each cluster based on the min/max indexes of the cluster board.
 
+            The method uses the min-max scaler to put each row of the clusters_info board at the same dimension.
+            We separate the min and the max indices to output a rank for each indices.
+            If the indices min i is the lower of all clusters, then its rank is self.num_observations-th.
+            To generate the final rank, we compute the mean rank for each cluster with min et max type.
+            Then we sum the mean rank of the min indices to the mean rank of the max indices.
+            As we want a rank where first position is the better, we invert the above sum and get the final rank.
+            By adding params, you can provide the mean rank for each cluster by passing cluster_rank=True.
+
+            :param bool cluster_rank=: Returns the mean rank for each cluster
+
+            :returns: The final leaderboard.
+
+            >>> CC.utils_ClustersRank(mean_cluster_rank=True)
+            """
+
+            try :
+                bool_cluster_rank=args['mean_cluster_rank']
+                if not isinstance(bool_cluster_rank,bool):
+                    raise ValueError('mean_cluster_rank is not boolean.')
+            except KeyError:
+                bool_cluster_rank = False
+
+            try :
+                show_result=args['show_result']
+                if not isinstance(show_result,bool):
+                    raise ValueError('show_result is not boolean.')
+            except KeyError:
+                show_result = False
+
+            clusters_info=self.clusters_info(scaler='min_max')
+            mean_cluster_rank=(1 + self.num_clusters - (clusters_info.loc[pd.IndexSlice[:, ['max']], :].rank(axis=1,method="max").mean() + clusters_info.loc[pd.IndexSlice[:, ['min']], :].rank(axis=1, method="max",ascending=False).mean()) / 2).sort_values()
+            cluster_rank=mean_cluster_rank.rank()
+
+            int_to_position_transform = lambda x: "1st" if x == 1 else "2nd" if x == 2 else "3rd" if x == 3 else str(
+                int(x)) + "th"
+
+            if show_result:
+                for key,value in cluster_rank.iteritems():
+                    print(f"The cluster {key} is at the {int_to_position_transform(value)} position.")
+
+            df=pd.DataFrame()
+            df['Rank']=cluster_rank.apply(int_to_position_transform)
+            df.index.name="Cluster"
+            if bool_cluster_rank:
+                df['Mean Rank'] = mean_cluster_rank
+
+            return df
 else:
     class __Utils():
         pass

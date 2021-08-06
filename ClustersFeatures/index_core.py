@@ -116,14 +116,12 @@ class __IndexCore(object):
                 elif code == "C-Max-04":
                     value_to_return = [self.utils_KernelDensity(clusters=Cluster).mean() for Cluster in self.labels_clusters]
                 elif code == "C-Max-05":
-                    value_to_return = [self.score_within_cluster_dispersion(Cluster) / self.num_observation_for_specific_cluster[Cluster] for Cluster in self.labels_clusters]
-                elif code == "C-Max-06":
                     value_to_return = list(self.density_projection_2D("UMAP", 99, return_clusters_density=True)[
                                                'Total Cluster Density'].values())
-                elif code == "C-Max-07":
+                elif code == "C-Max-06":
                     value_to_return = list(self.density_projection_2D("PCA", 99, return_clusters_density=True)[
                                                'Total Cluster Density'].values())
-                elif code == "C-Max-08":
+                elif code == "C-Max-07":
                     value_to_return = list(
                         self.density_projection_3D(99, return_clusters_density=True)['Total Cluster Density'].values())
                 else:
@@ -139,6 +137,10 @@ class __IndexCore(object):
                     value_to_return = self.score_index_davies_bouldin_for_each_cluster()
                 elif code == "C-Min-05":
                     value_to_return = [self.score_index_c_for_each_cluster(Cluster) for Cluster in self.labels_clusters]
+                elif code == "C-Min-06":
+                    value_to_return = [
+                        self.score_within_cluster_dispersion(Cluster) / self.num_observation_for_specific_cluster[
+                            Cluster] for Cluster in self.labels_clusters]
                 else:
                     raise ValueError('(board_type,indices_type)=' + str((board_type,indices_type)) + " - Invalid Code : " + str(code))
         elif board_type == list(Indices.keys())[2]: #Radius

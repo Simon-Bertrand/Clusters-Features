@@ -2,6 +2,7 @@
 
 from ClustersFeatures import settings
 from ClustersFeatures import raising_errors
+from ClustersFeatures import df_processing
 
 
 from .version import __version__
@@ -23,9 +24,7 @@ from ClustersFeatures.src._confusion_hypersphere import __ConfusionHypersphere
 from ClustersFeatures.src._verify import __Verify
 
 
-from ClustersFeatures.imputation import __Imputation
-
-class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHypersphere,__Verify,__Graph,__Utils,__IndexCore, __Density,__Imputation):
+class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHypersphere,__Verify,__Graph,__Utils,__IndexCore, __Density):
     """Class Author: BERTRAND Simon - simonbertrand.contact@gmail.com
 
     Made for preparing the summer mission with iCube, Strasbourg (D-IR on FoDoMust).
@@ -64,26 +63,22 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
     >>> CC.num_clusters
     """
 
-    def __init__(self, pd_df_, label_target,**args):
+    def __init__(self, pd_df_,**args):
         """Initialisation of the ClusterCharacteristics instance
         :param pd.DataFrame pd_df: Dataframe to analyse concatenated with the target vector
-        :param str target: The name of the column target of pd_df dataframe
+        :param str label_target: The name of the column target of pd_df dataframe. If not specified, than we compute a K-Means with K=n_kmeans
+        :param int n_kmeans: The number of clusters to use in the K-Means in the event that there is no specified label_target
         """
+
         raising_errors.verify_pandas_df_and_not_empty(pd_df_)
         raising_errors.verify_no_object_columns_and_delete_it(pd_df_)
-        raising_errors.verify_not_empty_and_correct_target(pd_df_, label_target)
-
 
         #Imputation if NaN values are detected
-        if pd_df_.isnull().sum().sum() != 0:
-            try:
-                estimator=args['imputation_estimator']
-                pd_df=self._imputation_detect_nan(pd_df_, estimator)
-            except KeyError:
-                pd_df=self._imputation_detect_nan(pd_df_, False).copy()
-        else:
-            pd_df=pd_df_.copy()
+        pd_df = df_processing.impute_nan_values(pd_df_,args)
+        pd_df,label_target = df_processing.generate_label_target_in_case_missing_it(pd_df,args)
 
+        self.label_target=label_target
+        raising_errors.verify_not_empty_and_correct_target(pd_df, label_target)
 
         #Used to memory every index
         self._listcode_index_compute = []
@@ -179,6 +174,8 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
 
         else:
             raising_errors.wrong_label_target(label_target)
+
+
 
         """Initialisation and saving of matrixes that need to be computed many times.
         It optimizes for example the GDI and Dunn Indexes

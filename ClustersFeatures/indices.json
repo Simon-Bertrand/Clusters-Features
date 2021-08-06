@@ -44,10 +44,9 @@
       "Between-group Dispersion": "C-Max-02",
       "Average Silhouette": "C-Max-03",
       "KernelDensity mean": "C-Max-04",
-      "Ball Hall Index": "C-Max-05",
-      "2D UMAP Density": "C-Max-06",
-      "2D PCA Density": "C-Max-07",
-      "3D PCA Density": "C-Max-08"
+      "2D UMAP Density": "C-Max-05",
+      "2D PCA Density": "C-Max-06",
+      "3D PCA Density": "C-Max-07"
     },
 
 
@@ -56,7 +55,8 @@
       "Largest element distance": "C-Min-02",
       "Inter-element mean distance": "C-Min-03",
       "Davies Bouldin Index": "C-Min-04",
-      "C Index": "C-Min-05"
+      "C Index": "C-Min-05",
+      "Ball Hall Index": "C-Min-06"
     }
   },
 
