@@ -8,13 +8,15 @@ class __Info:
     def clusters_info(self, **args):
         """Generate a board that gives information about the different clusters.
 
+        :param str scaler: Returns the scaled output. Avalaible scalers : 'min_max', 'robust', 'standard'.
+
         :returns: A pandas dataframe.
 
         >>> CC.clusters_info
         """
         try:
             scaler=args['scaler']
-            if not(scaler in ["min_max","standard", "robust"])
+            if not(scaler in ["min_max","standard", "robust"]):
                 raise ValueError('Wrong scaler, should be in the following list : ' + str(["min_max","standard", "robust"]))
         except KeyError:
             scaler=False
@@ -25,17 +27,17 @@ class __Info:
 
         if scaler != False:
             if scaler=="min_max":
-                for col in output:
-                    output[col].values = (output[col].values - output[col].min())/(output[col].max()-output[col].min())
+                for index in output.index:
+                    output.loc[index] = (output.loc[index] - output.loc[index].min())/(output.loc[index].max()-output.loc[index].min())
             elif scaler == "standard":
-                for col in output:
-                    output[col].values = (output[col].values - output[col].min())/(output[col].max()-output[col].min())
+                for index in output.index:
+                    output.loc[index] = (output.loc[index] - output.loc[index].mean())/(output.loc[index].std())
             elif scaler== "robust":
-                for col in output:
-                    output[col].values = (output[col].values - output[col].min())/(output[col].max()-output[col].min())
+                for index in output.index:
+                    output.loc[index] = (output.loc[index] - output.loc[index].median())/(np.percentile(output.loc[index],75)-np.percentile(output.loc[index],25))
             else:
                 raise ValueError('Wrong value for scaler.')
-        return
+        return output
 
     def general_info(self, **args):
         """Generate a board that gives general information about the dataset.
