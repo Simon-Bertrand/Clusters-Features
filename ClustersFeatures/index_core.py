@@ -38,8 +38,8 @@ class __IndexCore(object):
         name_index = {it2: it1 for it1, it2 in all_index_ref[board_type][indices_type].items()}[code]
         if code in self._listcode_index_compute:
             return self.details_index_compute[board_type][indices_type][name_index]
-        else:
-            self._listcode_index_compute.append(code)
+
+
         if board_type == list(Indices.keys())[0]: #General
             if indices_type == list(Indices[board_type].keys())[0]: #Max
                 if code == "G-Max-01":
@@ -158,6 +158,10 @@ class __IndexCore(object):
             raise ValueError('(board_type)=' + str(board_type) + " - Invalid indices_type : " + str(code))
 
         self.details_index_compute[board_type][indices_type][name_index] = value_to_return
+
+        if not (code in self._listcode_index_compute):
+            self._listcode_index_compute.append(code)
+
         return value_to_return
 
     def IndexCore_get_all_index(self):
