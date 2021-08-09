@@ -36,7 +36,7 @@ class __Score:
 
         :returns: a Pandas dataframe. """
 
-        WG = pd.DataFrame(np.zeros((self.data_features.shape[1], self.data_features.shape[1])))
+        WG = pd.DataFrame(np.zeros((self.data_features.shape[1], self.data_features.shape[1])), index=self.scatter_matrix_specific_cluster_WGk(self.labels_clusters[0]).index, columns=self.scatter_matrix_specific_cluster_WGk(self.labels_clusters[0]).columns)
         for Cluster in self.labels_clusters:
             WG = np.add(WG, self.scatter_matrix_specific_cluster_WGk(Cluster))
         return WG

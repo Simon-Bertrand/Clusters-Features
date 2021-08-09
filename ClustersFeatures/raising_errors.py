@@ -164,10 +164,10 @@ def utils_return_KDE_model(args):
 def density_Projection_2D(args, labels_clusters):
     try:
         cluster = args['cluster']
-        if isnumeric(cluster):
+        if isinstance(cluster,float) or isinstance(cluster,int):
             cluster = [cluster]
         for el in cluster:
-            if not (el in (labels_clusters + ["all"])):
+            if not (el in (list(labels_clusters) + ["all"])):
                 raise ValueError(str(el) + " is not in " + str(labels_clusters))
     except KeyError:
         cluster = labels_clusters
