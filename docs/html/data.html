@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/style.css" type="text/css" />
 
   
@@ -32,7 +30,6 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -92,7 +89,7 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Subclasses:</span></p>
+              <p class="caption"><span class="caption-text">Subclasses:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cc.html">ClustersCharacteristics</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data</a></li>
@@ -172,8 +169,8 @@
   <div class="section" id="data">
 <h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._data.</span></span><span class="sig-name descname"><span class="pre">__Data</span></span><a class="headerlink" href="#ClustersFeatures.src._data.__Data" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._data.__Data">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._data.</span></code><code class="sig-name descname"><span class="pre">__Data</span></code><a class="headerlink" href="#ClustersFeatures.src._data.__Data" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ClustersCharacteristics object creates attributes that define clusters. We can find them in the Data subclass.
 To use these methods, you need to initialize a ClusterCharacteristics instance and then write the corresponding methods:</p>
 <p>For example:</p>
@@ -182,8 +179,8 @@ To use these methods, you need to initialize a ClusterCharacteristics instance a
 </pre></div>
 </div>
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_intercentroid_distance">
-<span class="sig-name descname"><span class="pre">data_intercentroid_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cluster2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_intercentroid_distance" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._data.__Data.data_intercentroid_distance">
+<code class="sig-name descname"><span class="pre">data_intercentroid_distance</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cluster2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_intercentroid_distance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes distances between centroid of Cluster1 and centroid of Cluster2.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -202,8 +199,8 @@ To use these methods, you need to initialize a ClusterCharacteristics instance a
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_intercentroid_distance_matrix">
-<span class="sig-name descname"><span class="pre">data_intercentroid_distance_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_intercentroid_distance_matrix" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._data.__Data.data_intercentroid_distance_matrix">
+<code class="sig-name descname"><span class="pre">data_intercentroid_distance_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_intercentroid_distance_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the distance between one centroid and another and return the matrix of this general term</p>
 <p>Return a symetric matrix (xi,j)i,j where xi,j is the distance between centroids of cluster i and j</p>
 <dl class="field-list simple">
@@ -220,8 +217,8 @@ To use these methods, you need to initialize a ClusterCharacteristics instance a
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_interelement_distance_between_elements_of_two_clusters">
-<span class="sig-name descname"><span class="pre">data_interelement_distance_between_elements_of_two_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cluster2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_interelement_distance_between_elements_of_two_clusters" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._data.__Data.data_interelement_distance_between_elements_of_two_clusters">
+<code class="sig-name descname"><span class="pre">data_interelement_distance_between_elements_of_two_clusters</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cluster2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_interelement_distance_between_elements_of_two_clusters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns every pairwise distance between elements belonging Cluster1 or Cluster2</p>
 <p>If Cluster1 is equal to Cluster2, than these distances are inter-clusters and the output is symetric.
 Else, these are extra-clusters and the output is not symetric.</p>
@@ -242,8 +239,8 @@ Else, these are extra-clusters and the output is not symetric.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_interelement_distance_for_clusters">
-<span class="sig-name descname"><span class="pre">data_interelement_distance_for_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_interelement_distance_for_clusters" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._data.__Data.data_interelement_distance_for_clusters">
+<code class="sig-name descname"><span class="pre">data_interelement_distance_for_clusters</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_interelement_distance_for_clusters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a dataframe with two columns. The first column is the distance for each element belonging
 clusters in the “clusters=” list argument. The second column is a boolean column equal to True
 when both elements are inside the same cluster. We use here the Pandas Multi-Indexes to allow users
@@ -263,8 +260,8 @@ to link the column Distance with dataset points.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_interelement_distance_for_two_element">
-<span class="sig-name descname"><span class="pre">data_interelement_distance_for_two_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ElementId1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ElementId2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_interelement_distance_for_two_element" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._data.__Data.data_interelement_distance_for_two_element">
+<code class="sig-name descname"><span class="pre">data_interelement_distance_for_two_element</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ElementId1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ElementId2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_interelement_distance_for_two_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calls the distance between Element1 and Element2</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -283,13 +280,13 @@ to link the column Distance with dataset points.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_radius_selector_specific_cluster">
-<span class="sig-name descname"><span class="pre">data_radius_selector_specific_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_radius_selector_specific_cluster" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._data.__Data.data_radius_selector_specific_cluster">
+<code class="sig-name descname"><span class="pre">data_radius_selector_specific_cluster</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_radius_selector_specific_cluster" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_same_target_for_pairs_elements_matrix">
-<span class="sig-name descname"><span class="pre">data_same_target_for_pairs_elements_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_same_target_for_pairs_elements_matrix" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._data.__Data.data_same_target_for_pairs_elements_matrix">
+<code class="sig-name descname"><span class="pre">data_same_target_for_pairs_elements_matrix</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_same_target_for_pairs_elements_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a boolean matrix where the general term is equal to True when the index elements belong the same cluster with the column element</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>

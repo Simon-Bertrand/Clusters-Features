@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/style.css" type="text/css" />
 
   
@@ -32,7 +30,6 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -92,7 +89,7 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Subclasses:</span></p>
+              <p class="caption"><span class="caption-text">Subclasses:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cc.html">ClustersCharacteristics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
@@ -184,11 +181,11 @@
 <div class="section" id="scatter-score">
 <h2>Scatter Score<a class="headerlink" href="#scatter-score" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._score.</span></span><span class="sig-name descname"><span class="pre">__Score</span></span><a class="headerlink" href="#ClustersFeatures.src._score.__Score" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score.__Score">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._score.</span></code><code class="sig-name descname"><span class="pre">__Score</span></code><a class="headerlink" href="#ClustersFeatures.src._score.__Score" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_T">
-<span class="sig-name descname"><span class="pre">scatter_matrix_T</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_T" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score.__Score.scatter_matrix_T">
+<code class="sig-name descname"><span class="pre">scatter_matrix_T</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_T" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the total dispersion matrix : it is self.num_observations times the variance-covariance matrix of the dataset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -198,8 +195,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_WG">
-<span class="sig-name descname"><span class="pre">scatter_matrix_WG</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_WG" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score.__Score.scatter_matrix_WG">
+<code class="sig-name descname"><span class="pre">scatter_matrix_WG</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_WG" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the sum of scatter_matrix_specific_cluster_WGk for all k, it is also called as within group matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -209,8 +206,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_between_group_BG">
-<span class="sig-name descname"><span class="pre">scatter_matrix_between_group_BG</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_between_group_BG" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score.__Score.scatter_matrix_between_group_BG">
+<code class="sig-name descname"><span class="pre">scatter_matrix_between_group_BG</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_between_group_BG" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the matrix composed with the dispersion between centroids and the barycenter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -220,8 +217,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_specific_cluster_WGk">
-<span class="sig-name descname"><span class="pre">scatter_matrix_specific_cluster_WGk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_specific_cluster_WGk" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score.__Score.scatter_matrix_specific_cluster_WGk">
+<code class="sig-name descname"><span class="pre">scatter_matrix_specific_cluster_WGk</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_specific_cluster_WGk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the within cluster dispersion for a specific cluster (sum square distances between cluster’s elements and the centroid of the concerned cluster).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -234,8 +231,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_between_group_dispersion">
-<span class="sig-name descname"><span class="pre">score_between_group_dispersion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_between_group_dispersion" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score.__Score.score_between_group_dispersion">
+<code class="sig-name descname"><span class="pre">score_between_group_dispersion</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_between_group_dispersion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the between group dispersion, can also be seen as the trace of the between group matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -245,8 +242,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_mean_quadratic_error">
-<span class="sig-name descname"><span class="pre">score_mean_quadratic_error</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_mean_quadratic_error" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score.__Score.score_mean_quadratic_error">
+<code class="sig-name descname"><span class="pre">score_mean_quadratic_error</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_mean_quadratic_error" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mean quadratic error, also the same as score_pooled_within_cluster_dispersion / num_observations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -256,8 +253,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_pooled_within_cluster_dispersion">
-<span class="sig-name descname"><span class="pre">score_pooled_within_cluster_dispersion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_pooled_within_cluster_dispersion" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score.__Score.score_pooled_within_cluster_dispersion">
+<code class="sig-name descname"><span class="pre">score_pooled_within_cluster_dispersion</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_pooled_within_cluster_dispersion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the sum of score_within_cluster_dispersion for each cluster.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -267,8 +264,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_totalsumsquare">
-<span class="sig-name descname"><span class="pre">score_totalsumsquare</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_totalsumsquare" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score.__Score.score_totalsumsquare">
+<code class="sig-name descname"><span class="pre">score_totalsumsquare</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_totalsumsquare" title="Permalink to this definition">¶</a></dt>
 <dd><p>Trace of scatter_matrix_T, we can compute it differently by using variance function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -278,8 +275,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_within_cluster_dispersion">
-<span class="sig-name descname"><span class="pre">score_within_cluster_dispersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_within_cluster_dispersion" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score.__Score.score_within_cluster_dispersion">
+<code class="sig-name descname"><span class="pre">score_within_cluster_dispersion</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_within_cluster_dispersion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the trace of the WGk matrix for a specific cluster. It’s the same as score_total_sum_square but computed with WGk matrix’ coefficients.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -297,19 +294,19 @@
 <div class="section" id="index">
 <h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._score_index.</span></span><span class="sig-name descname"><span class="pre">__ScoreIndex</span></span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._score_index.</span></code><code class="sig-name descname"><span class="pre">__ScoreIndex</span></code><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_Log_Det_ratio">
-<span class="sig-name descname"><span class="pre">score_index_Log_Det_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_Log_Det_ratio" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_Log_Det_ratio">
+<code class="sig-name descname"><span class="pre">score_index_Log_Det_ratio</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_Log_Det_ratio" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <p>Returns NaN value when the WG matrix or Total Scatter Matrix is not invertible.
 :returns: float.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_PBM">
-<span class="sig-name descname"><span class="pre">score_index_PBM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_PBM" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_PBM">
+<code class="sig-name descname"><span class="pre">score_index_PBM</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_PBM" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -319,8 +316,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_SD">
-<span class="sig-name descname"><span class="pre">score_index_SD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_SD" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_SD">
+<code class="sig-name descname"><span class="pre">score_index_SD</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_SD" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <p>Since we haven’t different numbers of cluster, we can’t compute the weighting coefficient :
 We will pass the average scattering for clusters and the total separation between clusters as the returned tuple.</p>
@@ -332,8 +329,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_S_Dbw">
-<span class="sig-name descname"><span class="pre">score_index_S_Dbw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_S_Dbw" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_S_Dbw">
+<code class="sig-name descname"><span class="pre">score_index_S_Dbw</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_S_Dbw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -343,8 +340,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ball_hall">
-<span class="sig-name descname"><span class="pre">score_index_ball_hall</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ball_hall" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ball_hall">
+<code class="sig-name descname"><span class="pre">score_index_ball_hall</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ball_hall" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the Ball Hall index defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -354,8 +351,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_banfeld_Raftery">
-<span class="sig-name descname"><span class="pre">score_index_banfeld_Raftery</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_banfeld_Raftery" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_banfeld_Raftery">
+<code class="sig-name descname"><span class="pre">score_index_banfeld_Raftery</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_banfeld_Raftery" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -365,8 +362,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_c">
-<span class="sig-name descname"><span class="pre">score_index_c</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_c" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_c">
+<code class="sig-name descname"><span class="pre">score_index_c</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_c" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -376,8 +373,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_c_for_each_cluster">
-<span class="sig-name descname"><span class="pre">score_index_c_for_each_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_c_for_each_cluster" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_c_for_each_cluster">
+<code class="sig-name descname"><span class="pre">score_index_c_for_each_cluster</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_c_for_each_cluster" title="Permalink to this definition">¶</a></dt>
 <dd><p>A variant of C Index for each cluster. The main difference is that we do not take the sum of all pairs of point but we directly take the number of pairs for the given cluster.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -390,8 +387,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_calinski_harabasz">
-<span class="sig-name descname"><span class="pre">score_index_calinski_harabasz</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_calinski_harabasz" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_calinski_harabasz">
+<code class="sig-name descname"><span class="pre">score_index_calinski_harabasz</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_calinski_harabasz" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -401,8 +398,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin">
-<span class="sig-name descname"><span class="pre">score_index_davies_bouldin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin">
+<code class="sig-name descname"><span class="pre">score_index_davies_bouldin</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <p>It is the mean of score_index_davies_bouldin_for_each_cluster.</p>
 <dl class="field-list simple">
@@ -413,8 +410,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin_for_each_cluster">
-<span class="sig-name descname"><span class="pre">score_index_davies_bouldin_for_each_cluster</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin_for_each_cluster" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin_for_each_cluster">
+<code class="sig-name descname"><span class="pre">score_index_davies_bouldin_for_each_cluster</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin_for_each_cluster" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -424,16 +421,16 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_det_ratio">
-<span class="sig-name descname"><span class="pre">score_index_det_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_det_ratio" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_det_ratio">
+<code class="sig-name descname"><span class="pre">score_index_det_ratio</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_det_ratio" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <p>Returns NaN value when the WG matrix or Total Scatter Matrix is not invertible.
 :returns: float.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_dunn">
-<span class="sig-name descname"><span class="pre">score_index_dunn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_dunn" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_dunn">
+<code class="sig-name descname"><span class="pre">score_index_dunn</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_dunn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -443,8 +440,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn">
-<span class="sig-name descname"><span class="pre">score_index_generalized_dunn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn">
+<code class="sig-name descname"><span class="pre">score_index_generalized_dunn</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns one of the 18 generalized dunn indices.</p>
 <blockquote>
 <div><dl class="field-list simple">
@@ -464,8 +461,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn_matrix">
-<span class="sig-name descname"><span class="pre">score_index_generalized_dunn_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn_matrix" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn_matrix">
+<code class="sig-name descname"><span class="pre">score_index_generalized_dunn_matrix</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the 18 generalized dunn indices defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -475,8 +472,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_log_ss_ratio">
-<span class="sig-name descname"><span class="pre">score_index_log_ss_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_log_ss_ratio" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_log_ss_ratio">
+<code class="sig-name descname"><span class="pre">score_index_log_ss_ratio</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_log_ss_ratio" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -486,8 +483,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_mclain_rao">
-<span class="sig-name descname"><span class="pre">score_index_mclain_rao</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_mclain_rao" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_mclain_rao">
+<code class="sig-name descname"><span class="pre">score_index_mclain_rao</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_mclain_rao" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -497,8 +494,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_point_biserial">
-<span class="sig-name descname"><span class="pre">score_index_point_biserial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_point_biserial" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_point_biserial">
+<code class="sig-name descname"><span class="pre">score_index_point_biserial</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_point_biserial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -508,8 +505,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ratkowsky_lance">
-<span class="sig-name descname"><span class="pre">score_index_ratkowsky_lance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ratkowsky_lance" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ratkowsky_lance">
+<code class="sig-name descname"><span class="pre">score_index_ratkowsky_lance</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ratkowsky_lance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -519,8 +516,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ray_turi">
-<span class="sig-name descname"><span class="pre">score_index_ray_turi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ray_turi" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ray_turi">
+<code class="sig-name descname"><span class="pre">score_index_ray_turi</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ray_turi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -530,8 +527,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_scott_symons">
-<span class="sig-name descname"><span class="pre">score_index_scott_symons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_scott_symons" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_scott_symons">
+<code class="sig-name descname"><span class="pre">score_index_scott_symons</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_scott_symons" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <p>Returns NaN if one of the WGk matrix is not inversible.</p>
 <dl class="field-list simple">
@@ -542,8 +539,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette">
-<span class="sig-name descname"><span class="pre">score_index_silhouette</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette">
+<code class="sig-name descname"><span class="pre">score_index_silhouette</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette" title="Permalink to this definition">¶</a></dt>
 <dd><p>Using the scikit-learn library to fast compute Silhouette score.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -553,8 +550,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette_for_every_cluster">
-<span class="sig-name descname"><span class="pre">score_index_silhouette_for_every_cluster</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette_for_every_cluster" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette_for_every_cluster">
+<code class="sig-name descname"><span class="pre">score_index_silhouette_for_every_cluster</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette_for_every_cluster" title="Permalink to this definition">¶</a></dt>
 <dd><p>Using the scikit-learn library to fast compute the mean for each cluster of the silhouette score.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -564,8 +561,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_trace_WiB">
-<span class="sig-name descname"><span class="pre">score_index_trace_WiB</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_trace_WiB" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_trace_WiB">
+<code class="sig-name descname"><span class="pre">score_index_trace_WiB</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_trace_WiB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <p>Returns NaN if WG matrix is not invertible.</p>
 <dl class="field-list simple">
@@ -576,8 +573,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_wemmert_gancarski">
-<span class="sig-name descname"><span class="pre">score_index_wemmert_gancarski</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_wemmert_gancarski" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_wemmert_gancarski">
+<code class="sig-name descname"><span class="pre">score_index_wemmert_gancarski</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_wemmert_gancarski" title="Permalink to this definition">¶</a></dt>
 <dd><p>A special thanks to M.Gançarski who recruited me for my first traineeship at iCube, Strasbourg, its index have been implemented here:</p>
 <p>Defined in the first reference.</p>
 <dl class="field-list simple">
@@ -588,8 +585,8 @@ We will pass the average scattering for clusters and the total separation betwee
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_xie_beni">
-<span class="sig-name descname"><span class="pre">score_index_xie_beni</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_xie_beni" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_xie_beni">
+<code class="sig-name descname"><span class="pre">score_index_xie_beni</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_xie_beni" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defined in the first reference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -615,11 +612,11 @@ To add an index, it is important to add data to the json following its current s
 <p>indices.json structure dependency : indices.json, _info.py, __init__</p>
 </div>
 <dl class="py class">
-<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.index_core.</span></span><span class="sig-name descname"><span class="pre">__IndexCore</span></span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.index_core.__IndexCore">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ClustersFeatures.index_core.</span></code><code class="sig-name descname"><span class="pre">__IndexCore</span></code><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_compute_every_index">
-<span class="sig-name descname"><span class="pre">IndexCore_compute_every_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_compute_every_index" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.index_core.__IndexCore.IndexCore_compute_every_index">
+<code class="sig-name descname"><span class="pre">IndexCore_compute_every_index</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_compute_every_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute all indexes and save it to cache.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -629,8 +626,8 @@ To add an index, it is important to add data to the json following its current s
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_generate_output_by_info_type">
-<span class="sig-name descname"><span class="pre">IndexCore_generate_output_by_info_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_generate_output_by_info_type" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.index_core.__IndexCore.IndexCore_generate_output_by_info_type">
+<code class="sig-name descname"><span class="pre">IndexCore_generate_output_by_info_type</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_generate_output_by_info_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the queried index. If it has already been computed, then the cached result is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -664,8 +661,8 @@ See the Bernard Desgraupes reference for more explanations.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_get_all_index">
-<span class="sig-name descname"><span class="pre">IndexCore_get_all_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_get_all_index" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.index_core.__IndexCore.IndexCore_get_all_index">
+<code class="sig-name descname"><span class="pre">IndexCore_get_all_index</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_get_all_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a dict with all the indexes and its corresponding code.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -679,8 +676,8 @@ See the Bernard Desgraupes reference for more explanations.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_get_number_of_index">
-<span class="sig-name descname"><span class="pre">IndexCore_get_number_of_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_get_number_of_index" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.index_core.__IndexCore.IndexCore_get_number_of_index">
+<code class="sig-name descname"><span class="pre">IndexCore_get_number_of_index</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_get_number_of_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the number of indices inside the indices.json file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>

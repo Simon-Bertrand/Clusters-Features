@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/style.css" type="text/css" />
 
   
@@ -32,7 +30,6 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -92,7 +89,7 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Subclasses:</span></p>
+              <p class="caption"><span class="caption-text">Subclasses:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cc.html">ClustersCharacteristics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data</a></li>
@@ -172,11 +169,11 @@
   <div class="section" id="density">
 <h1>Density<a class="headerlink" href="#density" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._density.</span></span><span class="sig-name descname"><span class="pre">__Density</span></span><a class="headerlink" href="#ClustersFeatures.src._density.__Density" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._density.__Density">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._density.</span></code><code class="sig-name descname"><span class="pre">__Density</span></code><a class="headerlink" href="#ClustersFeatures.src._density.__Density" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density.density_projection_2D">
-<span class="sig-name descname"><span class="pre">density_projection_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reduction_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_2D" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._density.__Density.density_projection_2D">
+<code class="sig-name descname"><span class="pre">density_projection_2D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reduction_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_2D" title="Permalink to this definition">¶</a></dt>
 <dd><p>The density projection uses a reduction method to estimate the density with a 2D Meshgrid.</p>
 <p>We estimate the density by summing num_observations times a 2D gaussian distribution centred on each element of the dataset.
 The percentile is an argument that sets the minimum density contour to select.
@@ -201,8 +198,8 @@ For percentile=99, only the 1% most dense are going to be selected.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density.density_projection_2D_generate_png">
-<span class="sig-name descname"><span class="pre">density_projection_2D_generate_png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reduction_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_2D_generate_png" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._density.__Density.density_projection_2D_generate_png">
+<code class="sig-name descname"><span class="pre">density_projection_2D_generate_png</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reduction_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_2D_generate_png" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method generates a PNG where each density shape is observable.</p>
 <p>We use the PIL library to generate this PNG.</p>
 <dl class="field-list simple">
@@ -223,8 +220,8 @@ For percentile=99, only the 1% most dense are going to be selected.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density.density_projection_3D">
-<span class="sig-name descname"><span class="pre">density_projection_3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_3D" title="Permalink to this definition">¶</a></dt>
+<dt id="ClustersFeatures.src._density.__Density.density_projection_3D">
+<code class="sig-name descname"><span class="pre">density_projection_3D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_3D" title="Permalink to this definition">¶</a></dt>
 <dd><p>The density projection uses 3D PCA reduction method to estimate the density with a 3D Meshgrid.</p>
 <p>We estimate the density by summing num_observations times a 3D gaussian distribution centred on each element of the dataset.
 The percentile is an argument that sets the minimum density contour to select.

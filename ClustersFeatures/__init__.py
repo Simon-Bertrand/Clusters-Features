@@ -76,7 +76,6 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
         #Imputation if NaN values are detected
         pd_df = df_processing.impute_nan_values(pd_df_,args)
         pd_df,label_target = df_processing.generate_label_target_in_case_missing_it(pd_df,args)
-
         self.label_target=label_target
         raising_errors.verify_not_empty_and_correct_target(pd_df, label_target)
 
