@@ -48,7 +48,7 @@ Falcultative dependencies (may cause errors if the user forces the use of the me
 - Graph : [Plotly](https://pypi.org/project/plotly/)
 - Utils : [umap-learn](https://pypi.org/project/umap-learn/), [Numba](https://pypi.org/project/numba/), [statsmodels](https://pypi.org/project/statsmodels/)
 
-Graph is dependent of Utils to correctly work but Utils is not dependent of Graph.
+Graph is dependent of Utils to correctly work but the reciprocal is not true.
 
 
 ## Command Line Interface <a name="CLI"></a>
