@@ -1,6 +1,8 @@
 .idea
 README.md
 
+./cli-output
+data.csv
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
