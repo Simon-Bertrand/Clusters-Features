@@ -4,7 +4,7 @@
 <img src="https://user-images.githubusercontent.com/84455908/128029707-0bf27b40-0570-4f13-8b04-cfaa6c2b560e.png" height="121" width="400" style="display: block; margin-left:auto; margin-right: auto; width: 50%;" /><br />
  <i> This package is made for unsupervised learning. All criterias are used with internal validation and make no use of ground-truth labels.  </i>
 
- # Official documentation : <a href="https://simonbertrand.pages.unistra.fr/Clusters-Features/" alt="Official documentation">simonbertrand.pages.unistra.fr/Clusters-Features/ # </a>
+ # Official documentation : <a href="https://simonbertrand.pages.unistra.fr/Clusters-Features/" alt="Official documentation">simonbertrand.pages.unistra.fr/Clusters-Features/ </a>
 </div>
 
 # Table of contents
