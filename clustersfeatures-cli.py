@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-This is the command line interface manager. To initialize correctly the dataset, you have to put a csv with the label target as the last columns.
+This is the command line interface manager. To initialize correctly the dataset, you have to put a csv with the label target as the last column.
 The csv number of columns should be : data dimension + 1 (the +1 is corresponding to the label target concatenated).
 """
 
@@ -26,6 +26,10 @@ parser.add_argument("--centroids", default=False, action='store_true', help="Ret
 parser.add_argument("--clusters_rank", default=False,action='store_true', help="Returns the ranking of the clusters by index quality criteria.")
 parser.add_argument("--PCA", default=False, type=int, metavar='N-DIM', help="Returns the n-dimensionnal PCA data where n is the option of this argument.")
 parser.add_argument("--UMAP", default=False, action='store_true', help="Returns the 2D UMAP reduction data.")
+
+parser.add_argument("--O_no_json", default=False, action='store_true', help="Disable the return of the output as a json file located at ./cli-output/cli_data.json.")
+parser.add_argument("--O_text", default=False, action='store_true', help="Returns the output as a terminal cat.")
+
 args = parser.parse_args()
 
 
@@ -81,11 +85,11 @@ def isfloat(value):
     return False
 
 def recursive_dict(d):
-    if d is None or isinstance(d, (bool, int, tuple, range, list, float)):
+    if d is None or isinstance(d, (bool, int, tuple, range, float)):
         return np.round(d,2)
     if isinstance(d, str):
         return d
-    if isinstance(d, np.ndarray):
+    if isinstance(d, (np.ndarray,list)):
         return recursive_dict({i:v for i,v in enumerate(d)})
     if isinstance(d, pd.DataFrame):
         return recursive_dict(d.to_dict())
@@ -105,7 +109,10 @@ def key_converter(x):
 
 
 s=recursive_dict(returned_dict_as_json)
+if args.O_no_json != False:
+    with open("./cli-output/cli_data.json", 'w', encoding='utf-8') as f:
+        json.dump(s, f, ensure_ascii=False, indent=4)
+if args.O_text:
+    print(json.dumps(s,ensure_ascii=False, indent=4))
 
-
-with open("./cli-output/cli_data.json", 'w', encoding='utf-8') as f:
-    json.dump(s, f, ensure_ascii=False, indent=4)
+print("~ Sucessfully computed. \n")
