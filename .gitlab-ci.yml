@@ -3,6 +3,7 @@ image: python:3.8-slim
 pages:
   script:
   - pip install sphinx
+  - pip install sphinx_rtd_theme
   - pip install -r requirements.txt
   - sphinx-build -b build-docs public
   artifacts:
