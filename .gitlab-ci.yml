@@ -2,11 +2,11 @@ image: python:3.8-slim
 
 pages:
   script:
+  - pip install -U sphinx
   - pip install -r requirements.txt
-  - sphinx-build -d build-docs docs
-  - mv docs public
+  - sphinx-build -b build-docs public
   artifacts:
     paths:
     - public
   only:
-  - master
+  - main
