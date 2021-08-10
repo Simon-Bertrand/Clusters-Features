@@ -1,7 +1,7 @@
 .idea
 README.md
 
-./cli-output
+cli-output/
 data.csv
 
 ### Python ###
