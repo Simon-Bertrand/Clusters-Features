@@ -3,8 +3,8 @@ image: python:3.8-slim
 pages:
   script:
   - pip install -r requirements.txt
-  - sphinx-build -d build-docs/ . docs/html
-  - mv docs/html public
+  - sphinx-build -d build-docs docs
+  - mv docs public
   artifacts:
     paths:
     - public
