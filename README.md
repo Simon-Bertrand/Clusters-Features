@@ -8,13 +8,15 @@
 # Table of contents
 
 1. [Introduction](#introduction) <br />
-2. [Data](#Data)<br />
-3. [Score](#Score) <br />
-4. [Confusion Hypersphere](#CH) <br />
-5. [Info](#Info) <br />
-6. [Density](#Info) <br />
-7. [Utils](#Utils) <br />
-8. [Graphs](#Graph) <br />
+2. [Command Line Interface](#CLI)<br />
+3. [Data](#Data)<br />
+4. [Score](#Score) <br />
+5. [Confusion Hypersphere](#CH) <br />
+6. [Info](#Info) <br />
+7. [Density](#Info) <br />
+8. [Utils](#Utils) <br />
+9. [Graphs](#Graph) <br />
+  
   
   
 ## Introduction <a name="introduction"></a>
@@ -47,6 +49,16 @@ Falcultative dependencies (may cause errors if the user forces the use of the me
 - Utils : [umap-learn](https://pypi.org/project/umap-learn/), [Numba](https://pypi.org/project/numba/), [statsmodels](https://pypi.org/project/statsmodels/)
 
 Graph is dependent of Utils to correctly work but Utils is not dependent of Graph.
+
+
+## Command Line Interface <a name="CLI"></a>
+This package provides a command line interface that is available by running this command
+```bash
+python3 ./clustersfeatures-cli.py -h
+```
+The documentation for the CLI is contained inside the script. Just use --help arguments to understand what it does.
+
+
 
 ## Import the module ## 
 ```python
