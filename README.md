@@ -3,18 +3,22 @@
 <div align="center">
 <img src="https://user-images.githubusercontent.com/84455908/128029707-0bf27b40-0570-4f13-8b04-cfaa6c2b560e.png" height="121" width="400" style="display: block; margin-left:auto; margin-right: auto; width: 50%;" /><br />
  <i> This package is made for unsupervised learning. All criterias are used with internal validation and make no use of ground-truth labels.  </i>
+
+ # Official documentation : <a href="https://simonbertrand.pages.unistra.fr/Clusters-Features/" alt="Official documentation">simonbertrand.pages.unistra.fr/Clusters-Features/ </a> #
 </div>
 
 # Table of contents
 
 1. [Introduction](#introduction) <br />
-2. [Data](#Data)<br />
-3. [Score](#Score) <br />
-4. [Confusion Hypersphere](#CH) <br />
-5. [Info](#Info) <br />
-6. [Density](#Info) <br />
-7. [Utils](#Utils) <br />
-8. [Graphs](#Graph) <br />
+2. [Command Line Interface](#CLI)<br />
+3. [Data](#Data)<br />
+4. [Score](#Score) <br />
+5. [Confusion Hypersphere](#CH) <br />
+6. [Info](#Info) <br />
+7. [Density](#Info) <br />
+8. [Utils](#Utils) <br />
+9. [Graphs](#Graph) <br />
+  
   
   
 ## Introduction <a name="introduction"></a>
@@ -46,7 +50,17 @@ Falcultative dependencies (may cause errors if the user forces the use of the me
 - Graph : [Plotly](https://pypi.org/project/plotly/)
 - Utils : [umap-learn](https://pypi.org/project/umap-learn/), [Numba](https://pypi.org/project/numba/), [statsmodels](https://pypi.org/project/statsmodels/)
 
-Graph is dependent of Utils to correctly work but Utils is not dependent of Graph.
+Graph is dependent of Utils to correctly work but the reciprocal is not true.
+
+
+## Command Line Interface <a name="CLI"></a>
+This package provides a command line interface that is available by running this command
+```bash
+python3 ./clustersfeatures-cli.py -h
+```
+The documentation for the CLI is contained inside the script. Just use --help arguments to understand what it does.
+
+
 
 ## Import the module ## 
 ```python
