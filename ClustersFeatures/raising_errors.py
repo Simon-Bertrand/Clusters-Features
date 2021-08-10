@@ -164,7 +164,7 @@ def utils_return_KDE_model(args):
 def density_Projection_2D(args, labels_clusters):
     try:
         cluster = args['cluster']
-        if isinstance(cluster,float) or isinstance(cluster,int):
+        if isinstance(cluster, (np.int32, np.int64, int, float, np.float32, np.float64)):
             cluster = [cluster]
         for el in cluster:
             if not (el in (list(labels_clusters) + ["all"])):
@@ -194,10 +194,10 @@ def density_Projection_2D(args, labels_clusters):
 def density_Density_Projection_3D(args, labels_clusters):
     try:
         cluster = args['cluster']
-        if isnumeric(cluster):
+        if isinstance(cluster, (np.int32, np.int64, int, float, np.float32, np.float64)):
             cluster = [cluster]
         for el in cluster:
-            if not (el in (labels_clusters + ["all"])):
+            if not (el in (list(labels_clusters) + ["all"])):
                 raise ValueError(str(el) + " is not in " + str(labels_clusters))
             if len(cluster)>2:
                 raise ValueError('Computing more than 2 clusters is disabled for density 3D')

@@ -35,8 +35,8 @@ class __Density:
 
         xmin, xmax = data[data.columns[0]].min(), data[data.columns[0]].max()
         ymin, ymax = data[data.columns[1]].min(), data[data.columns[1]].max()
-        xrange = np.linspace(xmin, xmax, 200)
-        yrange = np.linspace(ymin, ymax, 200)
+        xrange = np.round(np.linspace(xmin, xmax, 200),2)
+        yrange = np.round(np.linspace(ymin, ymax, 200),2)
         X, Y = np.meshgrid(xrange, yrange)
         Z = pd.DataFrame(np.zeros((len(xrange), len(yrange))), index=xrange, columns=yrange)
 
@@ -90,9 +90,9 @@ class __Density:
             data.columns[1]].max() + np.abs(data[data.columns[1]].max()) / 5
         zmin, zmax = data[data.columns[2]].min() - np.abs(data[data.columns[2]].min()) / 5, data[
             data.columns[2]].max() + np.abs(data[data.columns[2]].max()) / 5
-        xrange = np.linspace(xmin, xmax, 50)
-        yrange = np.linspace(ymin, ymax, 50)
-        zrange = np.linspace(zmin, zmax, 50)
+        xrange = np.round(np.linspace(xmin, xmax, 15),2)
+        yrange = np.round(np.linspace(ymin, ymax, 15),2)
+        zrange = np.round(np.linspace(zmin, zmax, 15),2)
 
         X, Y, Z = np.meshgrid(xrange, yrange, zrange)
         A = np.zeros((len(xrange), len(yrange), len(zrange)))
