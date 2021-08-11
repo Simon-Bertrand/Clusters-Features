@@ -11,6 +11,6 @@ pages:
     paths:
     - public
     expire_in:
-    - 1 days
+    - 10mn
   only:
   - main
