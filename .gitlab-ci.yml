@@ -10,7 +10,6 @@ pages:
   artifacts:
     paths:
     - public
-    expire_in:
-    - 10mn
+    expire_in: 10mn
   only:
   - main
