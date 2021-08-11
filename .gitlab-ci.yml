@@ -10,6 +10,6 @@ pages:
   artifacts:
     paths:
     - public
-    expire_in: '60'
+    expire_in: 60 seconds
   only:
   - main
