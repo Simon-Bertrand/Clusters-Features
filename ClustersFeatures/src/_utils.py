@@ -12,10 +12,10 @@ if settings.Activated_Utils:
             | Else, you can directly specify a time-serie with the data argument.
 
             :param str filter: Type of filter. Have to be in the list ['STL', 'HP', 'BK', 'CF'] respectively for :
-            STL : Season-trend decomposing using LOESS. - https://www.statsmodels.org/devel/generated/statsmodels.tsa.seasonal.STL.html
-            HP : Hodrick-Prescott filter. - https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.hp_filter.hpfilter.html?highlight=hp
-            BK : Filter a time series using the Baxter-King bandpass filter. - https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.bk_filter.bkfilter.html?highlight=bk#statsmodels.tsa.filters.bk_filter.bkfilter
-            CF : Christiano Fitzgerald asymmetric, random walk filter. - https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.cf_filter.cffilter.html?highlight=cf#statsmodels.tsa.filters.cf_filter.cffilter
+            | STL : Season-trend decomposing using LOESS. - https://www.statsmodels.org/devel/generated/statsmodels.tsa.seasonal.STL.html
+            | HP : Hodrick-Prescott filter. - https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.hp_filter.hpfilter.html?highlight=hp
+            | BK : Filter a time series using the Baxter-King bandpass filter. - https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.bk_filter.bkfilter.html?highlight=bk#statsmodels.tsa.filters.bk_filter.bkfilter
+            | CF : Christiano Fitzgerald asymmetric, random walk filter. - https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.cf_filter.cffilter.html?highlight=cf#statsmodels.tsa.filters.cf_filter.cffilter
 
             :param int/float periods=: Specify the period between each sample.
             :param str/int col=: Required if data is None: Specify the column of self data set to filter.
