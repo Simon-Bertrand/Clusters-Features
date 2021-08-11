@@ -90,9 +90,9 @@ class __Density:
             data.columns[1]].max() + np.abs(data[data.columns[1]].max()) / 5
         zmin, zmax = data[data.columns[2]].min() - np.abs(data[data.columns[2]].min()) / 5, data[
             data.columns[2]].max() + np.abs(data[data.columns[2]].max()) / 5
-        xrange = np.round(np.linspace(xmin, xmax, 15),2)
-        yrange = np.round(np.linspace(ymin, ymax, 15),2)
-        zrange = np.round(np.linspace(zmin, zmax, 15),2)
+        xrange = np.round(np.linspace(xmin, xmax, 30),2)
+        yrange = np.round(np.linspace(ymin, ymax, 30),2)
+        zrange = np.round(np.linspace(zmin, zmax, 30),2)
 
         X, Y, Z = np.meshgrid(xrange, yrange, zrange)
         A = np.zeros((len(xrange), len(yrange), len(zrange)))
