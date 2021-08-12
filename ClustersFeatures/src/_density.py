@@ -32,14 +32,20 @@ class __Density:
             Output['target'] = self.data_target
 
         elif method == "inter":
-            Output=pd.DataFrame(index=['Total cluster density C:' + str(cluster1) for cluster1 in self.labels_clusters], columns=['Relative cluster density C:' + str(cluster2) for cluster2 in self.labels_clusters])
+            Output=pd.DataFrame(np.zeros((self.num_clusters,self.num_clusters)))
+
+
+            #A corriger
             for i,cluster1 in enumerate(clusters):
-                for cluster2 in clusters[i+1:]:
-                    Output.loc['Total cluster density C:' + str(cluster1), 'Relative cluster density C:' + str(cluster2)] =\
-                        np.exp(-1 / 2 * ((distance_scaled.loc[self.data_clusters[cluster1].index, self.data_clusters[cluster2].index]) ** 2)).sum(axis=0).sum()
+                for j,cluster2 in enumerate(clusters[i:]):
+                    Output.iloc[i,j]=np.exp(-1 / 2 * ((distance_scaled.loc[self.data_clusters[cluster1].index, self.data_clusters[cluster2].index]) ** 2)).sum(axis=0).sum()
+
             Output2=Output.T.copy()
-            Output2[np.eye(self.num_clusters)>0] = 0
-            Output = Output + Output2.values
+            Output2.values[np.eye(self.num_clusters)>0] = 0
+            Output = Output + Output2
+
+        #Total cluster density C:
+        #'Relative cluster density C:
         return Output
 
 
