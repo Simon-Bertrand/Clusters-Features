@@ -198,6 +198,7 @@ if settings.Activated_Graph:
             data = unpacked_dict['2D PCA Data']
             R = unpacked_dict['Clusters Density']
 
+            Zi[Zi<np.percentile(Zi, percentile)] = 0
             if graph == "interactive":
                 fig = go.Figure(
                     go.Contour(
@@ -209,6 +210,10 @@ if settings.Activated_Graph:
                         opacity=0.75,
                         name="Density"
                     ))
+                fig.update_layout({
+                'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+                'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+                })
                 centroids = {}
                 clusters_circle = []
                 for Cluster in self.labels_clusters:

@@ -1,10 +1,48 @@
 from ClustersFeatures import raising_errors
 from ClustersFeatures import settings
 
+
 import numpy as np
 import pandas as pd
 from ClustersFeatures import settings
 class __Density:
+
+    def density_for_each_observation(self, method, **args):
+        try:
+            clusters=args['clusters']
+        except KeyError:
+            clusters=self.labels_clusters
+
+        from sklearn.preprocessing import StandardScaler
+        from scipy import spatial
+        data = self.data_features
+        scaler = StandardScaler()
+        data_scaled = scaler.fit_transform(data)
+
+        distance_scaled = pd.DataFrame(spatial.distance_matrix(data_scaled, data_scaled), index=self.data_features.index,
+                                   columns=self.data_features.index)
+        if method == "total":
+            Output = pd.DataFrame(index=self.data_features.index)
+            Output['Total Density']=np.exp(-1/2*((distance_scaled.loc[:,:])**2)).sum(axis=0)
+            Output['target'] = self.data_target
+        elif method == "intra":
+            Output = pd.DataFrame(index=self.data_features.index)
+            for cluster in clusters:
+                Output['Cluster ' + str(cluster) + ' Density'] = np.exp(-1 / 2 * ((distance_scaled.loc[self.data_clusters[cluster].index, :]) ** 2)).sum(axis=0)
+            Output['target'] = self.data_target
+
+        elif method == "inter":
+            Output=pd.DataFrame(index=['Total cluster density C:' + str(cluster1) for cluster1 in self.labels_clusters], columns=['Relative cluster density C:' + str(cluster2) for cluster2 in self.labels_clusters])
+            for i,cluster1 in enumerate(clusters):
+                for cluster2 in clusters[i+1:]:
+                    Output.loc['Total cluster density C:' + str(cluster1), 'Relative cluster density C:' + str(cluster2)] =\
+                        np.exp(-1 / 2 * ((distance_scaled.loc[self.data_clusters[cluster1].index, self.data_clusters[cluster2].index]) ** 2)).sum(axis=0).sum()
+            Output2=Output.T.copy()
+            Output2[np.eye(self.num_clusters)>0] = 0
+            Output = Output + Output2.values
+        return Output
+
+
     def density_projection_2D(self, reduction_method, percentile, **args):
         """ The density projection uses a reduction method to estimate the density with a 2D Meshgrid.
 
@@ -40,13 +78,12 @@ class __Density:
         X, Y = np.meshgrid(xrange, yrange)
         Z = pd.DataFrame(np.zeros((len(xrange), len(yrange))), index=xrange, columns=yrange)
 
-        std = 1
         each_cluster_density_save = {}
         total_density_for_each_clusters={}
         for Cluster in cluster:
             Mat = np.zeros((len(xrange), len(yrange)))
             for idx, val in data[self.data_target == Cluster].T.iteritems():
-                Mat += np.exp(-1 * ((X - val[0]) ** 2 + (Y - val[1]) ** 2) / (2 * std)) / (2 * np.pi * std ** 2)
+                Mat += np.exp(-1/2 * ((X - val[0]) ** 2 + (Y - val[1]) ** 2)) / (2 * np.pi) / np.sqrt(2)
                 Z = Z + Mat
             each_cluster_density_save[Cluster] = Mat
             total_density_for_each_clusters[Cluster] = Mat[Mat > np.percentile(Mat, percentile)].sum().sum()
@@ -97,15 +134,13 @@ class __Density:
         X, Y, Z = np.meshgrid(xrange, yrange, zrange)
         A = np.zeros((len(xrange), len(yrange), len(zrange)))
 
-        std = 1
         each_cluster_density_save = {}
         total_cluster_density = {}
         for Cluster in self.labels_clusters:
             Mat = np.zeros((len(xrange), len(yrange), len(zrange)))
             for idx, val in data[self.data_target == Cluster].T.iteritems():
                 Mat += np.exp(
-                    -1 * ((X - val[0]) ** 2 + (Y - val[1]) ** 2 + (Z - val[2]) ** 2) / (2 * std) / (2 * np.pi) ** (
-                                3 / 2) / std ** 3)
+                    -1/2 * ((X - val[0]) ** 2 + (Y - val[1]) ** 2 + (Z - val[2]) ** 2)) / (2 * np.pi) ** (3 / 2)/np.sqrt(3)
                 A = A + Mat
             each_cluster_density_save[Cluster] = Mat
             total_cluster_density[Cluster] = Mat[Mat > np.percentile(Mat,percentile)].sum().sum()
