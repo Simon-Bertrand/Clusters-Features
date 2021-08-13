@@ -6,10 +6,25 @@ import numpy as np
 import pandas as pd
 from ClustersFeatures import settings
 class __Density:
+    def density_estimation(self, method, **args):
+        """Returns an estimation of density by summing n-dim gaussian laws. Since creating a n-dim meshgrid is very high computational complexity, we can
+        only make an estimation on the observations of the dataset. We consider a density function to output a density estimation for a precise n-dim coordinate.
+        Then we apply it to the coordinates of the dataframe points.
 
-    def density_for_each_observation(self, method, **args):
+        :param str method: a str contained in the list : ['intra','inter','total']. "intra" argument is to specify the density for each observation relative to each cluster.
+        "total" argument is an estimation of the density for each observation relative to all clusters at the same time.
+        "Inter" argument is an estimation of total density of each cluster relative to the total density of another cluster. For this argument, the released matrix is symetric.
+
+        :param list clusters: List of specified cluster to estimate the density.
+        :return: A pandas dataframe depending on the given "method" argument.
+        """
         try:
             clusters=args['clusters']
+            if not(isinstance(clusters, (list, np.ndarray))):
+                raise ValueError('Invalid clusters type. Should be a list or a np.ndarray.')
+            for cluster in clusters:
+                if not(cluster in self.labels_clusters):
+                    raise ValueError('Cluster '+ str(cluster) +' is not in the clusters labels of the current dataframe.')
         except KeyError:
             clusters=self.labels_clusters
 
@@ -32,14 +47,16 @@ class __Density:
             Output['target'] = self.data_target
 
         elif method == "inter":
-            Output=pd.DataFrame(index=['Total cluster density C:' + str(cluster1) for cluster1 in self.labels_clusters], columns=['Relative cluster density C:' + str(cluster2) for cluster2 in self.labels_clusters])
+            Output=np.zeros((self.num_clusters,self.num_clusters))
+            pd.set_option('display.float_format', ("{:." + str(settings.precision) + "f}").format)
             for i,cluster1 in enumerate(clusters):
-                for cluster2 in clusters[i+1:]:
-                    Output.loc['Total cluster density C:' + str(cluster1), 'Relative cluster density C:' + str(cluster2)] =\
-                        np.exp(-1 / 2 * ((distance_scaled.loc[self.data_clusters[cluster1].index, self.data_clusters[cluster2].index]) ** 2)).sum(axis=0).sum()
-            Output2=Output.T.copy()
-            Output2[np.eye(self.num_clusters)>0] = 0
-            Output = Output + Output2.values
+                Output[i:,i] =[np.exp(-1 / 2 * ((distance_scaled.loc[self.data_clusters[cluster1].index, self.data_clusters[cluster2].index]) ** 2)).sum(axis=0).sum() for j,cluster2 in enumerate(clusters[i:])]
+            Output2=Output.copy()
+            Output2[np.eye(Output.shape[0])>0] = 0
+            Output = Output + np.transpose(Output2)
+            Output=pd.DataFrame(Output)
+            Output=Output.rename(columns={col:"Cluster " + str(self.labels_clusters[col]) + " Density" for col in Output.columns}).rename(index={index:"Cluster " + str(self.labels_clusters[index]) + " Density" for index in Output.index})
+
         return Output
 
 
