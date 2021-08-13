@@ -1,47 +1,37 @@
-image: python:3.8-slim
-
-
 stages:
-  - build doc
-  - build package
-  - deploy package
+  - build and deploy doc
+  - build and deploy package
+
 
 pages:
-  stage: build doc
+  stage: build and deploy doc
+  image: python:3.8-slim
   script:
   - pip install sphinx
   - pip install sphinx_rtd_theme
   - pip install -r requirements.txt
   - sphinx-build -b singlehtml build-docs/ docs/
   - mv docs public
-  artifacts:
-    paths:
-    - public
-    expire_in: 60 seconds
   only:
   - main
 
-build:
-  stage: build package
+
+
+package:
+  image: python:3.8-slim
+  stage: build and deploy package
   script:
   - pip install setuptools
   - python3 -m setup bdist_wheel
+  - pip install gitlab-release
+  - gitlab-release dist/*
+
   artifacts:
     paths:
-    - out
-    expire_in: 30 seconds
+    - dist
+    expire_in: 120 seconds
   only:
   - main
 
-deploy:
-  stage: deploy package
-  script:
-  - git status
-  artifacts:
-    paths:
-    - out
-    expire_in: 30 seconds
-  only:
-  - main
 
   
