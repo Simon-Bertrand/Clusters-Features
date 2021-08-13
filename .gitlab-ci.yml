@@ -1,10 +1,11 @@
 image: python:3.8-slim
 
 
-stage:
+stages:
   - build doc
   - build package
   - deploy package
+
 pages:
   stage: build doc
   script:
