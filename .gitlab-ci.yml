@@ -1,6 +1,6 @@
 stages:
   - build and deploy doc
-  - build and deploy package
+  - build package as artifact
 
 
 pages:
@@ -16,17 +16,12 @@ pages:
   - main
 
 
-
 package:
   image: python:3.8-slim
-  stage: build and deploy package
+  stage: build package as artifact
   script:
   - pip install setuptools
-  - pip install twine
   - python3 -m setup bdist_wheel
-  - TWINE_PASSWORD=${CI_JOB_TOKEN}
-  - TWINE_USERNAME=gitlab-ci-token
-  - python3 -m twine upload --repository-url ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi dist/*
   artifacts:
     paths:
     - dist
