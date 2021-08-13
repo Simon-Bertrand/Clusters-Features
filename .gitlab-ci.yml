@@ -7,11 +7,23 @@ pages:
   - pip install -r requirements.txt
   - sphinx-build -b singlehtml build-docs/ docs/
   - mv docs public
-  - pip install setuptools
-  - python3 setup.py bdist_wheel
   artifacts:
     paths:
     - public
     expire_in: 60 seconds
   only:
   - main
+
+
+build:
+  script:
+    - pip install setuptools
+    - python3 -m bdist_wheel
+  artifacts:
+    paths:
+    - dist
+    expire_in: 30 seconds
+  only:
+  - main
+
+  
