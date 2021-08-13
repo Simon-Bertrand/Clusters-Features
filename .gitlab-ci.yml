@@ -1,6 +1,12 @@
 image: python:3.8-slim
 
+
+stage:
+  - build doc
+  - build package
+  - deploy package
 pages:
+  stage: build doc
   script:
   - pip install sphinx
   - pip install sphinx_rtd_theme
@@ -14,14 +20,25 @@ pages:
   only:
   - main
 
-
 build:
+  stage: build package
   script:
-    - pip install setuptools
-    - python3 -m setup bdist_wheel
+  - pip install setuptools
+  - python3 -m setup bdist_wheel
   artifacts:
     paths:
-    - dist
+    - out
+    expire_in: 30 seconds
+  only:
+  - main
+
+deploy:
+  stage: deploy package
+  script:
+  - git status
+  artifacts:
+    paths:
+    - out
     expire_in: 30 seconds
   only:
   - main
