@@ -18,7 +18,7 @@ pages:
 build:
   script:
     - pip install setuptools
-    - python3 -m setup.py bdist_wheel
+    - python3 -m setup bdist_wheel
   artifacts:
     paths:
     - dist
