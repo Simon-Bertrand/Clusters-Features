@@ -309,27 +309,6 @@ class __ScoreIndex:
              self.labels_clusters]) * self.data_intercentroid_distance_matrix().max().max() / self.data_intercentroid_distance_matrix().min().min())
 
 
-    def score_index_S_Dbw(self):
-        """ Defined in the first reference.
-
-        :returns: float.
-        """
-        with np.errstate(divide='ignore', invalid='ignore'):
-            Vk = [np.linalg.norm(self.data_clusters[Cluster].var(ddof=0)) for Cluster in self.labels_clusters]
-            std_dev = np.mean(np.sqrt(Vk))
-            Rkk = []
-            for Cluster1, Cluster2 in self.data_every_possible_cluster_pairs:
-                mid_point = (self.data_centroids[Cluster1] + self.data_centroids[Cluster2]) / 2
-                ykk_Hkk = self.confusion_hyperphere_around_specific_point_for_two_clusters(mid_point, Cluster1, Cluster2,
-                                                                                           std_dev)
-                ykk_Gk = self.confusion_hyperphere_around_specific_point_for_two_clusters(self.data_centroids[Cluster1],
-                                                                                          Cluster1, Cluster2, std_dev)
-                y_kk_Gkp = self.confusion_hyperphere_around_specific_point_for_two_clusters(self.data_centroids[Cluster2],
-                                                                                            Cluster1, Cluster2, std_dev)
-                Rkk.append(ykk_Hkk / np.max([ykk_Gk, y_kk_Gkp]))
-            S = np.mean(Vk) / np.linalg.norm(self.data_features.var(ddof=0).to_numpy())
-            return np.mean(Rkk) + S
-
     def score_index_Log_Det_ratio(self):
         """ Defined in the first reference.
 

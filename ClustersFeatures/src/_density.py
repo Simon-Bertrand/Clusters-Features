@@ -11,9 +11,7 @@ class __Density:
         only make an estimation on the observations of the dataset. We consider a density function to output a density estimation for a precise n-dim coordinate.
         Then we apply it to the coordinates of the dataframe points.
 
-        :param str method: a str contained in the list : ['intra','inter','total']. "intra" argument is to specify the density for each observation relative to each cluster.
-        "total" argument is an estimation of the density for each observation relative to all clusters at the same time.
-        "Inter" argument is an estimation of total density of each cluster relative to the total density of another cluster. For this argument, the released matrix is symetric.
+        :param str method: a str contained in the list : ['intra','inter','total']. "intra" argument is to specify the density for each observation relative to each cluster. "total" argument is an estimation of the density for each observation relative to all clusters at the same time. "Inter" argument is an estimation of total density of each cluster relative to the total density of another cluster. For this argument, the released matrix is symetric.
 
         :param list clusters: List of specified cluster to estimate the density.
         :return: A pandas dataframe depending on the given "method" argument.

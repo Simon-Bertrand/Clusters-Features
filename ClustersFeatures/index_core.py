@@ -100,8 +100,6 @@ class __IndexCore(object):
                 elif code == "G-MinD-02":
                     value_to_return = self.score_index_log_ss_ratio()
                 elif code == "G-MinD-03":
-                    value_to_return = self.score_index_S_Dbw()
-                elif code == "G-MinD-04":
                     value_to_return = self.score_index_Log_Det_ratio()
                 else:
                     raise ValueError('(board_type,indices_type)=' + str((board_type,indices_type)) + " - Invalid Code : " + str(code))

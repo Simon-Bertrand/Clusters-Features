@@ -33,8 +33,7 @@
     "min diff":  {
       "Det Ratio Index": "G-MinD-01",
       "Log BGSS/WGSS Index": "G-MinD-02",
-      "S_Dbw Index": "G-MinD-03",
-      "Nlog Det Ratio Index": "G-MinD-04"
+      "Nlog Det Ratio Index": "G-MinD-03"
     }
   },
 
