@@ -8,7 +8,7 @@ pages:
   - sphinx-build -b singlehtml build-docs/ docs/
   - mv docs public
   - pip install setuptools
-  - setup.py bdist_wheel
+  - python3 setup.py bdist_wheel
   artifacts:
     paths:
     - public
