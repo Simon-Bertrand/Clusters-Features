@@ -3,6 +3,10 @@
 This is the command line interface manager. To initialize correctly the dataset, you have to put a csv with the label target as the last column.
 The csv number of columns should be : data dimension + 1 (the +1 is corresponding to the label target concatenated).
 
+This program is just a link between the instance of ClustersFeatures and the CLI.
+We initialize a ClustersCharacteristics instance with the given csv and use the method of the main class.
+
+
 How to add an output to the CLI ?
 First thing to do is to implement the python function in one of the many subclasses that are contained inside the ClustersFeatures/src folder.
 Then :
@@ -28,10 +32,10 @@ parser.add_argument("csv_location", type=str, help="This argument needs to be th
 parser.add_argument("--index", default=False, action="store_true", help="Returns all indexes that are in the indices.json.")
 parser.add_argument("--ch_total", default=False, type=float, metavar='RADIUS', help="Returns the confusion hypersphere with specified radius. The counting_type is 'including' and proportion is set to false.")
 parser.add_argument("--ch_proportion", default=False, type=float, metavar='RADIUS', help="Returns the confusion hypersphere with specified radius. The counting_type is 'including' and proportion is set to true.")
-parser.add_argument("--percentile_density", default=99, type=int, metavar='PERCENTILE', help="Set the minimum contour of the density as a percentile of the reducted data. Only used for twodim and threedim densities.")
 parser.add_argument("--density_for_each_observation", default=False, action='store_true', help="Returns the estimated density for each observation of the dataset.")
 parser.add_argument("--density_for_each_element_for_each_cluster", default=False, action='store_true', help="Returns the estimated density of every elements for each cluster of the dataset.")
 parser.add_argument("--density_for_each_cluster", default=False, action='store_true', help="Returns the estimated density for each clusters.")
+parser.add_argument("--percentile_density", default=99, type=int, metavar='PERCENTILE', help="Set the minimum contour of the density as a percentile of the reducted data. Only used for twodim and threedim densities.")
 parser.add_argument("--twodim_density_PCA", default=False, action='store_true', help="Returns the total 2D PCA density and the density for each cluster.")
 parser.add_argument("--threedim_density_PCA", default=False, dest='threedim_density_PCA', action='store_true', help="Returns the total 3D density and the density for each cluster. Uses the PCA Reduction method.")
 parser.add_argument("--twodim_density_UMAP", default=False, action='store_true', help="Returns the total 2D density and the density for each cluster. Uses the UMAP Reduction method.")
@@ -60,7 +64,7 @@ try:
 except FileNotFoundError:
     raise argparse.ArgumentTypeError('Invalid location : '+str(args.location)+". No such file in that location.") from None
 
-#Create the instance of the ClustersFeatures library with the target as a the last column.
+#Create the instance of the ClustersFeatures library with the target as the last column.
 CC=ClustersCharacteristics(pd_df,label_target=pd_df.columns[-1])
 
 #Create the empty to return dict

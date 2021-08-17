@@ -210,7 +210,6 @@ if settings.Activated_Utils:
             df.index.name="Cluster"
             if bool_cluster_rank:
                 df['Mean Rank'] = mean_cluster_rank
-
             return df
 else:
     class __Utils():
