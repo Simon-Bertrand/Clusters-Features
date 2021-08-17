@@ -4,7 +4,8 @@ This is the command line interface manager. To initialize correctly the dataset,
 The csv number of columns should be : data dimension + 1 (the +1 is corresponding to the label target concatenated).
 
 This program is just a link between the instance of ClustersFeatures and the CLI.
-We initialize a ClustersCharacteristics instance with the given csv and use the method of the main class.
+We initialize a ClustersCharacteristics instance with the given csv and use the method of the main class
+and then convert the python dict to a valid JSON format.
 
 
 How to add an output to the CLI ?
