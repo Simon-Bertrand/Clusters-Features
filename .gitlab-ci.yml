@@ -12,8 +12,13 @@ pages:
   - pip install -r requirements.txt
   - sphinx-build -b singlehtml build-docs/ docs/
   - mv docs public
+  artifacts:
+    paths:
+    - public
+    expire_in: 120 seconds
   only:
   - main
+
 
 
 package:
