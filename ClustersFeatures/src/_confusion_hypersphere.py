@@ -6,7 +6,7 @@ class __ConfusionHypersphere:
     def confusion_hypersphere_matrix(self, **args):
         """Returns the confusion hypersphere matrix.
 
-        This function counts for each clusters the numbers of elements contained in each hypersphere centred on centroid.
+        This function counts for each cluster the number of elements contained in each hypersphere centred on centroids.
 
         :param float radius_choice: The radius of the hypersphere.
         :param str counting_type: a str in ['including', 'excluding'].
