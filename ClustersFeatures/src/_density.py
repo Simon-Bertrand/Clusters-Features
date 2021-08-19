@@ -98,7 +98,7 @@ class __Density:
         for Cluster in cluster:
             Mat = np.zeros((len(xrange), len(yrange)))
             for idx, val in data[self.data_target == Cluster].T.iteritems():
-                Mat += np.exp(-1/2 * ((X - val[0]) ** 2 + (Y - val[1]) ** 2)) / (2 * np.pi) / np.sqrt(2)
+                Mat += np.exp(-1/2 * ((X - val[0]) ** 2 + (Y - val[1]) ** 2)) / (2 * np.pi)
                 Z = Z + Mat
             each_cluster_density_save[Cluster] = Mat
             total_density_for_each_clusters[Cluster] = Mat[Mat > np.percentile(Mat, percentile)].sum().sum()
@@ -142,9 +142,9 @@ class __Density:
             data.columns[1]].max() + np.abs(data[data.columns[1]].max()) / 5
         zmin, zmax = data[data.columns[2]].min() - np.abs(data[data.columns[2]].min()) / 5, data[
             data.columns[2]].max() + np.abs(data[data.columns[2]].max()) / 5
-        xrange = np.round(np.linspace(xmin, xmax, 30),2)
-        yrange = np.round(np.linspace(ymin, ymax, 30),2)
-        zrange = np.round(np.linspace(zmin, zmax, 30),2)
+        xrange = np.round(np.linspace(xmin, xmax, 35),2)
+        yrange = np.round(np.linspace(ymin, ymax, 35),2)
+        zrange = np.round(np.linspace(zmin, zmax, 35),2)
 
         X, Y, Z = np.meshgrid(xrange, yrange, zrange)
         A = np.zeros((len(xrange), len(yrange), len(zrange)))
@@ -155,7 +155,7 @@ class __Density:
             Mat = np.zeros((len(xrange), len(yrange), len(zrange)))
             for idx, val in data[self.data_target == Cluster].T.iteritems():
                 Mat += np.exp(
-                    -1/2 * ((X - val[0]) ** 2 + (Y - val[1]) ** 2 + (Z - val[2]) ** 2)) / (2 * np.pi) ** (3 / 2)/np.sqrt(3)
+                    -1/2 * ((X - val[0]) ** 2 + (Y - val[1]) ** 2 + (Z - val[2]) ** 2)) / (2 * np.pi) ** (3 / 2)
                 A = A + Mat
             each_cluster_density_save[Cluster] = Mat
             total_cluster_density[Cluster] = Mat[Mat > np.percentile(Mat,percentile)].sum().sum()
