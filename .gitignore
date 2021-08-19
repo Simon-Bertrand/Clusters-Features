@@ -2,7 +2,7 @@
 README.md
 
 cli-output/
-data.csv
+
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -69,7 +69,7 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-*.ipynb
+
 
 # IPython
 profile_default/

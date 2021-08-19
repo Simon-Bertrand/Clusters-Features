@@ -97,7 +97,6 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
         self.data_target = pd.DataFrame()
         self.data_frame = pd.DataFrame()
         self.data_features = pd.DataFrame()
-        self.data_confusion_hypersphere = pd.DataFrame()
         self.data_every_element_distance_to_centroids = pd.DataFrame()
 
         if (self.label_target in pd_df.columns):

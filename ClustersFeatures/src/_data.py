@@ -115,6 +115,12 @@ class __Data:
 
 
     def data_radius_selector_specific_cluster(self, Query, Cluster):
+        """ Returns the radius of one given cluster with different query.
+
+        :param str Query: in the list ['max', 'min', 'median', 'mean'] or "XXp" for the XXth radius percentile or "XX%" for a percentage of the max radius.
+        :param Cluster: The cluster label
+        :return: a float.
+        """
         raising_errors.cluster_in(Cluster, self.labels_clusters)
 
         regex_percentile = re.compile('([0-9]+)p')
