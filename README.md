@@ -379,7 +379,7 @@ pd_df
 The important thing is that the given "pd_df" dataframe in the following argument has to be concatenated with the target vector.
 Then, just specify as second argument which column name has the target. The program is making automatically the separation :
 ```python
-CC=ClustersCharacteristics(pd_df,"target")
+CC=ClustersCharacteristics(pd_df,label_target="target")
 ```
 
 ## Data tools <a name="Data"></a>
