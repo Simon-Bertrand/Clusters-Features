@@ -36,7 +36,7 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
 
     :returns: ClustersCharacteristics Instance
 
-    >>> CC=ClustersCharacteristics(pd_df,"target")
+    >>> CC=ClustersCharacteristics(pd_df,label_target="target")
 
     Many features are available as instance variables, here is the list:
 
@@ -69,7 +69,6 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
         :param str label_target: The name of the column target of pd_df dataframe. If not specified, than we compute a K-Means with K=n_kmeans
         :param int n_kmeans: The number of clusters to use in the K-Means in the event that there is no specified label_target
         """
-
         raising_errors.verify_pandas_df_and_not_empty(pd_df_)
         raising_errors.verify_no_object_columns_and_delete_it(pd_df_)
 
@@ -167,13 +166,8 @@ class ClustersCharacteristics(__Score,__Data,__ScoreIndex,__Info,__ConfusionHype
                 [(Cluster1, Cluster2) for i, Cluster1 in enumerate(self.labels_clusters) for Cluster2 in
                  self.labels_clusters[i + 1:]])
 
-
-
-
         else:
             raising_errors.wrong_label_target(label_target)
-
-
 
         """Initialisation and saving of matrixes that need to be computed many times.
         It optimizes for example the GDI and Dunn Indexes
