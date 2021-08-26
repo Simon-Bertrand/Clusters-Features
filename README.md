@@ -1,5 +1,5 @@
 # Clusters-Features : a Python module to evaluate the quality of clustering #
-<i> Made during an internship for iCube in Strasbourg. The full report in French is available soon.</i>
+<i> Made during an internship for iCube in Strasbourg, FR. The full report in French is available soon.</i>
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/84455908/128029707-0bf27b40-0570-4f13-8b04-cfaa6c2b560e.png" height="121" width="400" style="display: block; margin-left:auto; margin-right: auto; width: 50%;" /><br />
