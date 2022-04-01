@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clusters-Features 1.0.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> Clusters-Features
+          </a>
+              <div class="version">
+                1.0.2
+              </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Subclasses:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-cc">ClustersCharacteristics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-data">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-score">Score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-confusionhypersphere">Confusion Hypersphere</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-info">Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-density">Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-utils">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-graph">Graph</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Clusters-Features</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Clusters-Features 1.0.2 documentation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="clusters-features-s-documentation">
+<h1>Clusters-Features’s documentation<a class="headerlink" href="#clusters-features-s-documentation" title="Permalink to this headline"></a></h1>
+<a class="reference internal image-reference" href="https://user-images.githubusercontent.com/84455908/128029707-0bf27b40-0570-4f13-8b04-cfaa6c2b560e.png"><img alt="Clusters-Features Logo" class="align-center" src="https://user-images.githubusercontent.com/84455908/128029707-0bf27b40-0570-4f13-8b04-cfaa6c2b560e.png" style="width: 400px;" /></a>
+<div class="line-block">
+<div class="line">Welcome to the official documentation of the Python package : Clusters-Features</div>
+</div>
+</section>
+<section id="package-features">
+<h1>Package features<a class="headerlink" href="#package-features" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+<span id="document-cc"></span><section id="clusterscharacteristics">
+<h2>ClustersCharacteristics<a class="headerlink" href="#clusterscharacteristics" title="Permalink to this headline"></a></h2>
+<span class="target" id="module-ClustersFeatures"></span><dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.ClustersCharacteristics">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.</span></span><span class="sig-name descname"><span class="pre">ClustersCharacteristics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pd_df_</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.ClustersCharacteristics" title="Permalink to this definition"></a></dt>
+<dd><p>Class Author: BERTRAND Simon - <a class="reference external" href="mailto:simonbertrand&#46;contact&#37;&#52;&#48;gmail&#46;com">simonbertrand<span>&#46;</span>contact<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>Made for preparing the summer mission with iCube, Strasbourg (D-IR on FoDoMust).
+This class has been made in order to facilitate the manipulation of Clusters generated by unsupervised techniques.
+It computes many scores and indexes to evaluate the generated clusters. Some utils tools such as data visualisation are also implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pd_df</strong> (<em>pd.DataFrame</em>) – Dataframe to analyse concatenated with the target vector</p></li>
+<li><p><strong>target</strong> (<em>str</em>) – The name of the column target of pd_df dataframe</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ClustersCharacteristics Instance</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">=</span><span class="n">ClustersCharacteristics</span><span class="p">(</span><span class="n">pd_df</span><span class="p">,</span><span class="n">label_target</span><span class="o">=</span><span class="s2">&quot;target&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Many features are available as instance variables, here is the list:</p>
+<dl class="field-list simple">
+<dt class="field-odd">InstVar self.num_clusters</dt>
+<dd class="field-odd"><p>Returns the number of clusters</p>
+</dd>
+<dt class="field-even">InstVar self.num_observations</dt>
+<dd class="field-even"><p>Returns the number of observations (pd_df.shape[0])</p>
+</dd>
+<dt class="field-odd">InstVar self.num_observation_for_specific_cluster</dt>
+<dd class="field-odd"><p>Returns a dict with cluster as key and number of observations as value</p>
+</dd>
+<dt class="field-even">InstVar self.data_dimension</dt>
+<dd class="field-even"><p>Returns the number of features/directions/dimensions (pd_df.shape[1]-1)</p>
+</dd>
+<dt class="field-odd">InstVar self.labels_clusters</dt>
+<dd class="field-odd"><p>Returns a list of all clusters labels</p>
+</dd>
+<dt class="field-even">InstVar self.label_target</dt>
+<dd class="field-even"><p>Returns the given argument “target” used in the initialisation of ClustersCharacteristics instance</p>
+</dd>
+<dt class="field-odd">InstVar self.data_clusters</dt>
+<dd class="field-odd"><p>Returns a dict with label cluster as key and sub-dataframe with same label cluster target as value</p>
+</dd>
+<dt class="field-even">InstVar self.data_centroids</dt>
+<dd class="field-even"><p>Returns a dict with label cluster as key and centroid point Series as value</p>
+</dd>
+<dt class="field-odd">InstVar self.data_barycenter</dt>
+<dd class="field-odd"><p>Returns a Series of the dataframe barycenter</p>
+</dd>
+<dt class="field-even">InstVar self.data_radiuscentroid</dt>
+<dd class="field-even"><p>Returns a dict with [“max”:,”75p”,”median”,”mean”,”min”] as keys and a dict with clusters as keys and centroid radius as value</p>
+</dd>
+<dt class="field-odd">InstVar self.data_target</dt>
+<dd class="field-odd"><p>Returns the vector target</p>
+</dd>
+<dt class="field-even">InstVar self.data_frame</dt>
+<dd class="field-even"><p>Returns the dataframe without the target vector</p>
+</dd>
+<dt class="field-odd">InstVar self.data_features</dt>
+<dd class="field-odd"><p>Returns the dataframe with the target vector (pd_df)</p>
+</dd>
+<dt class="field-even">InstVar self.data_every_element_distance_to_every_element</dt>
+<dd class="field-even"><p>Returns pairwise elements distances (Generated by Scipy)</p>
+</dd>
+<dt class="field-odd">InstVar self.data_every_element_distance_to_centroids</dt>
+<dd class="field-odd"><p>Returns each distance between element of the dataset and each centroid</p>
+</dd>
+<dt class="field-even">InstVar self.data_every_possible_cluster_pairs</dt>
+<dd class="field-even"><p>Returns all the possible clusters pairs of elements</p>
+</dd>
+<dt class="field-odd">InstVar self.data_every_cluster_element_distance_to_centroids</dt>
+<dd class="field-odd"><p>Returns the distance between element belonging a cluster and its centroid for each cluster</p>
+</dd>
+</dl>
+<p>For example :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">num_clusters</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<span id="document-data"></span><section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._data.</span></span><span class="sig-name descname"><span class="pre">__Data</span></span><a class="headerlink" href="#ClustersFeatures.src._data.__Data" title="Permalink to this definition"></a></dt>
+<dd><p>The ClustersCharacteristics object creates attributes that define clusters. We can find them in the Data subclass.
+To use these methods, you need to initialize a ClusterCharacteristics instance and then write the corresponding methods:</p>
+<p>For example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">=</span><span class="n">ClustersCharacteristics</span><span class="p">(</span><span class="n">pd_df</span><span class="p">,</span><span class="s2">&quot;target&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">data_intercentroid_distance_matrix</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_intercentroid_distance">
+<span class="sig-name descname"><span class="pre">data_intercentroid_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cluster2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_intercentroid_distance" title="Permalink to this definition"></a></dt>
+<dd><p>Computes distances between centroid of Cluster1 and centroid of Cluster2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Cluster1</strong> – Cluster1 label name</p></li>
+<li><p><strong>Cluster2</strong> – Cluster2 label name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">data_intercentroid_distance</span><span class="p">(</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_intercentroid_distance_matrix">
+<span class="sig-name descname"><span class="pre">data_intercentroid_distance_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_intercentroid_distance_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the distance between one centroid and another and return the matrix of this general term</p>
+<p>Return a symetric matrix (xi,j)i,j where xi,j is the distance between centroids of cluster i and j</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>target=</strong> (<em>bool</em>) – Concatenate the output with the data target</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A symetric pandas dataframe with the computed distances between each centroid</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">data_intercentroid_distance_matrix</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_interelement_distance_between_elements_of_two_clusters">
+<span class="sig-name descname"><span class="pre">data_interelement_distance_between_elements_of_two_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cluster2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_interelement_distance_between_elements_of_two_clusters" title="Permalink to this definition"></a></dt>
+<dd><p>Returns every pairwise distance between elements belonging Cluster1 or Cluster2</p>
+<p>If Cluster1 is equal to Cluster2, than these distances are inter-clusters and the output is symetric.
+Else, these are extra-clusters and the output is not symetric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Cluster1</strong> – Label cluster column name</p></li>
+<li><p><strong>Cluster2</strong> – Label cluster column name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pandas dataframe with the given clusters pairwise elements distance</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">data_interelement_distance_between_elements_of_two_clusters</span><span class="p">(</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_interelement_distance_for_clusters">
+<span class="sig-name descname"><span class="pre">data_interelement_distance_for_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_interelement_distance_for_clusters" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a dataframe with two columns. The first column is the distance for each element belonging
+clusters in the “clusters=” list argument. The second column is a boolean column equal to True
+when both elements are inside the same cluster. We use here the Pandas Multi-Indexes to allow users
+to link the column Distance with dataset points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>clusters=</strong> – labels of clusters to compute pairwise distances</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pandas dataframe with two columns : one for the distance and the other named ‘Same Cluster ?’ is equal to True if both elements belong the same cluster</p>
+</dd>
+</dl>
+<p>Computing all the distances between the 3 first clusters of the dataframe</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">data_interelement_distance_for_clusters</span><span class="p">(</span><span class="n">clusters</span><span class="o">=</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_interelement_distance_for_two_element">
+<span class="sig-name descname"><span class="pre">data_interelement_distance_for_two_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ElementId1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ElementId2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_interelement_distance_for_two_element" title="Permalink to this definition"></a></dt>
+<dd><p>Calls the distance between Element1 and Element2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ElementId1</strong> – First element pandas index</p></li>
+<li><p><strong>ElementId2</strong> – Second element pandas index</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">data_interelement_distance_for_two_element</span><span class="p">(</span><span class="n">CC</span><span class="o">.</span><span class="n">data_features</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">CC</span><span class="o">.</span><span class="n">data_features</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_radius_selector_specific_cluster">
+<span class="sig-name descname"><span class="pre">data_radius_selector_specific_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_radius_selector_specific_cluster" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the radius of one given cluster with different query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Query</strong> (<em>str</em>) – in the list [‘max’, ‘min’, ‘median’, ‘mean’] or “XXp” for the XXth radius percentile or “XX%” for a percentage of the max radius.</p></li>
+<li><p><strong>Cluster</strong> – The cluster label</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._data.__Data.data_same_target_for_pairs_elements_matrix">
+<span class="sig-name descname"><span class="pre">data_same_target_for_pairs_elements_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._data.__Data.data_same_target_for_pairs_elements_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a boolean matrix where the general term is equal to True when the index elements belong the same cluster with the column element</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A boolean pandas dataframe with shape (num_observations,num_observations)</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">data_same_target_for_pairs_elements_matrix</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<span id="document-score"></span><section id="score">
+<span id="my-reference-label"></span><h2>Score<a class="headerlink" href="#score" title="Permalink to this headline"></a></h2>
+<p>This section allows users to evaluate their clustering by checking values of the indices from below.</p>
+<p>References :</p>
+<p><a class="reference external" href="https://cran.r-project.org/web/packages/clusterCrit/vignettes/clusterCrit.pdf">Clustering Indice - Bernard Desgraupes (University Paris Ouest, Lab Modal’X) - 2017</a></p>
+<p><a class="reference external" href="https://www.ripublication.com/ijaer18/ijaerv13n11_86.pdf">Study on Different Cluster Validity Indices - Shyam Kumar K, Dr. Raju G (NSS College Rajakumari, Idukki &amp; Kannur University, Kannur in Kerala, India) - 2018</a></p>
+<p><a class="reference external" href="http://datamining.rutgers.edu/publication/internalmeasures.pdf">Understanding of Internal Clustering Validation Measures - Yanchi Liu, Zhongmou Li, Hui Xiong, Xuedong Gao, Junjie Wu - 2010</a></p>
+<section id="scatter-score">
+<h3>Scatter Score<a class="headerlink" href="#scatter-score" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._score.</span></span><span class="sig-name descname"><span class="pre">__Score</span></span><a class="headerlink" href="#ClustersFeatures.src._score.__Score" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_T">
+<span class="sig-name descname"><span class="pre">scatter_matrix_T</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_T" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the total dispersion matrix : it is self.num_observations times the variance-covariance matrix of the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a Pandas dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_WG">
+<span class="sig-name descname"><span class="pre">scatter_matrix_WG</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_WG" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the sum of scatter_matrix_specific_cluster_WGk for all k, it is also called as within group matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a Pandas dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_between_group_BG">
+<span class="sig-name descname"><span class="pre">scatter_matrix_between_group_BG</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_between_group_BG" title="Permalink to this definition"></a></dt>
+<dd><p>Return the matrix composed with the dispersion between centroids and the barycenter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a Pandas dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.scatter_matrix_specific_cluster_WGk">
+<span class="sig-name descname"><span class="pre">scatter_matrix_specific_cluster_WGk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.scatter_matrix_specific_cluster_WGk" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the within cluster dispersion for a specific cluster (sum square distances between cluster’s elements and the centroid of the concerned cluster).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Cluster</strong> – Cluster label name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a Pandas dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_between_group_dispersion">
+<span class="sig-name descname"><span class="pre">score_between_group_dispersion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_between_group_dispersion" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the between group dispersion, can also be seen as the trace of the between group matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_mean_quadratic_error">
+<span class="sig-name descname"><span class="pre">score_mean_quadratic_error</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_mean_quadratic_error" title="Permalink to this definition"></a></dt>
+<dd><p>Mean quadratic error, also the same as score_pooled_within_cluster_dispersion / num_observations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_pooled_within_cluster_dispersion">
+<span class="sig-name descname"><span class="pre">score_pooled_within_cluster_dispersion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_pooled_within_cluster_dispersion" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the sum of score_within_cluster_dispersion for each cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_totalsumsquare">
+<span class="sig-name descname"><span class="pre">score_totalsumsquare</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_totalsumsquare" title="Permalink to this definition"></a></dt>
+<dd><p>Trace of scatter_matrix_T, we can compute it differently by using variance function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score.__Score.score_within_cluster_dispersion">
+<span class="sig-name descname"><span class="pre">score_within_cluster_dispersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score.__Score.score_within_cluster_dispersion" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the trace of the WGk matrix for a specific cluster. It’s the same as score_total_sum_square but computed with WGk matrix’ coefficients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Cluster</strong> – Cluster label name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="index">
+<h3>Index<a class="headerlink" href="#index" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._score_index.</span></span><span class="sig-name descname"><span class="pre">__ScoreIndex</span></span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_Log_Det_ratio">
+<span class="sig-name descname"><span class="pre">score_index_Log_Det_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_Log_Det_ratio" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>Returns NaN value when the WG matrix or Total Scatter Matrix is not invertible.
+:returns: float.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_PBM">
+<span class="sig-name descname"><span class="pre">score_index_PBM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_PBM" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_SD">
+<span class="sig-name descname"><span class="pre">score_index_SD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_SD" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>Since we haven’t different numbers of cluster, we can’t compute the weighting coefficient :
+We will pass the average scattering for clusters and the total separation between clusters as the returned tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A tuple of float that are (Scattering, Separation).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ball_hall">
+<span class="sig-name descname"><span class="pre">score_index_ball_hall</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ball_hall" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the Ball Hall index defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_banfeld_Raftery">
+<span class="sig-name descname"><span class="pre">score_index_banfeld_Raftery</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_banfeld_Raftery" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_c">
+<span class="sig-name descname"><span class="pre">score_index_c</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_c" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_c_for_each_cluster">
+<span class="sig-name descname"><span class="pre">score_index_c_for_each_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_c_for_each_cluster" title="Permalink to this definition"></a></dt>
+<dd><p>A variant of C Index for each cluster. The main difference is that we do not take the sum of all pairs of point but we directly take the number of pairs for the given cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Cluster</strong> – Cluster label name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_calinski_harabasz">
+<span class="sig-name descname"><span class="pre">score_index_calinski_harabasz</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_calinski_harabasz" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin">
+<span class="sig-name descname"><span class="pre">score_index_davies_bouldin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>It is the mean of score_index_davies_bouldin_for_each_cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin_for_each_cluster">
+<span class="sig-name descname"><span class="pre">score_index_davies_bouldin_for_each_cluster</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_davies_bouldin_for_each_cluster" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>np.array of davies bouldin score for each clusters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_det_ratio">
+<span class="sig-name descname"><span class="pre">score_index_det_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_det_ratio" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>Returns NaN value when the WG matrix or Total Scatter Matrix is not invertible.
+:returns: float.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_dunn">
+<span class="sig-name descname"><span class="pre">score_index_dunn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_dunn" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn">
+<span class="sig-name descname"><span class="pre">score_index_generalized_dunn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn" title="Permalink to this definition"></a></dt>
+<dd><p>Returns one of the 18 generalized dunn indices.</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param int wc_distance</dt>
+<dd class="field-odd"><p>within cluster indice according to main reference. Int included in [1,2,3].</p>
+</dd>
+<dt class="field-even">param int bc_distance</dt>
+<dd class="field-even"><p>between cluster indice according to main reference. Int included in [1,2,3,4,5,6].</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn_matrix">
+<span class="sig-name descname"><span class="pre">score_index_generalized_dunn_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_generalized_dunn_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the 18 generalized dunn indices defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A pandas dataframe with shape (6,3).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_log_ss_ratio">
+<span class="sig-name descname"><span class="pre">score_index_log_ss_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_log_ss_ratio" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_mclain_rao">
+<span class="sig-name descname"><span class="pre">score_index_mclain_rao</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_mclain_rao" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_point_biserial">
+<span class="sig-name descname"><span class="pre">score_index_point_biserial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_point_biserial" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ratkowsky_lance">
+<span class="sig-name descname"><span class="pre">score_index_ratkowsky_lance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ratkowsky_lance" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_ray_turi">
+<span class="sig-name descname"><span class="pre">score_index_ray_turi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_ray_turi" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_scott_symons">
+<span class="sig-name descname"><span class="pre">score_index_scott_symons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_scott_symons" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>Returns NaN if one of the WGk matrix is not inversible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette">
+<span class="sig-name descname"><span class="pre">score_index_silhouette</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette" title="Permalink to this definition"></a></dt>
+<dd><p>Using the scikit-learn library to fast compute Silhouette score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette_for_every_cluster">
+<span class="sig-name descname"><span class="pre">score_index_silhouette_for_every_cluster</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_silhouette_for_every_cluster" title="Permalink to this definition"></a></dt>
+<dd><p>Using the scikit-learn library to fast compute the mean for each cluster of the silhouette score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A pandas Series with silhouette score for each cluster.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_trace_WiB">
+<span class="sig-name descname"><span class="pre">score_index_trace_WiB</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_trace_WiB" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<p>Returns NaN if WG matrix is not invertible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_wemmert_gancarski">
+<span class="sig-name descname"><span class="pre">score_index_wemmert_gancarski</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_wemmert_gancarski" title="Permalink to this definition"></a></dt>
+<dd><p>A special thanks to M.Gançarski who recruited me for my first traineeship at iCube, Strasbourg, its index have been implemented here:</p>
+<p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._score_index.__ScoreIndex.score_index_xie_beni">
+<span class="sig-name descname"><span class="pre">score_index_xie_beni</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._score_index.__ScoreIndex.score_index_xie_beni" title="Permalink to this definition"></a></dt>
+<dd><p>Defined in the first reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="indexcore">
+<h3>IndexCore<a class="headerlink" href="#indexcore" title="Permalink to this headline"></a></h3>
+<p>In this library, there are two types of methods to calculate these scores: Using IndexCore which automatically caches the already calculated indexes or calculating directly using the score_index methods.
+The second method can make the calculation of the same index repetitive, which can be very slow because we know that some of these indexes have a very high computational complexity.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Special care to the indices.json structure.
+All the IndexCore class is based on this json structure.
+Modifying the aspect of indices.json brings to modifying the structure of many functions in this document.
+In other words, it is strongly discouraged to modify the global aspect of the json without having done a thorough analysis of the program.
+To add an index, it is important to add data to the json following its current structure.</p>
+<p>indices.json structure dependency : indices.json, _info.py, __init__</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.index_core.</span></span><span class="sig-name descname"><span class="pre">__IndexCore</span></span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_compute_every_index">
+<span class="sig-name descname"><span class="pre">IndexCore_compute_every_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_compute_every_index" title="Permalink to this definition"></a></dt>
+<dd><p>Compute all indexes and save it to cache.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dict with all the indexes values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_generate_output_by_info_type">
+<span class="sig-name descname"><span class="pre">IndexCore_generate_output_by_info_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_generate_output_by_info_type" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the queried index. If it has already been computed, then the cached result is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>board_type:</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+<p>A str in the following list [‘general’, ‘radius’, ‘clusters’].
+General shows indices that are calculed for the entire dataset. Radius shows informations about the distributions of
+radius and clusters allows users to check the indices for each clusters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>indices_type:</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+<p>A str in the following list [‘max’, ‘min’, ‘max diff’, ‘min diff’].
+If ‘max’ (respect. ‘min’), then higher (respect. lower) is the score, the better is the clustering.
+For “max diff” and “min diff”, it is usefull to use them when you need to find the best number of clusters.
+Max diff will correspond to the maximum difference between clustering 1 with K clusters and clustering 2 with K’ clusters (K!=K’).
+See the Bernard Desgraupes reference for more explanations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>code:</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+<p>A str corresponding to one of the code inside the indices.json file. Check these codes with IndexCore_get_all_index().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list or float or pandas dataframe or pandas series.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_get_all_index">
+<span class="sig-name descname"><span class="pre">IndexCore_get_all_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_get_all_index" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a dict with all the indexes and its corresponding code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">IndexCore_get_all_index</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="s1">&#39;general&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Between-group total dispersion&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean quadratic error&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Silhouette Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Dunn Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Generalized Dunn Indexes&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-GDI&#39;</span><span class="p">,</span> <span class="s1">&#39;Wemmert-Gancarski Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-05&#39;</span><span class="p">,</span> <span class="s1">&#39;Calinski-Harabasz Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-06&#39;</span><span class="p">,</span> <span class="s1">&#39;Ratkowsky-Lance Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-07&#39;</span><span class="p">,</span> <span class="s1">&#39;Point Biserial Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-08&#39;</span><span class="p">,</span> <span class="s1">&#39;PBM Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Max-09&#39;</span><span class="p">},</span> <span class="s1">&#39;max diff&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Trace WiB Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MaxD-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Trace W Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MaxD-02&#39;</span><span class="p">},</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Banfeld-Raftery Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Ball Hall Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-02&#39;</span><span class="p">,</span> <span class="s1">&#39;C Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Ray-Turi Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Xie-Beni Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-05&#39;</span><span class="p">,</span> <span class="s1">&#39;Davies Bouldin Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-06&#39;</span><span class="p">,</span> <span class="s1">&#39;SD Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-07&#39;</span><span class="p">,</span> <span class="s1">&#39;Mclain-Rao Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-08&#39;</span><span class="p">,</span> <span class="s1">&#39;Scott-Symons Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-Min-09&#39;</span><span class="p">},</span> <span class="s1">&#39;min diff&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Det Ratio Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Log BGSS/WGSS Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-02&#39;</span><span class="p">,</span> <span class="s1">&#39;S_Dbw Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Nlog Det Ratio Index&#39;</span><span class="p">:</span> <span class="s1">&#39;G-MinD-04&#39;</span><span class="p">}},</span> <span class="s1">&#39;clusters&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Centroid distance to barycenter&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Between-group Dispersion&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Average Silhouette&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-03&#39;</span><span class="p">,</span> <span class="s1">&#39;KernelDensity mean&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Ball Hall Index&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Max-05&#39;</span><span class="p">},</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Within-Cluster Dispersion&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Largest element distance&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Inter-element mean distance&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Davies Bouldin Index&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-04&#39;</span><span class="p">,</span> <span class="s1">&#39;C Index&#39;</span><span class="p">:</span> <span class="s1">&#39;C-Min-05&#39;</span><span class="p">}},</span> <span class="s1">&#39;radius&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Radius min&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-01&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius mean&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-02&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius median&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-03&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius 75th Percentile&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-04&#39;</span><span class="p">,</span> <span class="s1">&#39;Radius max&#39;</span><span class="p">:</span> <span class="s1">&#39;R-Min-05&#39;</span><span class="p">}}}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.index_core.__IndexCore.IndexCore_get_number_of_index">
+<span class="sig-name descname"><span class="pre">IndexCore_get_number_of_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.index_core.__IndexCore.IndexCore_get_number_of_index" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the number of indices inside the indices.json file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<span id="document-confusionhypersphere"></span><section id="confusion-hypersphere">
+<h2>Confusion Hypersphere<a class="headerlink" href="#confusion-hypersphere" title="Permalink to this headline"></a></h2>
+<p>The confusion hypersphere subclass counts the number of element contained inside a n-dim sphere (hypersphere) of given radius and centered on each cluster centroid.
+The given radius is the same for each hypersphere.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.src._confusion_hypersphere.__ConfusionHypersphere">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._confusion_hypersphere.</span></span><span class="sig-name descname"><span class="pre">__ConfusionHypersphere</span></span><a class="headerlink" href="#ClustersFeatures.src._confusion_hypersphere.__ConfusionHypersphere" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._confusion_hypersphere.__ConfusionHypersphere.confusion_hyperphere_around_specific_point_for_two_clusters">
+<span class="sig-name descname"><span class="pre">confusion_hyperphere_around_specific_point_for_two_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._confusion_hypersphere.__ConfusionHypersphere.confusion_hyperphere_around_specific_point_for_two_clusters" title="Permalink to this definition"></a></dt>
+<dd><p>This function returns the number of elements belonging to Cluster1 or Cluster2 that are contained in the hypersphere of specific radius and centred on the given point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<em>list</em><em>,</em><em>np.ndarray</em>) – The point on which the hypersphere will be centred.</p></li>
+<li><p><strong>Cluster1</strong> – Cluster1 label name.</p></li>
+<li><p><strong>Cluster2</strong> – Cluster2 label name.</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – The radius of the hyperpshere.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._confusion_hypersphere.__ConfusionHypersphere.confusion_hypersphere_for_linspace_radius_each_element">
+<span class="sig-name descname"><span class="pre">confusion_hypersphere_for_linspace_radius_each_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._confusion_hypersphere.__ConfusionHypersphere.confusion_hypersphere_for_linspace_radius_each_element" title="Permalink to this definition"></a></dt>
+<dd><p>This method returns the results of the above method for a linear radius space. “=”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n_pts</strong> (<em>int</em>) – Allows users to set the radius range.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pandas dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._confusion_hypersphere.__ConfusionHypersphere.confusion_hypersphere_matrix">
+<span class="sig-name descname"><span class="pre">confusion_hypersphere_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._confusion_hypersphere.__ConfusionHypersphere.confusion_hypersphere_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the confusion hypersphere matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius_choice</strong> (<em>float</em>) – The radius of the hypersphere.</p></li>
+<li><p><strong>counting_type</strong> (<em>str</em>) – a str in [‘including’, ‘excluding’].
+If including, then the elements belonging cluster i and contained inside the hypersphere of centroid i are counted (for i=j). If excluding, then they’re not counted.</p></li>
+<li><p><strong>proportion</strong> (<em>bool</em>) – If True, returns the proportion.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pandas dataframe.</p>
+</dd>
+</dl>
+<p>If (xi,j)i,j is the returned Matrix, then the matrix can be described as follows :</p>
+<ul class="simple">
+<li><p>for proportion = False : xi,j is the number of element belonging to the cluster j contained inside (euclidian norm) the hyperpshere with specified radius of cluster i</p></li>
+<li><p>for proportion = True : xi,j is the number of element belonging to the cluster j contained inside (euclidian norm) the hypersphere with specified radius of cluster i divided by the number of elements inside the cluster j</p></li>
+</ul>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">confusion_hypersphere_matrix</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">counting_type</span><span class="o">=</span><span class="s2">&quot;including&quot;</span><span class="p">,</span> <span class="n">proportion</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<span id="document-info"></span><section id="info">
+<h2>Info<a class="headerlink" href="#info" title="Permalink to this headline"></a></h2>
+<p>The Info subclass shows two different informative boards that gives many kinds of informations about the general dataset and the clusters.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.src._info.__Info">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._info.</span></span><span class="sig-name descname"><span class="pre">__Info</span></span><a class="headerlink" href="#ClustersFeatures.src._info.__Info" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._info.__Info.clusters_info">
+<span class="sig-name descname"><span class="pre">clusters_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._info.__Info.clusters_info" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a board that gives information about the different clusters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>scaler</strong> (<em>str</em>) – Returns the scaled output. Avalaible scalers : ‘min_max’, ‘robust’, ‘standard’.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pandas dataframe.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">clusters_info</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._info.__Info.general_info">
+<span class="sig-name descname"><span class="pre">general_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._info.__Info.general_info" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a board that gives general information about the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>hide_nan</strong> (<em>bool</em>) – Show the NaN indices and their corresponding code. If True, showing is disabled.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pandas dataframe.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">general_info</span><span class="p">(</span><span class="n">hide_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<span id="document-density"></span><section id="density">
+<h2>Density<a class="headerlink" href="#density" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._density.</span></span><span class="sig-name descname"><span class="pre">__Density</span></span><a class="headerlink" href="#ClustersFeatures.src._density.__Density" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density.density_estimation">
+<span class="sig-name descname"><span class="pre">density_estimation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_estimation" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an estimation of density by summing n-dim gaussian laws. Since creating a n-dim meshgrid is very high computational complexity, we can
+only make an estimation on the observations of the dataset. We consider a density function to output a density estimation for a precise n-dim coordinate.
+Then we apply it to the coordinates of the dataframe points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>method</strong> (<em>str</em>) – a str contained in the list : [‘intra’,’inter’,’total’]. “intra” argument is to specify the density for each observation relative to each cluster. “total” argument is an estimation of the density for each observation relative to all clusters at the same time. “Inter” argument is an estimation of total density of each cluster relative to the total density of another cluster. For this argument, the released matrix is symetric.</p></li>
+<li><p><strong>clusters</strong> (<em>list</em>) – List of specified cluster to estimate the density.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pandas dataframe depending on the given “method” argument.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density.density_projection_2D">
+<span class="sig-name descname"><span class="pre">density_projection_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reduction_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_2D" title="Permalink to this definition"></a></dt>
+<dd><p>The density projection uses a reduction method to estimate the density with a 2D Meshgrid.</p>
+<p>We estimate the density by summing num_observations times a 2D gaussian distribution centred on each element of the dataset.
+The percentile is an argument that sets the minimum density contour to select.
+For percentile=99, only the 1% most dense are going to be selected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reduction_method</strong> (<em>str</em>) – “UMAP” or “PCA”. Reduces the total dimension of the dataframe to 2.</p></li>
+<li><p><strong>percentile</strong> (<em>int</em>) – Sets the minimum density contour to select as a percentile of the current density distribution.</p></li>
+<li><p><strong>cluster=</strong> (<em>list</em>) – A list of clusters to estimate density.</p></li>
+<li><p><strong>return_clusters_density=</strong> (<em>bool</em>) – Adds a key in the returned dict with a Z values meshgrid for each clusters.</p></li>
+<li><p><strong>return_data</strong> (<em>bool</em>) – Returns the reduction data. It’s the same as self.utils_PCA(2) or self.utils_UMAP() but packed in the returned dict.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dict containing all the data.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">density_projection_2D</span><span class="p">(</span><span class="s2">&quot;PCA&quot;</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="n">cluster</span><span class="o">=</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_clusters_density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density.density_projection_2D_generate_png">
+<span class="sig-name descname"><span class="pre">density_projection_2D_generate_png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reduction_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_2D_generate_png" title="Permalink to this definition"></a></dt>
+<dd><p>This method generates a PNG where each density shape is observable.</p>
+<p>We use the PIL library to generate this PNG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reduction_method</strong> (<em>str</em>) – “UMAP” or “PCA”</p></li>
+<li><p><strong>percentile</strong> (<em>int</em>) – Sets the minimum density contour to select as a percentile of the current density distribution.</p></li>
+<li><p><strong>show_image</strong> (<em>bool</em>) – Show the generated image with Plotly. If it is not installed, it is recommended to turn to False this argument.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dict containing all the data.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">density_projection_2D_generate_png</span><span class="p">(</span><span class="s2">&quot;PCA&quot;</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="n">show_image</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._density.__Density.density_projection_3D">
+<span class="sig-name descname"><span class="pre">density_projection_3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._density.__Density.density_projection_3D" title="Permalink to this definition"></a></dt>
+<dd><p>The density projection uses 3D PCA reduction method to estimate the density with a 3D Meshgrid.</p>
+<p>We estimate the density by summing num_observations times a 3D gaussian distribution centred on each element of the dataset.
+The percentile is an argument that sets the minimum density contour to select.
+For percentile=99, only the 1% most dense are going to be selected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>percentile</strong> (<em>int</em>) – Sets the minimum density contour to select as a percentile of the current density distribution.</p></li>
+<li><p><strong>cluster=</strong> (<em>list</em>) – A list of clusters to estimate density. It is forbidden to put more than 2 distincts clusters. Letting this argument empty will result to a estimation of each clusters as a single density.</p></li>
+<li><p><strong>return_clusters_density=</strong> (<em>bool</em>) – Adds a key in the returned dict with the density values for each cluster.</p></li>
+<li><p><strong>return_grid</strong> (<em>bool</em>) – Adds a key in the returned dict with the full 3D meshgrid.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dict containing all the data.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">density_projection_3D</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">cluster</span><span class="o">=</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">,</span> <span class="n">return_grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_clusters_density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<span id="document-utils"></span><section id="utils">
+<h2>Utils<a class="headerlink" href="#utils" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.src._utils.__Utils">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._utils.</span></span><span class="sig-name descname"><span class="pre">__Utils</span></span><a class="headerlink" href="#ClustersFeatures.src._utils.__Utils" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._utils.__Utils.utils_ClustersRank">
+<span class="sig-name descname"><span class="pre">utils_ClustersRank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._utils.__Utils.utils_ClustersRank" title="Permalink to this definition"></a></dt>
+<dd><p>Defines a mean rank for each cluster based on the min/max indexes of the cluster board.</p>
+<p>The method uses the min-max scaler to put each row of the clusters_info board at the same dimension.
+We separate the min and the max indices to output a rank for each indices.
+If the indices min i is the lower of all clusters, then its rank is self.num_observations-th.
+To generate the final rank, we compute the mean rank for each cluster with min et max type.
+Then we sum the mean rank of the min indices to the mean rank of the max indices.
+As we want a rank where first position is the better, we invert the above sum and get the final rank.
+By adding params, you can provide the mean rank for each cluster by passing cluster_rank=True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cluster_rank=</strong> (<em>bool</em>) – Returns the mean rank for each cluster</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The final leaderboard.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">utils_ClustersRank</span><span class="p">(</span><span class="n">mean_cluster_rank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._utils.__Utils.utils_KernelDensity">
+<span class="sig-name descname"><span class="pre">utils_KernelDensity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._utils.__Utils.utils_KernelDensity" title="Permalink to this definition"></a></dt>
+<dd><p>Function that returns an estimation of Kernel Density with the best bandwidth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>return_KDE</strong> (<em>bool</em>) – If argument return_KDE = True, so the KDE model is returned to generate samples later. It uses the Scikit Learn Library.</p></li>
+<li><p><strong>clusters</strong> (<em>list</em>) – List of clusters to evaluate KernelDensity, order is not important.If no clusters specified, the KernelDensity is done on the entire data set</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>An estimation of KernelDensity for each sample if return_KDE is false</p></li>
+<li><p>A tuple with the estimation of KD for each sample and the KDE model if return_KDE is true</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._utils.__Utils.utils_PCA">
+<span class="sig-name descname"><span class="pre">utils_PCA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._utils.__Utils.utils_PCA" title="Permalink to this definition"></a></dt>
+<dd><p>Principal Component Analysis : Use the scikit learn library</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n_components</strong> – number of data dimension after reduction</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A n_components-D projection of the whole data set</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._utils.__Utils.utils_UMAP">
+<span class="sig-name descname"><span class="pre">utils_UMAP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._utils.__Utils.utils_UMAP" title="Permalink to this definition"></a></dt>
+<dd><p>Uniform Manifold Approximation Projection : Use the umap-learn library.</p>
+<p>The result is cached to avoid same and repetitive calculs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>show_target</strong> (<em>bool</em>) – Concatenate target to output dataframe</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pandas dataframe with the 2D projection of the whole data set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._utils.__Utils.utils_ts_filtering">
+<span class="sig-name descname"><span class="pre">utils_ts_filtering</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._utils.__Utils.utils_ts_filtering" title="Permalink to this definition"></a></dt>
+<dd><p>Filter a time-serie with different filters from statsmodels.</p>
+<div class="line-block">
+<div class="line">Col argument can be specified if it is wanted to filter a column of self dataframe.</div>
+<div class="line">Else, you can directly specify a time-serie with the data argument.</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filter</strong> (<em>str</em>) – Type of filter. Have to be in the list [‘STL’, ‘HP’, ‘BK’, ‘CF’] respectively for :</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">STL : Season-trend decomposing using LOESS. - <a class="reference external" href="https://www.statsmodels.org/devel/generated/statsmodels.tsa.seasonal.STL.html">https://www.statsmodels.org/devel/generated/statsmodels.tsa.seasonal.STL.html</a></div>
+<div class="line">HP : Hodrick-Prescott filter. - <a class="reference external" href="https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.hp_filter.hpfilter.html?highlight=hp">https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.hp_filter.hpfilter.html?highlight=hp</a></div>
+<div class="line">BK : Filter a time series using the Baxter-King bandpass filter. - <a class="reference external" href="https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.bk_filter.bkfilter.html?highlight=bk#statsmodels.tsa.filters.bk_filter.bkfilter">https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.bk_filter.bkfilter.html?highlight=bk#statsmodels.tsa.filters.bk_filter.bkfilter</a></div>
+<div class="line">CF : Christiano Fitzgerald asymmetric, random walk filter. - <a class="reference external" href="https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.cf_filter.cffilter.html?highlight=cf#statsmodels.tsa.filters.cf_filter.cffilter">https://www.statsmodels.org/devel/generated/statsmodels.tsa.filters.cf_filter.cffilter.html?highlight=cf#statsmodels.tsa.filters.cf_filter.cffilter</a></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>periods=</strong> (<em>int/float</em>) – Specify the period between each sample.</p></li>
+<li><p><strong>col=</strong> (<em>str/int</em>) – Required if data is None: Specify the column of self data set to filter.</p></li>
+<li><p><strong>data=</strong> (<em>list/np.ndarray</em>) – Required if col is None : Specify the data to filter.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pandas dataframe with columns as the decomposed signals.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<span id="document-graph"></span><section id="graph">
+<h2>Graph<a class="headerlink" href="#graph" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ClustersFeatures.src._graph.__Graph">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">ClustersFeatures.src._graph.</span></span><span class="sig-name descname"><span class="pre">__Graph</span></span><a class="headerlink" href="#ClustersFeatures.src._graph.__Graph" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._graph.__Graph.graph_PCA_3D">
+<span class="sig-name descname"><span class="pre">graph_PCA_3D</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._graph.__Graph.graph_PCA_3D" title="Permalink to this definition"></a></dt>
+<dd><p>Shows the 3D PCA reduction graph with Plotly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Plotly figure instance</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">graph_PCA_3D</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._graph.__Graph.graph_boxplots_distances_to_centroid">
+<span class="sig-name descname"><span class="pre">graph_boxplots_distances_to_centroid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._graph.__Graph.graph_boxplots_distances_to_centroid" title="Permalink to this definition"></a></dt>
+<dd><p>Shows a box plot of the distances between all elements and the centroid of given cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Cluster</strong> – Cluster centroid name to evaluate the elements distance with.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Plotly figure instance.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">graph_boxplots_distances_to_centroid</span><span class="p">(</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._graph.__Graph.graph_confusion_hypersphere_evolution_for_linspace_radius">
+<span class="sig-name descname"><span class="pre">graph_confusion_hypersphere_evolution_for_linspace_radius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_pts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proportion</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._graph.__Graph.graph_confusion_hypersphere_evolution_for_linspace_radius" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Plotly animation with dataframes generated by the Confusion Hypersphere for different radius.</p>
+<p>This animation allows users to understand which clusters are more confused with each other. You can also interpret compactness as follows:
+The diagonal term (when proportion is True) that first reaches the value 1 corresponds to the most compact cluster in the dataset
+:param int n_pts: Number of points for the radius linspace.
+:param bool proportion: Put the value of proportion to Confusion Hypersphere arguments
+:returns: Plotly figure instance.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">graph_confusion_hypersphere_evolution_for_linspace_radius</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._graph.__Graph.graph_projection_2D">
+<span class="sig-name descname"><span class="pre">graph_projection_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._graph.__Graph.graph_projection_2D" title="Permalink to this definition"></a></dt>
+<dd><p>A simple 2D projection on two given features with Plotly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>feature1</strong> – The first dataframe columns to project</p></li>
+<li><p><strong>feature2</strong> – The second dataframe columns to projectv</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Plotly figure instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._graph.__Graph.graph_reduction_2D">
+<span class="sig-name descname"><span class="pre">graph_reduction_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reduction_method</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._graph.__Graph.graph_reduction_2D" title="Permalink to this definition"></a></dt>
+<dd><p>Shows the 2D reduction graph with Plotly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>reduction_method</strong> (<em>str</em>) – “UMAP” or “PCA”</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Plotly figure instance</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">graph_reduction_2D</span><span class="p">(</span><span class="s2">&quot;UMAP&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._graph.__Graph.graph_reduction_density_2D">
+<span class="sig-name descname"><span class="pre">graph_reduction_density_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reduction_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._graph.__Graph.graph_reduction_density_2D" title="Permalink to this definition"></a></dt>
+<dd><p>Shows the result of 2D PCA density estimation with Plotly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reduction_method</strong> (<em>str</em>) – “UMAP” or “PCA”. Reduces the total dimension of the dataframe to 2.</p></li>
+<li><p><strong>percentile</strong> (<em>int</em>) – Sets the minimum density contour to select as a percentile of the current density distribution.</p></li>
+<li><p><strong>graph</strong> (<em>str</em>) – “interactive” or “contour”. Shows different ways to visualize the density.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Plotly figure instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ClustersFeatures.src._graph.__Graph.graph_reduction_density_3D">
+<span class="sig-name descname"><span class="pre">graph_reduction_density_3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percentile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ClustersFeatures.src._graph.__Graph.graph_reduction_density_3D" title="Permalink to this definition"></a></dt>
+<dd><p>Shows the result of 3D PCA density estimation with Plotly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>percentile</strong> (<em>int</em>) – Sets the minimum density contour to select as a percentile of the current density distribution.</p></li>
+<li><p><strong>cluster=</strong> (<em>list</em>) – A list of clusters to estimate density.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Plotly figure instance</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">graph_reduction_density_3D</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span><span class="n">cluster</span><span class="o">=</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">graph_reduction_density_3D</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span><span class="n">cluster</span><span class="o">=</span><span class="n">CC</span><span class="o">.</span><span class="n">labels_clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">CC</span><span class="o">.</span><span class="n">graph_reduction_density_3D</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Simon Bertrand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
