@@ -41,8 +41,8 @@ jobs:
           pip install sphinx_rtd_theme
           sphinx-build -b singlehtml build-docs/ docs/
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          branch: gh-pages # The branch the action should deploy to.
+          folder: docs # The folder the action should deploy.
