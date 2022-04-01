@@ -40,7 +40,6 @@ jobs:
           pip install sphinx
           pip install sphinx_rtd_theme
           sphinx-build -b singlehtml build-docs/ docs/
-          mv docs public
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
