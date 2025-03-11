@@ -42,15 +42,27 @@ class __Score:
         return WG
 
 
+    # def scatter_matrix_between_group_BG(self):
+    #     """Return the matrix composed with the dispersion between centroids and the barycenter.
+
+    #     :returns: a Pandas dataframe. """
+    #     B = pd.DataFrame()
+    #     for Cluster in self.labels_clusters:
+    #         B = B.append(np.sqrt(self.num_observation_for_specific_cluster[Cluster]) * (
+    #                     self.data_centroids[Cluster] - self.data_barycenter), ignore_index=True)
+    #     return B.T.dot(B)
+    
     def scatter_matrix_between_group_BG(self):
         """Return the matrix composed with the dispersion between centroids and the barycenter.
-
         :returns: a Pandas dataframe. """
-        B = pd.DataFrame()
+        B_rows = []
         for Cluster in self.labels_clusters:
-            B = B.append(np.sqrt(self.num_observation_for_specific_cluster[Cluster]) * (
-                        self.data_centroids[Cluster] - self.data_barycenter), ignore_index=True)
+            row = np.sqrt(self.num_observation_for_specific_cluster[Cluster]) * (
+                self.data_centroids[Cluster] - self.data_barycenter)
+            B_rows.append(row)
+        B = pd.DataFrame(B_rows)
         return B.T.dot(B)
+
 
 
     def score_totalsumsquare(self):
